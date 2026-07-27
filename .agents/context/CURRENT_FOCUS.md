@@ -6,11 +6,11 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
-- **Khởi tạo và cấu hình dự án (Hoàn thành - 2026-07-27)**:
-  - Nhân bản thành công bộ khung Astro + CSS Design System từ dự án `dinh-mountain-help`.
-  - Dọn dẹp sạch sẽ toàn bộ bài viết blog, dữ liệu cung đường, hình ảnh, API endpoints, và các component cũ liên quan đến Núi Dinh.
-  - Đưa trang chủ `src/pages/index.astro` về dạng mẫu tối giản sạch sẽ, thừa hưởng CSS dùng chung và kết nối SEOHead.
-  - Cập nhật toàn bộ tài liệu của Agent (`AGENT_README.md`, `MISSION.md`, `CURRENT_FOCUS.md`) hướng tới dự án in 3D mới.
+- **Cấu hình & Đồng bộ Cloudflare Pages (Hoàn thành - 2026-07-27)**:
+  - Dọn dẹp hoàn toàn các tài liệu cũ không liên quan của dự án Núi Dinh.
+  - Cấu hình lại `astro.config.mjs` và `wrangler.jsonc` để chạy tĩnh (SSG) độc lập.
+  - Thiết lập remote và đồng bộ mã nguồn lên GitHub repository mới: https://github.com/leanhbang-cloud/in3d.help.
+  - Kết nối và deploy thành công trên Cloudflare Pages mặc định tại https://in3d-help.pages.dev.
 
 ---
 
@@ -37,11 +37,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Khởi tạo dự án mới in3D.help & Dọn dẹp dữ liệu cũ
-Progress:    Nhân bản dự án thành công, dọn dẹp sạch sẽ và cập nhật tài liệu Agent.
-Next:        Nhận yêu cầu chi tiết về nội dung/giao diện in 3D từ anh Bang.
+Working on:  Cấu hình và đồng bộ dự án lên Cloudflare Pages & GitHub
+Progress:    Dọn dẹp tài liệu cũ, cấu hình độc lập tĩnh (SSG) và deploy thành công lên Cloudflare Pages.
+Next:        Thiết kế nội dung trang chủ Sale Page in 3D (Hero, Bảng giá, FAQ, CTA Zalo)
 Blockers:    None
-Last commit: Initial Setup
-Updated:     2026-07-27 16:35
+Last commit: aac1b48 chore: remove cloudflare adapter to build standard static site into dist/
+Updated:     2026-07-27 17:08
 Machine:     Mac mini
 ```
