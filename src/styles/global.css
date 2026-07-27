@@ -1,0 +1,435 @@
+/* ==========================================================================
+   GOOGLE FONTS
+   Font được load qua <link> trong SEOHead.astro (không chặn render).
+   Xem thêm: Phase 1B — fix render-blocking @import.
+   ========================================================================== */
+
+/* ==========================================================================
+   DESIGN SYSTEM — NÚI DINH WEBSITE
+   ========================================================================== */
+
+:root {
+  /* 01. Color Palette — Option C (Đã duyệt) */
+  --color-cognac: #5C3D20;
+  --color-gold: #C8A45D;
+  --color-forest: #1E3A28;
+  --color-cream: #F0E6D0;
+  --color-bronze: #75560C;
+
+  /* Màu text & utility */
+  --color-text: #1C1C1E;
+  --color-text-light: #7A5C3A;
+  --color-bg: #FAF6EF;
+  --color-disabled: #B0957A;
+
+  /* Màu sắc nhận diện 4 cung đường trekking theo bản đồ trail mới nhất */
+  --color-trail-blue: #1976D2;   /* Tuyến Xanh Dương (Thiền Viện) */
+  --color-trail-red: #D32F2F;    /* Tuyến Đỏ (Suối Đá 5 hồ) */
+  --color-trail-yellow: #FFC107; /* Tuyến Vàng (Di Đà Sơn - Ống nước) */
+  --color-trail-green: #2E7D32;  /* Tuyến Xanh Lá (Cô Kiều - Cô Hường) */
+
+  /* 02. Typography Tokens (Font Family) */
+  --font-display: 'Roboto Slab', serif;
+  --font-body: 'Roboto', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+
+  /* 03. Spacing System (Bội số của 8px) */
+  --space-micro: 4px;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+
+  /* 10. Global Timing Tokens (Hiệu ứng chuyển động) */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --duration-reveal: 400ms;
+  
+  --ease-standard: ease-out;
+  --ease-spring: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   RESET & NỀN TẢNG
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px; /* Điểm neo chuẩn để sử dụng đơn vị rem */
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; /* Tối ưu hiển thị mịn chữ trên Firefox macOS */
+}
+
+body {
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Ngăn tràn ngang trên di động khi mở Mobile Drawer */
+@media (max-width: 767px) {
+  html, body {
+    overflow-x: hidden;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Accessibility Baseline: Viền tập trung rõ ràng khi sử dụng bàn phím nav */
+:focus-visible {
+  outline: 2px solid var(--color-cognac);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   LAYOUT PRIMITIVES (Mục 04 — Lưới và Khung chứa)
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* ==========================================================================
+   TYPOGRAPHY & HIERARCHY (Bám sát Type Scale)
+   ========================================================================== */
+
+h1, h2, h3, h4, .display-title {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+/* Desktop Typography */
+.display-title {
+  font-size: 3.5rem; /* 56px */
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--color-cognac);
+}
+
+h1 {
+  font-size: 2.5rem; /* 40px */
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--color-cognac);
+}
+
+h2 {
+  font-family: var(--font-body);
+  font-size: 2rem; /* 32px */
+  font-weight: 600;
+  color: var(--color-forest);
+}
+
+h3 {
+  font-family: var(--font-body);
+  font-size: 1.5rem; /* 24px */
+  font-weight: 600;
+  color: var(--color-forest);
+}
+
+h4 {
+  font-family: var(--font-body);
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--color-cognac);
+}
+
+.body-lg {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+/* Thẻ .body chính theo đúng Type Scale */
+.body {
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+.body-sm {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 400;
+  color: var(--color-text-light);
+}
+
+.data-text {
+  font-family: var(--font-mono);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--color-forest);
+}
+
+.badge-text {
+  font-size: 0.75rem; /* 12px */
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.section-label {
+  color: var(--color-forest); /* Đã đổi từ Vàng Gold sang Xanh Rừng Già để đảm bảo A11y Contrast 6.5:1 */
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: var(--space-micro);
+  display: inline-block;
+}
+
+/* Mobile Responsive Typography (Màn hình dưới 768px) */
+@media (max-width: 767px) {
+  .display-title {
+    font-size: 2.25rem; /* 36px */
+  }
+  h1 {
+    font-size: 1.75rem; /* 28px */
+  }
+  h2 {
+    font-size: 1.5rem; /* 24px */
+  }
+  h3 {
+    font-size: 1.25rem; /* 20px */
+  }
+  h4 {
+    font-size: 1rem; /* 16px */
+  }
+  .body-lg {
+    font-size: 1rem; /* 16px */
+  }
+  .body {
+    font-size: 0.9375rem; /* 15px */
+  }
+  .body-sm {
+    font-size: 0.8125rem; /* 13px */
+  }
+  .data-text {
+    font-size: 0.8125rem; /* 13px */
+  }
+}
+
+/* ==========================================================================
+   MOBILE STRIP VARIANTS (Mục 01 — Dải màu di động)
+   ========================================================================== */
+
+.mobile-strips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin: var(--space-xs) 0;
+}
+
+.mobile-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.mobile-strip,
+.mobile-strip * {
+  color: inherit !important; /* Cưỡng chế các thẻ con (strong, body-sm) dùng màu chữ của strip */
+}
+
+.strip-text {
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.strip-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.strip-forest {
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+}
+
+.strip-gold {
+  background-color: var(--color-gold);
+  color: var(--color-cognac);
+}
+
+.strip-cognac {
+  background-color: var(--color-cognac);
+  color: var(--color-cream);
+}
+
+/* ==========================================================================
+   HỖ TRỢ GIẢM CHUYỂN ĐỘNG (Bảo vệ mắt & Tiết kiệm pin)
+   Lệch nhẹ so với spec (transition: none) để giữ nguyên state cho hoạt ảnh
+   nhưng tăng tốc độ thực thi ngay lập tức (0s/1ms).
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  
+  /* Tắt hoàn toàn transition và animation cho các component tab/modal */
+  .tab-panel, .lightbox-modal, .copy-gps-btn, .tab-btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY LIGHTBOX FOCUS FIX (Phase 5)
+   ========================================================================== */
+.lightbox,
+.lightbox-modal {
+  visibility: hidden;
+}
+
+.lightbox.is-open,
+.lightbox.is-active,
+.lightbox-modal.is-active {
+  visibility: visible;
+}
+
+/* ==========================================================================
+   SUB-HERO GLOBAL LAYOUTS & BREADCRUMB (Mục 04 — Các kiểu Banner đầu trang)
+   ========================================================================== */
+.sub-hero-flat {
+  position: relative;
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-2xl);
+  background-color: var(--color-cream); /* Nền Kem Ấm phẳng ko dùng ảnh */
+  min-height: 320px;
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid rgba(92, 61, 32, 0.1);
+}
+
+.sub-hero-content {
+  width: 100%;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.8125rem;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-light);
+}
+
+.breadcrumb a {
+  color: var(--color-text-light);
+  text-decoration: none;
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.breadcrumb a:hover {
+  opacity: 1;
+  color: var(--color-cognac);
+}
+
+.breadcrumb span {
+  color: var(--color-disabled);
+}
+
+.breadcrumb .current {
+  color: var(--color-cognac);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   TRAIL DIFFICULTY BADGES (GLOBAL SYSTEM)
+   ========================================================================== */
+.badge-blue {
+  background-color: var(--color-trail-blue) !important;
+  color: #FFFFFF !important;
+}
+
+.badge-red {
+  background-color: var(--color-trail-red) !important;
+  color: #FFFFFF !important;
+}
+
+.badge-yellow {
+  background-color: var(--color-trail-yellow) !important;
+  color: var(--color-cognac) !important;
+}
+
+.badge-green {
+  background-color: var(--color-trail-green) !important;
+  color: #FFFFFF !important;
+}
+
+/* ==========================================================================
+   AUTO-GPS COORDINATE LINKS
+   ========================================================================== */
+.gps-link {
+  color: var(--color-cognac) !important;
+  background-color: rgba(200, 164, 93, 0.15) !important; /* Gold mờ */
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  transition: all var(--duration-fast) var(--ease-standard) !important;
+  border-bottom: 1px dashed var(--color-gold) !important;
+  font-size: 0.95em !important;
+}
+
+.gps-link:hover {
+  background-color: var(--color-gold) !important;
+  color: var(--color-forest) !important;
+  border-bottom-style: solid !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+

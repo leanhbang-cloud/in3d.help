@@ -1,0 +1,57 @@
+---
+export const prerender = true;
+import '../styles/global.css';
+import SEOHead from '../components/SEOHead.astro';
+import Button from '../components/Button.astro';
+---
+
+<html lang="vi">
+  <head>
+    <SEOHead
+      title="in3D.help — Dịch vụ in 3D chất lượng cao"
+      description="Trang web dịch vụ in 3D chuyên nghiệp."
+      ogImage=""
+      ogType="website"
+    />
+    <meta name="test-id" content="in3d-homepage" />
+  </head>
+
+  <body>
+    <main class="container">
+      <section class="hero">
+        <h1>Chào mừng đến với in3D.help</h1>
+        <p>Hệ thống đang được xây dựng. Vui lòng quay lại sau.</p>
+        <Button href="mailto:contact@in3d.help" variant="primary">Liên hệ chúng tôi</Button>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+    text-align: center;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+  h1 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin: 0;
+  }
+  p {
+    font-size: 1.2rem;
+    color: #666666;
+    margin: 0;
+  }
+</style>

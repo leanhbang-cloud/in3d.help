@@ -1,0 +1,10 @@
+# Files that are template-internal and should not appear in projects
+# bootstrapped via `git archive` or tools that respect export-ignore
+# (e.g., npx degit on a public repo).
+#
+# Note: This does NOT affect `git clone` or `gh repo create --template`,
+# which copy everything. For those, init-project.sh removes the marker.
+.template-source     export-ignore
+.gitattributes       export-ignore
+scripts/test-init.sh export-ignore
+TEMPLATE_README.md   export-ignore

@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+.next/
+.astro/
+.vercel/
+.output/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+.dev.vars
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Agents working area (private, not synced to repo)
+.agents/drafts/*
+.agents/screenshots/*
+!.agents/drafts/.gitkeep
+!.agents/screenshots/.gitkeep
+
+# Wrangler local data
+.wrangler/

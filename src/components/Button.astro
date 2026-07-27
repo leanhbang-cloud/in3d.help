@@ -1,0 +1,197 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'secondary-light' | 'ghost' | 'icon';
+  size?: 'large' | 'medium' | 'small';
+  href?: string;
+  class?: string;
+  disabled?: boolean;
+  fullWidth?: boolean;
+  [key: string]: any;
+}
+
+const {
+  variant = 'primary',
+  size = 'medium',
+  href,
+  class: className = '',
+  disabled = false,
+  fullWidth = false,
+  ...rest
+} = Astro.props;
+
+const Element = href ? 'a' : 'button';
+---
+
+<Element
+  href={disabled ? undefined : href}
+  aria-disabled={disabled ? 'true' : undefined}
+  tabindex={disabled ? -1 : undefined}
+  class={`btn btn-${variant} btn-${size} ${fullWidth ? 'btn-full-width' : ''} ${disabled ? 'disabled' : ''} ${className}`}
+  disabled={!href && disabled}
+  {...rest}
+>
+  <slot />
+</Element>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-weight: 500;
+    border-radius: 8px; /* Bo góc 8px đồng bộ theo spec */
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: none; /* Defensive style: Đảm bảo không bị ALL CAPS từ thẻ cha */
+    transition: background-color var(--duration-fast) var(--ease-standard),
+                box-shadow var(--duration-fast) var(--ease-standard),
+                transform var(--duration-fast) var(--ease-standard),
+                opacity var(--duration-fast) var(--ease-standard);
+    will-change: transform;
+    text-align: center;
+  }
+
+  /* Accessibility Ring: Nổi bật bằng viền Vàng Gold trên mọi nền màu */
+  .btn:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  .btn-full-width {
+    width: 100%;
+  }
+
+  /* ==========================================================================
+     VARIANTS (Màu sắc nút bấm)
+     ========================================================================== */
+
+  /* Nút chính: màu Cognac, chữ Cream */
+  .btn-primary {
+    background-color: var(--color-cognac);
+    color: var(--color-cream);
+  }
+  .btn-primary:hover:not([disabled]):not(.disabled) {
+    background-color: #4A3018; /* Màu Cognac sẫm hơn khi rà chuột */
+    box-shadow: 0 4px 12px rgba(92, 61, 32, 0.3);
+  }
+
+  /* Nút phụ: viền nâu Cognac, nền trong suốt */
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-cognac);
+    border: 2px solid var(--color-cognac);
+  }
+  .btn-secondary:hover:not([disabled]):not(.disabled) {
+    background-color: rgba(92, 61, 32, 0.05); /* Phủ nhẹ màu nâu 5% */
+    box-shadow: 0 4px 12px rgba(92, 61, 32, 0.1);
+  }
+
+  /* Nút phụ sáng màu: viền Cream, nền trong suốt, dùng trên nền tối (Hero) */
+  .btn-secondary-light {
+    background-color: transparent;
+    color: var(--color-cream);
+    border: 2px solid var(--color-cream);
+  }
+  .btn-secondary-light:hover:not([disabled]):not(.disabled) {
+    background-color: rgba(240, 230, 208, 0.1); /* Phủ nhẹ màu cream 10% */
+    box-shadow: 0 4px 12px rgba(240, 230, 208, 0.2);
+  }
+
+  /* Nút dạng chữ: không viền, nền trong suốt */
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--color-cognac);
+  }
+  .btn-ghost:hover:not([disabled]):not(.disabled) {
+    background-color: rgba(92, 61, 32, 0.05);
+  }
+
+  /* Nút Icon: hình vuông bo góc 8px (Đồng bộ theo spec) */
+  .btn-icon {
+    background-color: var(--color-forest);
+    color: var(--color-cream);
+    padding: 0 !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px; /* Đổi về 8px theo đúng spec */
+  }
+  .btn-icon:hover:not([disabled]):not(.disabled) {
+    background-color: #14281c; /* Xanh rừng sẫm hơn */
+    box-shadow: 0 4px 12px rgba(30, 58, 40, 0.3);
+  }
+
+  /* ==========================================================================
+     SIZES (Kích cỡ nút bấm)
+     ========================================================================== */
+
+  /* Kích thước lớn: Cao 52px, dùng cho Hero CTA */
+  .btn-large {
+    height: 52px;
+    padding: 16px 32px;
+    font-size: 1.125rem; /* 18px */
+  }
+
+  /* Kích thước vừa: Cao 44px, tiêu chuẩn */
+  .btn-medium {
+    height: 44px;
+    padding: 14px 24px;
+    font-size: 1rem; /* 16px */
+  }
+
+  /* Kích thước nhỏ: Cao 36px, dùng inline */
+  .btn-small {
+    height: 36px;
+    padding: 10px 18px;
+    font-size: 0.875rem; /* 14px */
+  }
+
+  /* ==========================================================================
+     STATES (Trạng thái bấm nút)
+     ========================================================================== */
+
+  /* Hiệu ứng nảy nút 0.98 */
+  .btn:active:not([disabled]):not(.disabled) {
+    transform: scale(0.98);
+    background-color: #3A2510; /* Màu nhấn đậm hơn */
+  }
+  .btn-icon:active:not([disabled]):not(.disabled) {
+    background-color: #0c1811;
+  }
+
+  /* ==========================================================================
+     DISABLED STATES (override riêng biệt cho từng loại để giữ nguyên đặc trưng)
+     ========================================================================== */
+
+  /* Default Disabled chung */
+  .btn[disabled],
+  .btn.disabled {
+    background-color: var(--color-disabled) !important;
+    color: rgba(240, 230, 208, 0.6) !important; /* Cream mờ 60% */
+    border-color: var(--color-disabled) !important;
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  /* Secondary Disabled: Giữ nền trong suốt, chỉ đổi màu viền và chữ sang màu Disabled */
+  .btn-secondary[disabled],
+  .btn-secondary.disabled,
+  .btn-secondary-light[disabled],
+  .btn-secondary-light.disabled {
+    background-color: transparent !important;
+    color: var(--color-disabled) !important;
+    border-color: var(--color-disabled) !important;
+  }
+
+  /* Ghost Disabled: Giữ nền trong suốt, không viền, chỉ đổi chữ sang màu Disabled */
+  .btn-ghost[disabled],
+  .btn-ghost.disabled {
+    background-color: transparent !important;
+    color: var(--color-disabled) !important;
+    border: none !important;
+  }
+</style>

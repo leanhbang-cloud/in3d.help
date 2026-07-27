@@ -1,0 +1,31 @@
+# =================================================================
+# Caching Headers — nuidinh.help
+# Phase 1B: Performance Optimization
+# Cloudflare Workers Assets đọc file này để set response headers.
+# =================================================================
+
+# Astro build output — filenames có content hash → cache vĩnh viễn
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Static images — cache 30 ngày (không có hash trong filename)
+/images/*
+  Cache-Control: public, max-age=2592000
+
+# Favicon — cache 1 ngày
+/favicon.svg
+  Cache-Control: public, max-age=86400
+/favicon.ico
+  Cache-Control: public, max-age=86400
+
+# HTML pages — luôn check phiên bản mới
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Sitemap & robots — cache 1 giờ
+/sitemap-index.xml
+  Cache-Control: public, max-age=3600
+/sitemap-images.xml
+  Cache-Control: public, max-age=3600
+/robots.txt
+  Cache-Control: public, max-age=3600

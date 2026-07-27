@@ -1,0 +1,92 @@
+---
+/**
+ * SEOHead.astro — Component chứa toàn bộ SEO meta tags
+ * Dùng chung cho tất cả trang, thay thế việc copy-paste <head> lặp lại.
+ *
+ * Props:
+ *  - title: tiêu đề trang (đã đầy đủ, không cần thêm suffix)
+ *  - description: mô tả trang (150-160 ký tự lý tưởng)
+ *  - ogImage: đường dẫn ảnh OG (mặc định: /images/hero_bg.webp)
+ *  - ogType: loại trang OG (mặc định: website)
+ *  - jsonLd: chuỗi JSON-LD schema (có thể truyền nhiều schema bằng array)
+ */
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: string | string[];
+}
+
+const {
+  title,
+  description,
+  ogImage = '/favicon.svg',
+  ogType = 'website',
+  jsonLd,
+} = Astro.props;
+
+// Tự động tạo canonical URL từ URL hiện tại
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://in3d.help');
+
+// Đảm bảo ogImage là absolute URL
+const ogImageAbsolute = ogImage.startsWith('http')
+  ? ogImage
+  : `${Astro.site ?? 'https://in3d.help'}${ogImage}`;
+
+// Xử lý jsonLd: có thể là string hoặc array of strings
+const jsonLdArray = jsonLd
+  ? Array.isArray(jsonLd)
+    ? jsonLd
+    : [jsonLd]
+  : [];
+
+// Token của Cloudflare Web Analytics (chỉ nhúng ở chế độ production nếu được cung cấp)
+const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN || null;
+---
+
+<!-- Primary Meta Tags -->
+<meta charset="utf-8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.ico" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Google Fonts: preconnect + stylesheet (thay thế @import chặn render trong CSS) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;600;700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+
+<!-- SEO Core -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href={canonicalURL.toString()} />
+
+<!-- Open Graph / Facebook / Zalo -->
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageAbsolute} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content={canonicalURL.toString()} />
+<meta property="og:site_name" content="in3D.help" />
+<meta property="og:locale" content="vi_VN" />
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageAbsolute} />
+
+<!-- JSON-LD Structured Data -->
+{jsonLdArray.map((schema) => (
+  <script type="application/ld+json" set:html={schema} />
+))}
+
+{cfBeaconToken && (
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${cfBeaconToken}"}`}></script>
+)}

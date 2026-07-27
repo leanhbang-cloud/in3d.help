@@ -1,0 +1,55 @@
+---
+// ============================================================
+// <OptimizedImage /> — Component ảnh tối ưu cho sóng yếu
+// Thêm kích thước 200w quality 60 cho 2G/3G
+// Dùng native lazy loading + srcset + sizes
+// ĐÃ SỬA: Bypass cdn-cgi ở local development để tránh lỗi 404
+// ============================================================
+
+interface Props {
+  slug: string;
+  filename: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  priority?: boolean;
+}
+
+const {
+  slug,
+  filename,
+  alt,
+  width = 800,
+  height = 600,
+  class: className = '',
+  loading = 'lazy',
+  priority = false,
+} = Astro.props;
+
+// Base URL cho ảnh — dùng clean URL /photos/[key]
+const baseUrl = `/photos/${filename}`;
+
+const isDev = import.meta.env.DEV;
+
+// Cloudflare Image Resizing (/cdn-cgi/image/) yêu cầu gói trả phí của Cloudflare.
+// Hiện tại tài khoản Cloudflare đang sử dụng gói Free nên không hỗ trợ tính năng này (trả về 404).
+// Chúng ta sẽ vô hiệu hóa cdn-cgi và tải ảnh trực tiếp qua baseUrl để tránh lỗi ảnh vỡ trên Production.
+const srcset = undefined;
+const sizesAttr = undefined;
+---
+
+<img
+  src={baseUrl}
+  srcset={srcset}
+  sizes={sizesAttr}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={priority ? 'eager' : loading}
+  fetchpriority={priority ? 'high' : undefined}
+  decoding={priority ? 'sync' : 'async'}
+  class:list={['optimized-image', className]}
+  style="max-width: 100%; height: auto;"
+/>
