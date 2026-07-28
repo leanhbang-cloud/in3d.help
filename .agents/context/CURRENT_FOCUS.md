@@ -50,11 +50,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Phân tích kinh doanh, tài chính, định hướng thiết kế và chuẩn bị code Landing Page
-Progress:    Hoàn thành 100% template nhập liệu, tạo xong business_analysis.md và Design.md.
-Next:        Lập kế hoạch thực thi (Implementation Plan) và bắt đầu code giao diện Landing Page.
-Blockers:    None
-Last commit: 2a69596 focus: end session 2026-07-27
-Updated:     2026-07-28 16:00
+Working on:  Cấu hình kết nối Open Design MCP và chuẩn bị triển khai Landing Page
+Progress:    Cấu hình thành công biến môi trường IPC socket cho Open Design MCP trong mcp_config.json.
+Next:        Triển khai file Design.md của hệ thống thành dự án mới trên Open Design và tạo các thiết kế liên quan.
+Blockers:    Cần mở session chat mới để IDE reload cấu hình MCP Open Design.
+Last commit: c6df49a focus: end session 2026-07-28
+Updated:     2026-07-28 16:30
 Machine:     Mac mini
 ```
