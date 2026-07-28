@@ -50,11 +50,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Cấu hình kết nối Open Design MCP và chuẩn bị triển khai Landing Page
-Progress:    Cấu hình thành công biến môi trường IPC socket cho Open Design MCP trong mcp_config.json.
-Next:        Triển khai file Design.md của hệ thống thành dự án mới trên Open Design và tạo các thiết kế liên quan.
+Working on:  Kết nối Open Design MCP và chuẩn bị triển khai Landing Page
+Progress:    Cấu hình thành công biến môi trường IPC socket cho Open Design MCP trong file mcp_config.json của dự án.
+Next:        Sau khi khởi động lại session mới, tiến hành gọi MCP Open Design để tạo dự án mới từ file Design.md.
 Blockers:    Cần mở session chat mới để IDE reload cấu hình MCP Open Design.
-Last commit: c6df49a focus: end session 2026-07-28
-Updated:     2026-07-28 16:30
+Last commit: 6490768 focus: end session 2026-07-28
+Updated:     2026-07-28 16:42
 Machine:     Mac mini
 ```
