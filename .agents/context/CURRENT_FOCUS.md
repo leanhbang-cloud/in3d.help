@@ -17,13 +17,15 @@
 
 - **Phân tích kinh doanh & Định hướng thiết kế (Hoàn thành - 2026-07-28)**:
   - Hoàn thành phân tích chi tiết USP, đối thủ và 3 kịch bản tài chính tại [business_analysis.md](file:///Users/bangle-macmini/Projects/in3d-help/docs/business_analysis.md).
-  - Lập tài liệu thiết kế chi tiết, bao gồm mã màu Hex và thư viện Prompt AI Midjourney/SDXL tại [Design.md](file:///Users/bangle-macmini/Projects/in3d-help/docs/Design.md).
+  - Lập tài liệu thiết kế chi tiết, bao gồm mã màu Hex và thư viện Prompt AI Midjourney/SDXL tại [Design.md](file:///Users/bangle-macmini/Projects/Design.md).
 
-- **Xây dựng Landing Page (Hoàn thành - 2026-07-28)**:
+- **Xây dựng Landing Page & Tối ưu hóa SEO/Hình ảnh (Hoàn thành - 2026-07-28)**:
   - Đã hoàn thành lập trình giao diện Landing Page (Sale Page) bằng Astro + CSS thuần lấy cảm hứng thiết kế Atelier Zero của Open Design kết hợp hệ tối Dark Tech.
-  - Viết 12 Astro components modular trong `src/components/` và điều phối hoạt ảnh cuộn trang (`data-reveal`), Headroom Nav, FAQ Accordion thông qua `src/scripts/main.js`.
+  - Viết 12 Astro components modular trong `src/components/` và điều phối hoạt hoạt ảnh cuộn trang (`data-reveal`), Headroom Nav, FAQ Accordion thông qua `src/scripts/main.js`.
   - Sinh 4 hình ảnh AI chất lượng cao thông qua Genspark Image (hero display, exploded view, founder portrait, lifestyle gallery) và lưu vào `public/images/`.
-  - Chạy `npm run build` thành công trong 1.07s. Đồng bộ hóa mã nguồn lên GitHub tại repo `leanhbang-cloud/in3d.help` (Commit: `36da7f4`).
+  - **Mới**: Tích hợp component `SEOHead` vào layout chính và cấu hình ảnh OG đại diện.
+  - **Mới**: Viết script `scripts/optimize-images.js` sử dụng thư viện `sharp` để tự động hóa nén và resize tất cả hình ảnh sang định dạng WebP, giảm ~92% tổng dung lượng ảnh (từ 7.1MB xuống ~560KB), tối ưu tốc độ tải trang LCP cho SEO.
+  - Chạy `npm run build` thành công trong 0.7s.
 
 ---
 
@@ -34,9 +36,9 @@
 - **Action**: Theo dõi Cloudflare Pages build hoặc cấu hình thêm nếu cần.
 - **Priority**: Medium.
 
-### ISS-B: Thay thế Favicon và Hình ảnh OG
+### ISS-B: Thay thế Favicon
 - **Symptom**: File `favicon.ico` và `favicon.svg` vẫn là phiên bản cũ mặc định của Astro.
-- **Action**: Thiết kế favicon in 3D mới và chỉ định ảnh OG (Open Graph) đại diện cho Landing Page.
+- **Action**: Thiết kế favicon in 3D mới cho Landing Page.
 - **Priority**: Low.
 
 ---
@@ -45,16 +47,17 @@
 - Chạy dev server local: `ASTRO_TELEMETRY_DISABLED=1 npm run dev`
 - Chạy build dự án: `ASTRO_TELEMETRY_DISABLED=1 npm run build`
 - Chạy preview build: `npm run preview`
+- Chạy tối ưu hóa ảnh: `node scripts/optimize-images.js`
 
 ---
 
 ## Metadata Đồng Bộ
 ```
 Working on:  Hoàn thiện toàn bộ Landing Page in3D.help (Astro + CSS thuần + Assets)
-Progress:    Đã code xong 100% components, sinh ảnh AI thành công và build thành công dự án.
-Next:        Session sau sẽ tiến hành cấu hình lại Favicon, thiết lập OG image và kiểm tra deploy trực tiếp.
+Progress:    Đã code xong 100% components, sinh ảnh AI thành công, tối ưu hóa ảnh WebP & SEO, build thành công dự án.
+Next:        Session sau sẽ tiến hành cấu hình lại Favicon và kiểm tra deploy trực tiếp.
 Blockers:    Không có.
-Last commit: 36da7f4 feat: Implement Dark Tech Editorial Landing Page for in3D.help
-Updated:     2026-07-28 17:31
+Last commit: e78d4ee focus: end session 2026-07-28
+Updated:     2026-07-28 20:17
 Machine:     Mac mini
 ```

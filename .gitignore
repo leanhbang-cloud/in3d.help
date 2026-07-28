@@ -41,3 +41,6 @@ pnpm-debug.log*
 
 # Wrangler local data
 .wrangler/
+
+# Image backups
+public/images/backup_raw/
