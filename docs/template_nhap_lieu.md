@@ -44,10 +44,10 @@
 | Công nghệ in đang sử dụng | → FDM |
 | Tên & model máy in đang dùng | → Bambu A1 mini AMS (AMS lite hỗ trợ in tối đa 4 màu) |
 | Số lượng máy in hiện có | → 1 |
-| Kích thước in tối đa (build volume) | → 180 mm × 180 mm × 180 mm |
+| Kích thước in tối đa (build volume) | → Khổ máy in tối đa là 180 x 180 mm. Tuy nhiên, thiết kế sản phẩm được tối ưu hóa theo hệ Modular: Tấm giữa lớn nhất là 16 x 16 cm (Xanh Dương), viền xung quanh ghép từ 4 tấm viền thẳng 4 x 16 cm và 4 tấm góc vuông 4 x 4 cm (Đỏ) để tạo thành bảng hoàn chỉnh 24 x 24 cm. |
 | Độ chính xác / Layer height tối thiểu | → 0.08 mm - 0.2 mm (FDM tiêu chuẩn) |
 | Có khả năng in nhiều màu trong 1 print? | → Có (Nhờ hệ thống AMS lite) |
-| Có dịch vụ hậu xử lý không? | → Không (Chỉ tháo support và làm sạch cơ bản) |
+| Có dịch vụ hậu xử lý không? | → Không (Chỉ tháo support, làm sạch cơ bản và cung cấp khớp ghép/chốt khóa nhanh để khách tự lắp ráp dễ dàng) |
 
 ### 2.2 Vật liệu (Filament / Resin) ⭐
 
@@ -64,7 +64,7 @@
 | Resin tiêu chuẩn | → Không | → |
 | Resin chịu nhiệt / Resin dẻo | → Không | → |
 | Vật liệu khác | → Không | → |
-| Màu sắc có sẵn | → [để AI đề xuất dựa trên các cuộn màu phổ biến của PLA Lite] |
+| Màu sắc có sẵn | → Các màu sắc cơ bản và nổi bật: Đỏ (Red), Xanh Dương (Blue), Đen (Black) và Trắng (White) giúp phối màu tương phản theo phong cách Open Design. |
 
 ### 2.3 Phạm vi dịch vụ ⭐
 
@@ -73,7 +73,7 @@
 | Dịch vụ | Có cung cấp? | Chi tiết thêm |
 |---|---|---|
 | In 3D theo file khách gửi | → ❌ | → Studio tập trung in các sản phẩm thuộc hệ sinh thái Kaidis Pegboard và phụ kiện sắp xếp, không nhận in gia công file ngoài. |
-| Tư vấn chọn vật liệu & hướng in | → ✅ | → Tư vấn cách bố trí, sắp xếp pegboard tối ưu cho từng không gian. |
+| Tư vấn chọn vật liệu & hướng in | → ✅ | → Tư vấn cách bố trí, sắp xếp pegboard tối ưu cho từng không gian. Hướng dẫn khách hàng cơ chế ghép modular các tấm nền để mở rộng diện tích bảng. |
 | Thiết kế 3D theo yêu cầu (modeling) | → ❌ | → Không nhận thiết kế 3D tự do, nhưng có hỗ trợ thiết kế các module phụ kiện đi kèm pegboard nếu khách hàng yêu cầu đặc biệt. |
 | Sửa file / Repair file STL lỗi | → ❌ | → |
 | Scan 3D đối tượng thực | → ❌ | → |
@@ -99,7 +99,7 @@
 | Phí thiết kế 3D (nếu có) | → Không có |
 | Phí sửa file (nếu có) | → Không có |
 | Có bảng giá cố định hay báo giá từng đơn? | → Có bảng giá cố định cho các pack sản phẩm |
-| Có gói combo / package nào không? | → Các pack Kaidis Pegboard Modular bao gồm tấm kệ để bàn + các module phụ kiện đi kèm với 3 mức giá: 299k, 399k và 599k |
+| Có gói combo / package nào không? | → Hệ thống Modular Pegboard để bàn chia làm 3 gói: <br>- Gói 299k: 1 Bảng pegboard đứng để bàn hoàn chỉnh kích thước 24 x 24 cm (ghép modular từ: 1 tấm nền giữa 16 x 16 cm, 4 tấm viền hông/trên/dưới 4 x 16 cm và 4 tấm góc 4 x 4 cm) + 2 chân đế màu đen (chốt khóa nhanh 90 độ) + 1 khay ngang lớn màu đỏ (lưới tổ ong) + 1 khay vuông nhỏ màu xanh (lưới tổ ong). <br>- Gói 399k: Bao gồm toàn bộ gói 299k + 1 hộp cắm bút sâu lòng màu đỏ + 1 kẹp giấy/treo thẻ màu trắng. <br>- Gói 599k: Định hướng tăng kích thước bảng Pegboard lên lớn hơn (ghép từ nhiều tấm nền modular 16x16cm để mở rộng diện tích) và đi kèm các phụ kiện chuyên dụng dành cho không gian làm việc lớn hơn. |
 
 ### 3.2 Chính sách giao hàng & thanh toán ⭐
 
@@ -108,7 +108,7 @@
 | Khu vực phục vụ | → Toàn quốc |
 | Địa chỉ workshop/cơ sở (nếu muốn hiển thị) | → [để ẩn hoặc chỉ ghi khu vực TP.HCM] |
 | Hình thức giao hàng | → Ship toàn quốc; Hỗ trợ giao hỏa tốc trong ngày tại TP.HCM |
-| Phí ship | → [để AI đề xuất mức phí hoặc chính sách freeship] |
+| Phí ship | → Áp dụng chính sách phí ship theo khu vực: <br>- Nội thành TP.HCM: Đồng giá ship nhanh trong ngày 30k cho đơn dưới 500k; miễn phí vận chuyển (Freeship) cho đơn từ 500k trở lên. <br>- Ngoại thành / Toàn quốc: Đồng giá ship 50k cho đơn dưới 1 triệu (1.000k); miễn phí vận chuyển (Freeship) cho đơn từ 1 triệu trở lên. |
 | Lead time trung bình (từ lúc xác nhận → giao) | → [để AI đề xuất] |
 | Hình thức thanh toán | → Đa dạng hình thức (Chuyển khoản ngân hàng, Momo, ZaloPay, COD...) |
 | Thông tin tài khoản ngân hàng (nếu muốn hiển thị) | → [ẩn, sẽ gửi trực tiếp khi chốt đơn] |
@@ -213,7 +213,7 @@
 |---|---|
 | Định dạng file chấp nhận | → Không áp dụng (Bán sản phẩm modular thiết kế sẵn, không in theo file ngoài) |
 | Phần mềm slicer đang dùng | → Bambu Studio (Sử dụng nội bộ) |
-| Có hỗ trợ khách không biết tạo file 3D không? | → Khách không cần biết tạo file, chỉ cần chọn các module chức năng có sẵn của studio và lắp ghép dễ dàng. |
+| Có hỗ trợ khách không biết tạo file 3D không? | → Khách không cần file hay kỹ thuật phức tạp. Toàn bộ phụ kiện sử dụng cơ chế móc cài thông minh vào lỗ oval, chân đế dùng chốt khóa nhanh 90 độ, tự tháo lắp thay đổi vị trí bằng tay dễ dàng. |
 | Kích thước file tối đa chấp nhận | → Không áp dụng |
 | Yêu cầu kỹ thuật đặc biệt khi gửi file | → Không áp dụng |
 
