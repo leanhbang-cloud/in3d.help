@@ -1,0 +1,64 @@
+---
+// FAQ: Accordion
+const faqs = [
+  {
+    q: 'Pegboard được in bằng chất liệu gì?',
+    a: 'Tất cả sản phẩm được in bằng PLA+ (Polylactic Acid Plus) — nhựa sinh học, an toàn, không mùi, độ bền cao. Chịu nhiệt đến 60°C, phù hợp sử dụng trong nhà.',
+  },
+  {
+    q: 'Thời gian giao hàng bao lâu?',
+    a: 'Nội thành HCM: 1-2 ngày. Các tỉnh thành khác: 3-5 ngày qua GHTK/GHN. Đơn hàng được in sau khi xác nhận, nên cần thêm 1-2 ngày sản xuất.',
+  },
+  {
+    q: 'Tôi có thể đặt thiết kế phụ kiện riêng không?',
+    a: 'Có! Gói Creator Studio bao gồm 1 phụ kiện custom. Bạn cũng có thể đặt riêng thiết kế phụ kiện với giá từ 50.000đ/món. Chat Zalo để tư vấn chi tiết.',
+  },
+  {
+    q: 'Pegboard treo tường hay đặt bàn?',
+    a: 'Cả hai! Mỗi tấm pegboard đi kèm chân đỡ (đặt bàn) và miếng dán tường 3M (treo tường). Bạn chọn cách nào phù hợp với không gian.',
+  },
+  {
+    q: 'Chính sách bảo hành như thế nào?',
+    a: 'Bảo hành 12 tháng cho tấm pegboard với lỗi sản xuất. Phụ kiện bảo hành 6 tháng. Nếu gãy/hỏng do sử dụng bình thường, gửi ảnh qua Zalo để được hỗ trợ thay mới.',
+  },
+  {
+    q: 'Có hỗ trợ thanh toán trả góp không?',
+    a: 'Hiện tại chưa hỗ trợ trả góp. Thanh toán qua chuyển khoản ngân hàng, MoMo, ZaloPay, hoặc COD (thanh toán khi nhận hàng).',
+  },
+];
+---
+
+<section id="faq">
+  <div class="container">
+    <div class="sec-rule">
+      <span class="roman">VIII.</span>
+      <span class="meta-grp">
+        <span>Câu hỏi thường gặp</span>
+      </span>
+      <span>008 / 010</span>
+    </div>
+
+    <div class="section-header" data-reveal style="text-align:center;">
+      <span class="label" style="justify-content:center;">FAQ</span>
+      <h2 class="display" style="margin:0 auto;">
+        Bạn thắc mắc,<br/>chúng tôi <em>giải đáp</em><span class="dot">.</span>
+      </h2>
+    </div>
+
+    <div class="faq-list" data-reveal>
+      {faqs.map((faq) => (
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>{faq.q}</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>{faq.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

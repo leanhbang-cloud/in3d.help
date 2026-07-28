@@ -1,0 +1,38 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const {
+  title,
+  description = 'Dịch vụ in 3D chất lượng cao, giá cả minh bạch. Pegboard modular tùy chỉnh.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="shell">
+      <!-- Side Rails (editorial) -->
+      <div class="side-rail left">
+        <span class="rail-text">in3D.help — Dịch vụ In 3D Việt Nam</span>
+      </div>
+      <div class="side-rail right">
+        <span class="rail-text">MMXXVI — Ho Chi Minh City</span>
+      </div>
+      <slot />
+    </div>
+    <script src="/src/scripts/main.js"></script>
+  </body>
+</html>

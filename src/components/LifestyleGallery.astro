@@ -1,0 +1,42 @@
+---
+// Lifestyle Gallery: Masonry grid
+const images = [
+  { src: '/images/gallery/desk-01.jpg', alt: 'Setup bàn làm việc developer', tag: 'SETUP #01', caption: 'Developer WFH' },
+  { src: '/images/gallery/desk-02.jpg', alt: 'Bàn học sinh viên gọn gàng', tag: 'SETUP #02', caption: 'Study Corner' },
+  { src: '/images/gallery/desk-03.jpg', alt: 'Gaming setup với pegboard', tag: 'SETUP #03', caption: 'Gaming Desk' },
+  { src: '/images/gallery/desk-04.jpg', alt: 'Bàn crafting với dụng cụ', tag: 'SETUP #04', caption: 'Maker Studio' },
+  { src: '/images/gallery/desk-05.jpg', alt: 'Minimal desk pegboard trắng', tag: 'SETUP #05', caption: 'Minimal Setup' },
+  { src: '/images/gallery/desk-06.jpg', alt: 'Pegboard phòng bếp', tag: 'SETUP #06', caption: 'Kitchen Board' },
+];
+---
+
+<section id="bo-suu-tap">
+  <div class="container">
+    <div class="sec-rule">
+      <span class="roman">VI.</span>
+      <span class="meta-grp">
+        <span>Phòng trưng bày</span>
+      </span>
+      <span>006 / 010</span>
+    </div>
+
+    <div class="section-header" data-reveal>
+      <span class="label">Ảnh thực tế</span>
+      <h2 class="display">
+        Khách hàng <em>yêu thích</em><br/>setup của họ<span class="dot">.</span>
+      </h2>
+    </div>
+
+    <div class="masonry" data-reveal-stagger>
+      {images.map((img) => (
+        <div class="masonry-item">
+          <img src={img.src} alt={img.alt} loading="lazy" />
+          <div class="caption">
+            <span class="tag">{img.tag}</span>
+            {img.caption}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

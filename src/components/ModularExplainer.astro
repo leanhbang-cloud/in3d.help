@@ -1,0 +1,82 @@
+---
+// Modular Explainer
+const modules = [
+  {
+    icon: '🔲',
+    title: 'Tấm nền Pegboard',
+    desc: 'Tấm nền lỗ chuẩn 25mm, chịu lực tốt, nhiều kích thước',
+  },
+  {
+    icon: '🪝',
+    title: 'Móc & Giá treo',
+    desc: 'Treo tai nghe, chìa khóa, phụ kiện — snap-fit chắc chắn',
+  },
+  {
+    icon: '📱',
+    title: 'Giá đỡ thiết bị',
+    desc: 'Đứng điện thoại, tablet, Nintendo Switch tùy góc nghiêng',
+  },
+  {
+    icon: '🔌',
+    title: 'Cable Management',
+    desc: 'Kẹp cáp, ống luồn dây — bàn gọn không rối',
+  },
+  {
+    icon: '🖊️',
+    title: 'Khay & Hộp đựng',
+    desc: 'Khay bút, hộp nhỏ, ngăn chứa linh hoạt theo nhu cầu',
+  },
+];
+---
+
+<section id="modular">
+  <div class="container">
+    <div class="sec-rule">
+      <span class="roman">V.</span>
+      <span class="meta-grp">
+        <span>Hệ sinh thái Modular</span>
+      </span>
+      <span>005 / 010</span>
+    </div>
+
+    <div class="modular-grid">
+      <!-- Left: Visual -->
+      <div class="modular-visual" data-reveal>
+        <!-- Corner brackets -->
+        <span class="corner tl"></span>
+        <span class="corner br"></span>
+        <img
+          src="/images/modular-assembly.png"
+          alt="Mô phỏng lắp ráp modular pegboard"
+          width="560"
+          height="560"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Right: Copy + Module list -->
+      <div class="modular-copy" data-reveal>
+        <span class="label">Thiết kế Modular</span>
+        <h2 class="display">
+          Một hệ thống,<br/><em>vô vàn</em> cách phối<span class="dot">.</span>
+        </h2>
+        <p class="lead">
+          Mỗi phụ kiện thiết kế theo chuẩn snap-fit. Lắp vào — tháo ra — đổi vị trí. 
+          Không cần keo, không cần khoan tường.
+        </p>
+
+        <div class="module-list" data-reveal-stagger>
+          {modules.map((mod) => (
+            <div class="module-item">
+              <div class="mod-icon">{mod.icon}</div>
+              <div>
+                <h4>{mod.title}</h4>
+                <p>{mod.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

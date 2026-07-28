@@ -1,0 +1,49 @@
+---
+// Pain Points: 3 glassmorphism cards
+const pains = [
+  {
+    icon: '😤',
+    title: 'Bàn bừa bộn, mất tập trung',
+    desc: 'Dây cáp, phụ kiện, bút viết nằm lung tung. Mỗi sáng mất 10 phút dọn dẹp trước khi làm việc.',
+  },
+  {
+    icon: '💸',
+    title: 'Mua kệ đắt, không vừa bàn',
+    desc: 'Kệ công nghiệp giá cao, kích thước cố định, không phù hợp với setup cá nhân của bạn.',
+  },
+  {
+    icon: '🔧',
+    title: 'Thiếu sự tùy chỉnh',
+    desc: 'Mỗi người một phong cách làm việc — nhưng giải pháp trên thị trường thì "one-size-fits-all".',
+  },
+];
+---
+
+<section class="tight" id="van-de">
+  <div class="container">
+    <div class="sec-rule">
+      <span class="roman">II.</span>
+      <span class="meta-grp">
+        <span>Vấn đề</span>
+      </span>
+      <span>002 / 010</span>
+    </div>
+
+    <div class="section-header" data-reveal>
+      <span class="label">Bạn đang gặp phải</span>
+      <h2 class="display">
+        Những <em>rắc rối</em> quen thuộc<span class="dot">.</span>
+      </h2>
+    </div>
+
+    <div class="pain-grid" data-reveal-stagger>
+      {pains.map((pain) => (
+        <div class="glass-card pain-card">
+          <div class="icon-wrap">{pain.icon}</div>
+          <h3>{pain.title}</h3>
+          <p>{pain.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

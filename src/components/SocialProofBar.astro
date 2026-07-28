@@ -1,0 +1,27 @@
+---
+// Social Proof — Infinite scrolling marquee
+const items = [
+  '500+ khách hàng hài lòng',
+  'Chất liệu PLA+ an toàn',
+  'In chính xác 0.15mm',
+  'Bảo hành 12 tháng',
+  'Ship COD toàn quốc',
+  'Thiết kế tại Việt Nam',
+  'Modular — Lắp ráp dễ dàng',
+  'Giá từ 299.000đ',
+];
+---
+
+<section class="social-proof" aria-label="Social Proof">
+  <div class="marquee-wrapper">
+    <div class="marquee-track">
+      {/* Duplicate for seamless loop */}
+      {[...items, ...items].map((item) => (
+        <span class="marquee-item">
+          <span class="dot">●</span>
+          {item}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

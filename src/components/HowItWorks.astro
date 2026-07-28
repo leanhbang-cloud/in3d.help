@@ -1,0 +1,59 @@
+---
+// How It Works: 4-step timeline
+const steps = [
+  {
+    num: '01',
+    icon: '💬',
+    title: 'Chat tư vấn',
+    desc: 'Nhắn Zalo hoặc dùng AI advisor để chọn gói phù hợp với setup bàn làm việc.',
+  },
+  {
+    num: '02',
+    icon: '🎨',
+    title: 'Tùy chỉnh',
+    desc: 'Chọn màu sắc, kích thước pegboard và phụ kiện. Xem preview 3D trước khi in.',
+  },
+  {
+    num: '03',
+    icon: '⚙️',
+    title: 'In & Kiểm tra',
+    desc: 'In 3D chính xác 0.15mm layer. QC kỹ từng chi tiết trước khi đóng gói.',
+  },
+  {
+    num: '04',
+    icon: '📦',
+    title: 'Giao & Lắp ráp',
+    desc: 'Ship COD toàn quốc 2-5 ngày. Lắp ráp trong 15 phút, không cần dụng cụ.',
+  },
+];
+---
+
+<section id="cach-hoat-dong">
+  <div class="container">
+    <div class="sec-rule">
+      <span class="roman">IV.</span>
+      <span class="meta-grp">
+        <span>Quy trình</span>
+      </span>
+      <span>004 / 010</span>
+    </div>
+
+    <div class="section-header" data-reveal>
+      <span class="label">4 bước đơn giản</span>
+      <h2 class="display">
+        Từ ý tưởng đến<br/> <em>bàn làm việc</em> hoàn hảo<span class="dot">.</span>
+      </h2>
+    </div>
+
+    <div class="timeline-grid" data-reveal-stagger>
+      {steps.map((step) => (
+        <div class="timeline-step">
+          <div class="step-num">{step.num}</div>
+          <div class="step-icon">{step.icon}</div>
+          <h4>{step.title}</h4>
+          <p>{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
