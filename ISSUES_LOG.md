@@ -1,4 +1,4 @@
-# Issues Log — dinh-mountain-help
+# Issues Log — in3D.help
 
 > Format khi add entry mới:
 >
@@ -9,6 +9,20 @@
 > - **Fix**: làm gì để giải quyết
 > - **What didn't work**: các attempt fail trước khi tìm ra fix (quan trọng để tránh lặp lại)
 > - **References**: file paths, commits, related ADR, links
+
+
+## 2026-07-29: Khắc phục các lỗi tối ưu Accessibility, SEO và Sitemap Domain khi chạy QC
+
+- **Symptom**: Khi chạy QC bằng Lighthouse phát hiện điểm A11y bị kéo xuống 93/100 do lỗi thiếu main landmark, nhảy cấp heading (H2 -> H4) và độ tương phản màu sắc không đạt chuẩn WCAG AA trên topbar/footer. Ngoài ra robots.txt bị trỏ sai sitemap domain và og:image bị lỗi double slash (//).
+- **Root cause**: Thừa kế code từ template cũ chưa được tối ưu ngữ nghĩa và chưa đồng bộ cấu hình custom domain mới cho dự án in3D.help.
+- **Fix**: 
+  - Thêm thẻ `<main>` bao bọc `<slot />` trong Layout.
+  - Chuẩn hóa thứ tự heading thành H3 ở các bước/modules và footer.
+  - Tăng màu sắc của text trang trí và liên kết footer để vượt qua kiểm tra tương phản màu.
+  - Sử dụng constructor `URL` để triệt tiêu double slash cho og:image.
+  - Đổi sitemap domain trong robots.txt và site config sang `3dprinting.ledainhan.com`.
+- **What didn't work**: N/A — Các sửa đổi được thực hiện trực tiếp và verify thành công ngay.
+- **References**: [Layout.astro](file:///Users/bangle-macmini/Projects/in3d-help/src/layouts/Layout.astro), [SEOHead.astro](file:///Users/bangle-macmini/Projects/in3d-help/src/components/SEOHead.astro), [global.css](file:///Users/bangle-macmini/Projects/in3d-help/src/styles/global.css), [robots.txt](file:///Users/bangle-macmini/Projects/in3d-help/public/robots.txt)
 
 
 ## ISS-012 — Lỗi upload ảnh lớn hơn 3MB bị chặn ở frontend/backend
