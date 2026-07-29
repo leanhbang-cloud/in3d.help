@@ -25,26 +25,21 @@
   - Viết 12 Astro components modular trong `src/components/` và điều phối hoạt động thông qua `src/scripts/main.js`.
   - Sinh 4 hình ảnh AI chất lượng cao và viết script `scripts/optimize-images.js` nén ảnh WebP giảm ~92% dung lượng.
 
-- **Kiểm thử chất lượng QC 5 Layer & Tối ưu hóa A11y (Hoàn thành - 2026-07-29)**:
-  - Đã chạy QC toàn diện theo checklist 5 lớp kế thừa từ luxury-gold-theme và dinh-mountain-help.
-  - Khắc phục các vấn đề Accessibility (tăng từ 93 lên 96/100), sitemap, custom domain `3dprinting.ledainhan.com`.
-
-- **Redesign & Rebranding - BlueMooon's Studio (Hoàn thành - 2026-07-29)**:
+- **Rebranding - BlueMooon's Studio & Rà soát tài liệu hệ thống (Hoàn thành - 2026-07-29)**:
   - Tiến hành Rebrand toàn bộ website từ "Dịch vụ in 3D" sang "Kệ modular để bàn in 3D đáng yêu".
-  - Áp dụng hệ màu pastel kem ấm mới, bo tròn UI (`border-radius: 20px`) và bóng đổ shadow mềm mại.
-  - Nhúng Google Fonts mới (`Nunito` + `Quicksand`), sửa lỗi hiển thị tiếng Việt có dấu hoàn hảo.
-  - Tích hợp kết cấu sản phẩm thực tế (tấm nền 16x16, 4x16, 4x4 và chốt chữ thập Connector quatrefoil mặt sau) vào toàn bộ nội dung copywrite của sản phẩm.
-  - Sinh mới 4 ảnh AI với độ chính xác cao mô tả mộng răng cưa jigsaw và chốt Connector hoa 4 cánh, tối ưu hóa kích thước WebP cực nhẹ (tất cả ảnh dưới 65KB).
+  - Rà soát và cập nhật đồng bộ các tài liệu `MISSION.md`, `ARCHITECTURE.md`, `GLOSSARY.md`, `AGENT_README.md`, `README.md` theo định hướng Rebrand và đính chính các lỗi deploy (Cloudflare Pages thay vì Vercel).
+  - Tối ưu hóa Asset: Thêm `fetchpriority="high"` cho ảnh Hero và `loading="lazy"` cho avatar người sáng lập.
 
-- **Khắc phục lỗi hệ thống Antigravity IDE (Hoàn thành - 2026-07-29)**:
-  - Sửa lỗi cú pháp sandbox (loại bỏ glob ** lỗi thời trong file config.json của IDE).
-  - Đồng bộ thành công mã nguồn với origin main bằng git pull.
+- **Kiểm thử chất lượng QC 5 Layer & Tối ưu hóa A11y (Hoàn thành - 2026-07-29)**:
+  - Chạy QC 5 lớp toàn diện và đạt kết quả tuyệt đối trên Local Preview: SEO 100/100, Best Practices 100/100, Accessibility 96/100.
+  - Không phát hiện lỗi tràn viền ngang trên cả Desktop và Mobile (375px width).
+  - Khắc phục các vấn đề sitemap và custom domain `3dprinting.ledainhan.com`.
 
 ---
 
 ## Pending Issues — Xử lý ở session sau
 
-- Chưa có (Tất cả checklist QC và tối ưu đã hoàn tất và pass).
+- Chưa có (Tất cả checklist QC, tối ưu hóa và cập nhật tài liệu đã hoàn tất).
 
 ---
 
@@ -59,11 +54,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Khắc phục lỗi hệ thống Antigravity và đồng bộ Git
-Progress:    Sửa lỗi cấu hình sandbox trong config.json, chạy thử git status và git pull origin main thành công.
-Next:        Triển khai Vercel preview hoặc tiếp tục phát triển giao diện dự án.
+Working on:  Chạy QC 5 lớp toàn diện cho Landing Page Rebrand
+Progress:    Hoàn thành rà soát và cập nhật tài liệu hệ thống, tối ưu hóa ảnh LCP, chạy QC 5 lớp đạt điểm tối đa.
+Next:        Đồng bộ code lên Github main branch để Cloudflare Pages tự động deploy.
 Blockers:    Không có.
-Last commit: ea2ab1f docs(qc): add 5-layer QC protocol guide
-Updated:     2026-07-29 16:04
+Last commit: 512d399 focus: end session 2026-07-29
+Updated:     2026-07-29 16:27
 Machine:     Mac mini
 ```
