@@ -40,6 +40,10 @@
   - Cập nhật đồng bộ thông tin domain chính thức trên tất cả tài liệu dự án và hướng dẫn thiết kế/QC.
   - Kiểm tra build tĩnh thành công, verify canonical URL và sitemap trỏ đúng về domain mới.
 
+- **Audit toàn diện website & Lưu báo cáo (Hoàn thành - 2026-07-29)**:
+  - Nhận và phân tích báo cáo audit chi tiết về UI/UX, Performance, SEO, A11y, và CRO cho trang web `https://3dprinting.ledainhan.com/`.
+  - Lưu trữ báo cáo hoàn chỉnh tại `docs/website_audit_report.md` để làm tài liệu tham khảo cho các tối ưu hóa sắp tới.
+
 ---
 
 ## Pending Issues — Xử lý ở session sau
@@ -58,11 +62,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Cấu hình Domain chính thức & Đồng bộ tài liệu dự án
-Progress:    Hoàn thành cấu hình fallback domain, SEO site name và đồng bộ thông tin trên tất cả tài liệu.
-Next:        Đồng bộ code lên GitHub main branch để Cloudflare Pages tự động deploy.
+Working on:  Tối ưu hóa website dựa trên báo cáo audit của Genspark/Sonnet
+Progress:    Hoàn thành việc audit và lập tài liệu báo cáo chi tiết tại docs/website_audit_report.md.
+Next:        Thực hiện Giai đoạn 1 (Quick Wins) trong checklist tối ưu hóa: Thêm aria-hidden cho decorative elements, tạo skip navigation link, preload hero image, và sửa typo thương hiệu.
 Blockers:    None
-Last commit: e87b238 docs(design): update domain references in design specs and QC protocols
-Updated:     2026-07-29 16:50
+Last commit: bc92b2c focus: end session 2026-07-29
+Updated:     2026-07-29 17:23
 Machine:     Mac mini
 ```
