@@ -8,7 +8,7 @@
 
 ## 1. What this project is
 
-Website cung cấp thông tin và giải pháp dịch vụ in 3D chất lượng cao (Sale Page).
+Website giới thiệu và kinh doanh dòng sản phẩm kệ modular để bàn in 3D đáng yêu thương hiệu BlueMoon's Studio.
 
 **Stage**: MVP / Landing Page
 **Owner**: Bang (Solo Builder)

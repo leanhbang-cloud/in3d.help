@@ -12,7 +12,7 @@ Hệ thống được phát triển theo mô hình Jamstack tĩnh (Static Site G
 graph TD
     User([Người dùng]) -->|Truy cập trang web| CF[Cloudflare Pages CDN]
     CF -->|Phục vụ HTML/CSS tĩnh| Astro[Astro App - SSG]
-    User -->|Click CTA Liên hệ| Contacts[Zalo / Messenger / Email]
+    User -->|Click CTA Đặt mua/Tư vấn| Contacts[Zalo / Messenger]
 ```
 
 ---
@@ -21,8 +21,8 @@ graph TD
 
 | Component | Type | Owner / Location | Responsibility |
 |-----------|------|------------------|----------------|
-| **Astro App** | Static Web App | `./` (Root) | Dựng giao diện tĩnh, tối ưu hóa tốc độ tải trang (SSG), quản lý CSS và cấu trúc trang chủ. |
-| **Cloudflare Pages** | Static Hosting & CDN | Cloudflare | Lưu trữ và phân phối các tệp tin tĩnh (HTML, CSS, JS, hình ảnh) đến người dùng với độ trễ thấp nhất. |
+| **Astro App** | Static Web App | `./` (Root) | Dựng giao diện tĩnh, tối ưu hóa tốc độ tải trang (SSG), quản lý CSS pastel và cấu trúc trang chủ với các component cute. |
+| **Cloudflare Pages** | Static Hosting & CDN | Cloudflare | Lưu trữ và phân phối các tệp tin tĩnh (HTML, CSS, JS, hình ảnh WebP siêu nén) đến người dùng với độ trễ thấp nhất. |
 
 ---
 
@@ -30,22 +30,22 @@ graph TD
 
 ### 3.1 Luồng dữ liệu chính (Critical Paths)
 
-#### Flow A: Đọc thông tin Landing Page & Bảng giá
+#### Flow A: Đọc thông tin sản phẩm & Bảng giá Combo
 - **Luồng đi**: Client -> Cloudflare Pages (CDN).
-- **Chi tiết**: Toàn bộ trang web được build tĩnh hoàn toàn ở local/CI. Khi người dùng truy cập, Cloudflare trả về trang HTML đã render sẵn ngay lập tức mà không cần xử lý phía server.
+- **Chi tiết**: Toàn bộ trang web được build tĩnh hoàn toàn ở local/CI. Khi người dùng truy cập, Cloudflare trả về trang HTML đã render sẵn ngay lập tức mà không cần xử lý phía server. Hệ thống tải font nhanh (Nunito, Quicksand) và hình ảnh WebP tối ưu.
 - **Latency budget**: `<100ms p95` trên kết nối mạng trung bình.
 
-#### Flow B: Liên hệ gửi file in 3D
-- **Luồng đi**: Client -> Zalo / Messenger / Email (Thủ công).
-- **Chi tiết**: Người dùng nhấn vào nút liên hệ (Zalo, Messenger, Email), hệ thống điều hướng trực tiếp sang ứng dụng nhắn tin tương ứng để người dùng gửi file thiết kế 3D (STL, OBJ, STEP) cho Admin báo giá thủ công.
+#### Flow B: Đặt mua kệ và tư vấn phối phụ kiện
+- **Luồng đi**: Client -> Zalo của BlueMoon's Studio.
+- **Chi tiết**: Người dùng nhấn vào nút "Đặt mua ngay" hoặc "Chat Zalo ngay" tại các combo kệ, hệ thống điều hướng trực tiếp sang Zalo để người dùng nhắn tin chọn gói combo (Starter, Pro, Creator), phối phụ kiện cute, hoặc yêu cầu in tên/logo riêng (ở gói Creator).
 
 ---
 
 ## 4. State and data
 
 - **Sources of truth**:
-  - Giao diện và bảng giá: Khai báo tĩnh trong mã nguồn Astro (Git).
-  - Hình ảnh portfolio: Lưu trữ trực tiếp trong thư mục `src/assets/` hoặc `public/` (Git).
+  - Giao diện và bảng giá combo: Khai báo tĩnh trong mã nguồn Astro (Git).
+  - Hình ảnh sản phẩm (WebP): Lưu trữ trực tiếp trong thư mục `public/images/` (Git).
 
 ---
 
@@ -59,14 +59,14 @@ graph TD
 
 ## 6. Security boundaries
 
-- Website hoàn toàn công cộng (Public), tối ưu hóa SEO và không chứa trang quản trị (Admin panel) hay API ghi dữ liệu nhạy cảm trong phiên bản MVP.
+- Website hoàn toàn công cộng (Public), tối ưu hóa SEO và không chứa trang quản trị (Admin panel) hay API ghi dữ liệu nhạy cảm.
 
 ---
 
 ## 7. Deployment topology
 
 - **Production**:
-  - Địa chỉ: `https://in3d.help`
+  - Địa chỉ: `https://in3d.help` hoặc `https://in3d-help.pages.dev`
   - Deploy trigger: Tự động build và deploy từ GitHub push lên branch `main`.
 - **Local Development**:
   - Chạy `npm run dev` ở port `4321` để phát triển giao diện.
@@ -75,11 +75,12 @@ graph TD
 
 ## 8. Known limitations
 
-- **Không tự động báo giá**: Người dùng cần liên hệ thủ công qua Zalo/Email để được báo giá sau khi gửi file 3D.
-- **Chưa có thanh toán trực tuyến**: Các giao dịch được thực hiện qua chuyển khoản ngân hàng thủ công.
+- **Không có giỏ hàng tự động**: Người dùng cần liên hệ thủ công qua Zalo để hoàn thành đơn hàng.
+- **Chưa hỗ trợ thanh toán online tự động**: Khách hàng thanh toán qua chuyển khoản ngân hàng thủ công sau khi chốt đơn qua Zalo.
 
 ---
 
 ## Revision history
 
 - 2026-07-27: Khởi tạo kiến trúc SSG tối giản cho in3D.help bởi Bang & Antigravity.
+- 2026-07-29: Cập nhật kiến trúc và data flow theo định hướng kinh doanh Kệ modular của BlueMoon's Studio.

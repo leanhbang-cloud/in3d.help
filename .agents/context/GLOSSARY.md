@@ -1,26 +1,8 @@
-# Glossary - dinh-mountain-help
+# Glossary — in3D.help
 
 > Project-specific terms, abbreviations, and concepts that have a
 > specific meaning in this codebase. Read before any unclear word
 > "feels obvious" — terms often mean different things in different teams.
-
-> **For AI agents**: When you encounter an unfamiliar term in code,
-> commits, or user requests, check here FIRST before inferring meaning.
-> If a term is not in the glossary but appears in 3+ places, propose
-> adding it.
-
----
-
-## How to use this file
-
-Each entry has 3 columns:
-
-- **Term**: the word or abbreviation as it appears in code, docs, or conversation
-- **Definition**: a 1-2 sentence explanation (avoid jargon in the definition itself)
-- **Context**: where this term applies (which module, layer, or workflow)
-
-Sort alphabetically. Group related terms with a `### Section header` if
-the list grows beyond ~30 entries.
 
 ---
 
@@ -28,55 +10,39 @@ the list grows beyond ~30 entries.
 
 | Term | Definition | Context |
 |------|------------|---------|
-| _ADR_ | _Architecture Decision Record. A short doc capturing one significant decision and its rationale._ | _All projects; see `.agents/context/DECISIONS.md`_ |
-| _MVP_ | _Minimum Viable Product. The smallest scope that delivers user value._ | _Project planning; see `MISSION.md`_ |
-| _RSC_ | _React Server Component. Runs only on the server, no JS shipped to client._ | _Next.js apps only_ |
-| _SSG_ | _Static Site Generation. Build once, serve flat HTML._ | _Astro, Next.js export_ |
-| | | |
-| | | |
-| | | |
-| | | |
-| | | |
-
-> NOTE: Replace the example rows above with your real terms.
-> Italicized rows are examples - delete them when you start filling in.
+| **BlueMoon's Studio** | Thương hiệu thiết kế và sản xuất dòng sản phẩm kệ modular để bàn in 3D đáng yêu. | Thương hiệu sản phẩm |
+| **Pegboard** | Tấm bảng đục lỗ đều nhau dùng làm nền tảng treo các khay đựng, móc treo, hộp cắm bút và các phụ kiện trang trí. | Cấu trúc sản phẩm |
+| **Main Plate (Tấm nền chính)** | Tấm nền cốt lõi kích thước 16×16 cm, có các khớp mộng răng cưa ở 4 cạnh để ghép nối mở rộng vô hạn. | Cấu trúc sản phẩm |
+| **Border Plate (Tấm viền)** | Các thanh viền (2×16 cm) lắp xung quanh các tấm nền chính để tạo khung chắc chắn và hoàn chỉnh. | Cấu trúc sản phẩm |
+| **Corner Plate (Tấm góc)** | Các tấm bo góc tròn lắp ở 4 góc ngoài cùng của kệ, tạo độ mềm mại dễ thương cho thiết kế (`border-radius: 20px`). | Cấu trúc sản phẩm |
+| **Connector hoa 4 cánh (quatrefoil)** | Khớp khóa chốt hình hoa 4 cánh lắp ở mặt sau để khóa chặt các mối ghép mộng răng cưa giữa các tấm nền, viền và góc với nhau. | Cấu trúc sản phẩm |
+| **Jigsaw joint (Mộng răng cưa)** | Thiết kế khớp nối răng cưa thông minh ở các cạnh giúp các tấm ghép khớp với nhau khít và chắc chắn mà không cần keo. | Cấu trúc sản phẩm |
+| **Astro SSG** | Công nghệ Static Site Generation (Tạo trang tĩnh) của Astro giúp tối ưu hóa tốc độ load trang cực nhanh cho Sale Page. | Công nghệ frontend |
+| **Cloudflare Pages** | Dịch vụ hosting tĩnh và CDN của Cloudflare dùng để deploy trang web chính thức `in3d.help` từ GitHub. | Deployment & Infra |
 
 ---
 
 ## Acronyms (quick reference)
 
-> NOTE: Short list of acronyms used frequently. If an acronym is used
-> once or twice, put it inline in the Terms table above. If it appears
-> 5+ times, also list here.
-
 | Acronym | Expansion |
 |---------|-----------|
-| _e.g. ADR_ | _Architecture Decision Record_ |
-| _e.g. MVP_ | _Minimum Viable Product_ |
-| | |
-| | |
+| **ADR** | Architecture Decision Record (Hồ sơ quyết định kiến trúc) |
+| **MVP** | Minimum Viable Product (Sản phẩm khả dụng tối thiểu) |
+| **SSG** | Static Site Generation (Tạo trang tĩnh) |
+| **CTA** | Call To Action (Nút kêu gọi hành động, ví dụ: "Đặt mua ngay") |
+| **WFH** | Work From Home (Làm việc tại nhà) |
 
 ---
 
 ## Naming conventions (project-specific)
 
-> NOTE: Document any naming patterns specific to this project. Helps
-> agents and new contributors avoid creating inconsistent names.
->
-> Examples:
-> - Routes use kebab-case: `/user-profile`, never `/userProfile`
-> - DB tables are snake_case plural: `users`, `blog_posts`
-> - Components are PascalCase: `UserCard.tsx`
-> - Env vars are SCREAMING_SNAKE: `DATABASE_URL`, `API_KEY`
-
-- _Convention 1_
-- _Convention 2_
+- **Component names**: Sử dụng PascalCase (ví dụ: `ProductShowcase.astro`, `ModularExplainer.astro`).
+- **Styles**: Sử dụng vanilla CSS tổ chức trong các file CSS tại `src/styles/` hoặc viết trực tiếp trong thẻ `<style>` của Astro component.
+- **Images**: Định dạng WebP siêu nén, đặt tên theo kiểu kebab-case (ví dụ: `hero-desk-setup.webp`). Lưu ở `public/images/`.
 
 ---
 
 ## Revision history
 
-> NOTE: Append when you add a new section or rename a term in bulk.
-> Single-term additions don't need a history entry.
-
-- _YYYY-MM-DD: Initial glossary started_
+- 2026-07-27: Khởi tạo bảng thuật ngữ dự án ban đầu.
+- 2026-07-29: Cập nhật toàn bộ thuật ngữ theo hiện trạng kệ modular để bàn in 3D của BlueMoon's Studio.
