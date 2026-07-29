@@ -35,11 +35,15 @@
   - Không phát hiện lỗi tràn viền ngang trên cả Desktop và Mobile (375px width).
   - Khắc phục các vấn đề sitemap và custom domain `3dprinting.ledainhan.com`.
 
+- **Cấu hình Domain chính thức & Đồng bộ tài liệu dự án (Hoàn thành - 2026-07-29)**:
+  - Cập nhật fallback domain trong `src/components/SEOHead.astro` sang `https://3dprinting.ledainhan.com` và `og:site_name` sang `BlueMooon's Studio`.
+  - Cập nhật đồng bộ thông tin domain chính thức trên tất cả tài liệu dự án và hướng dẫn thiết kế/QC.
+  - Kiểm tra build tĩnh thành công, verify canonical URL và sitemap trỏ đúng về domain mới.
+
 ---
 
 ## Pending Issues — Xử lý ở session sau
-
-- Chưa có (Tất cả checklist QC, tối ưu hóa và cập nhật tài liệu đã hoàn tất).
+- Chưa có.
 
 ---
 
@@ -54,11 +58,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Chạy QC 5 lớp toàn diện cho Landing Page Rebrand
-Progress:    Hoàn thành rà soát và cập nhật tài liệu hệ thống, tối ưu hóa ảnh LCP, chạy QC 5 lớp đạt điểm tối đa.
-Next:        Đồng bộ code lên Github main branch để Cloudflare Pages tự động deploy.
-Blockers:    Không có.
-Last commit: 512d399 focus: end session 2026-07-29
-Updated:     2026-07-29 16:27
+Working on:  Cấu hình Domain chính thức & Đồng bộ tài liệu dự án
+Progress:    Hoàn thành cấu hình fallback domain, SEO site name và đồng bộ thông tin trên tất cả tài liệu.
+Next:        Đồng bộ code lên GitHub main branch để Cloudflare Pages tự động deploy.
+Blockers:    None
+Last commit: e87b238 docs(design): update domain references in design specs and QC protocols
+Updated:     2026-07-29 16:50
 Machine:     Mac mini
 ```
