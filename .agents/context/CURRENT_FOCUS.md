@@ -27,10 +27,18 @@
 
 - **Kiểm thử chất lượng QC 5 Layer & Tối ưu hóa A11y (Hoàn thành - 2026-07-29)**:
   - Đã chạy QC toàn diện theo checklist 5 lớp kế thừa từ luxury-gold-theme và dinh-mountain-help.
-  - Khắc phục các vấn đề Accessibility (tăng từ 93 lên 96/100) bao gồm: bổ sung main landmark cho Layout, sửa lỗi nhảy cấp Heading (H4 sang H3) ở quy trình và footer, tăng độ tương phản của text trang trí biên và footer links.
-  - Khắc phục lỗi double slash (//) ở ảnh OG đại diện.
-  - Cấu hình custom domain mới `3dprinting.ledainhan.com` đồng bộ vào robots.txt, astro.config.mjs, và wrangler.jsonc.
-  - Verify toàn bộ link hoạt động mượt mà và điểm Lighthouse đạt trên 96+ trên môi trường Live Production.
+  - Khắc phục các vấn đề Accessibility (tăng từ 93 lên 96/100), sitemap, custom domain `3dprinting.ledainhan.com`.
+
+- **Redesign & Rebranding - BlueMooon's Studio (Hoàn thành - 2026-07-29)**:
+  - Tiến hành Rebrand toàn bộ website từ "Dịch vụ in 3D" sang "Kệ modular để bàn in 3D đáng yêu".
+  - Áp dụng hệ màu pastel kem ấm mới, bo tròn UI (`border-radius: 20px`) và bóng đổ shadow mềm mại.
+  - Nhúng Google Fonts mới (`Nunito` + `Quicksand`), sửa lỗi hiển thị tiếng Việt có dấu hoàn hảo.
+  - Tích hợp kết cấu sản phẩm thực tế (tấm nền 16x16, 4x16, 4x4 và chốt chữ thập Connector quatrefoil mặt sau) vào toàn bộ nội dung copywrite của sản phẩm.
+  - Sinh mới 4 ảnh AI với độ chính xác cao mô tả mộng răng cưa jigsaw và chốt Connector hoa 4 cánh, tối ưu hóa kích thước WebP cực nhẹ (tất cả ảnh dưới 65KB).
+
+- **Khắc phục lỗi hệ thống Antigravity IDE (Hoàn thành - 2026-07-29)**:
+  - Sửa lỗi cú pháp sandbox (loại bỏ glob ** lỗi thời trong file config.json của IDE).
+  - Đồng bộ thành công mã nguồn với origin main bằng git pull.
 
 ---
 
@@ -51,11 +59,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Chạy QC và khắc phục các vấn đề tối ưu cho in3D.help
-Progress:    Đã hoàn thành QC 5 lớp trên local & live production, đạt 96/100 Accessibility, 100/100 SEO & Best Practices.
-Next:        Xác định định hướng phát triển tiếp theo của website.
+Working on:  Khắc phục lỗi hệ thống Antigravity và đồng bộ Git
+Progress:    Sửa lỗi cấu hình sandbox trong config.json, chạy thử git status và git pull origin main thành công.
+Next:        Triển khai Vercel preview hoặc tiếp tục phát triển giao diện dự án.
 Blockers:    Không có.
-Last commit: 8066e2d focus: end session 2026-07-29 after successful QC
-Updated:     2026-07-29 11:49
+Last commit: ea2ab1f docs(qc): add 5-layer QC protocol guide
+Updated:     2026-07-29 16:04
 Machine:     Mac mini
 ```
