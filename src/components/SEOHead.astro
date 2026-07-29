@@ -33,7 +33,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://in3d.hel
 // Đảm bảo ogImage là absolute URL
 const ogImageAbsolute = ogImage.startsWith('http')
   ? ogImage
-  : `${Astro.site ?? 'https://in3d.help'}${ogImage}`;
+  : new URL(ogImage, Astro.site ?? 'https://in3d.help').toString();
 
 // Xử lý jsonLd: có thể là string hoặc array of strings
 const jsonLdArray = jsonLd

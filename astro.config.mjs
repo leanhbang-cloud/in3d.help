@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://in3d-help.pages.dev',
+  site: 'https://3dprinting.ledainhan.com',
   output: 'static',
   integrations: [
     sitemap(),

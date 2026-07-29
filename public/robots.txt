@@ -27,5 +27,4 @@ Disallow: /internal/
 Disallow: /api/
 Disallow: /upload-anh/
 
-Sitemap: https://nuidinh.help/sitemap.xml
-Sitemap: https://nuidinh.help/sitemap-images.xml
+Sitemap: https://3dprinting.ledainhan.com/sitemap-index.xml
