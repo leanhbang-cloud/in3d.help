@@ -35,18 +35,19 @@ async function optimizeFile(inputPath, relativePath) {
   let builder = sharp(inputPath);
   let quality = 75;
 
-  if (filename === 'hero-pegboard.png') {
+  if (filename === 'hero-pegboard.png' || filename === 'hero-desk-setup.jpg') {
     quality = 80;
-    // Tạo thêm bản mobile hero-pegboard-mobile.webp
-    const mobileOutputPath = path.join(outputDir, 'hero-pegboard-mobile.webp');
+    const mobileFilename = filename === 'hero-pegboard.png' ? 'hero-pegboard-mobile.webp' : 'hero-desk-setup-mobile.webp';
+    // Tạo thêm bản mobile
+    const mobileOutputPath = path.join(outputDir, mobileFilename);
     await sharp(inputPath)
       .resize({ width: 768, withoutEnlargement: true })
       .webp({ quality: 80 })
       .toFile(mobileOutputPath);
     const mobileSize = fs.statSync(mobileOutputPath).size;
-    console.log(`   + Tạo bản Mobile Hero: hero-pegboard-mobile.webp (${(mobileSize / 1024).toFixed(1)} KB)`);
+    console.log(`   + Tạo bản Mobile Hero: ${mobileFilename} (${(mobileSize / 1024).toFixed(1)} KB)`);
     
-    // Bản desktop hero-pegboard.webp
+    // Bản desktop
     builder = builder.resize({ width: 1200, withoutEnlargement: true });
   } else if (filename === 'ledainhan-portrait.jpg') {
     quality = 75;
@@ -54,7 +55,10 @@ async function optimizeFile(inputPath, relativePath) {
   } else if (filename === 'ledainhan-avatar.jpg') {
     quality = 70;
     builder = builder.resize({ width: 150, withoutEnlargement: true });
-  } else if (filename === 'modular-assembly.png') {
+  } else if (filename === 'modular-assembly.png' || filename === 'detail-assembly.jpg') {
+    quality = 75;
+    builder = builder.resize({ width: 1000, withoutEnlargement: true });
+  } else if (filename === 'lifestyle-student.jpg' || filename === 'lifestyle-kids.jpg') {
     quality = 75;
     builder = builder.resize({ width: 1000, withoutEnlargement: true });
   } else if (relativePath.startsWith('gallery/')) {

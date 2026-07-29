@@ -2,16 +2,18 @@
 // Product Showcase: 3 pricing tiers
 const products = [
   {
-    name: 'Starter Board',
+    name: 'Starter Pegboard',
     price: '299',
     unit: '.000đ',
-    desc: 'Bộ pegboard cơ bản, phù hợp góc học tập nhỏ gọn.',
-    specs: '200×300mm · 6 phụ kiện · PLA+',
+    desc: 'Bộ kệ xinh xắn, lý tưởng cho góc học tập và làm việc nhỏ gọn.',
+    specs: '24×24 cm · 1 Tấm Main · 4 Tấm Viền · 4 Góc',
     features: [
-      'Tấm pegboard 200×300mm',
-      '6 phụ kiện cơ bản',
-      '1 giá đỡ điện thoại',
-      'Hướng dẫn lắp đặt',
+      '1 tấm nền chính 16×16 cm',
+      '4 tấm viền (2 ngang, 2 dọc)',
+      '4 tấm góc bo tròn dễ thương',
+      'Bộ chốt Connector hoa 4 cánh',
+      '4 phụ kiện cute đi kèm',
+      'Tháo lắp bằng tay trong 2 phút',
     ],
     recommended: false,
   },
@@ -19,13 +21,14 @@ const products = [
     name: 'Pro Desk Setup',
     price: '399',
     unit: '.000đ',
-    desc: 'Gói phổ biến nhất — đầy đủ cho bàn làm việc WFH.',
-    specs: '300×400mm · 12 phụ kiện · PLA+',
+    desc: 'Gói bán chạy nhất — phù hợp cho bàn làm việc WFH gọn gàng.',
+    specs: '24×40 cm · 2 Tấm Main · 6 Tấm Viền · 4 Góc',
     features: [
-      'Tấm pegboard 300×400mm',
-      '12 phụ kiện đa năng',
-      'Giá đỡ tablet + kẹp cáp',
-      'Khay bút & hộp đựng nhỏ',
+      '2 tấm nền chính 16×16 cm',
+      '6 tấm viền (2 ngang, 4 dọc)',
+      '4 tấm góc bo tròn',
+      'Bộ chốt Connector hoa 4 cánh',
+      '8 phụ kiện cute đa năng',
       'Miễn phí ship nội thành',
     ],
     recommended: true,
@@ -34,15 +37,16 @@ const products = [
     name: 'Creator Studio',
     price: '599',
     unit: '.000đ',
-    desc: 'Combo hoàn chỉnh cho maker, streamer, designer.',
-    specs: '400×600mm · 20+ phụ kiện · PLA+',
+    desc: 'Bảng vuông lớn — trọn gói cho streamer, designer và bàn học sinh lớn.',
+    specs: '40×40 cm · 4 Tấm Main · 8 Tấm Viền · 4 Góc',
     features: [
-      'Tấm pegboard 400×600mm',
-      '20+ phụ kiện premium',
-      'Giá headphone + arm monitor',
-      'LED holder & cable management',
-      'Thiết kế phụ kiện custom 1 món',
-      'Tư vấn setup 1-1',
+      '4 tấm nền chính 16×16 cm',
+      '8 tấm viền (4 ngang, 4 dọc)',
+      '4 tấm góc bo tròn',
+      'Bộ chốt Connector hoa 4 cánh',
+      '15 phụ kiện premium cute',
+      'Cá nhân hóa in tên/logo riêng',
+      'Tư vấn phối màu setup 1-1',
     ],
     recommended: false,
   },
@@ -63,10 +67,10 @@ const products = [
     <div class="section-header" data-reveal>
       <span class="label">Bảng giá minh bạch</span>
       <h2 class="display">
-        Chọn gói <em>phù hợp</em> với bạn<span class="dot">.</span>
+        Chọn gói <em>kệ xinh</em> cho góc bàn<span class="dot">✿</span>
       </h2>
       <p class="lead">
-        Mỗi gói bao gồm tấm pegboard + phụ kiện + hướng dẫn. Giá đã bao gồm in 3D, hoàn thiện và đóng gói.
+        Mỗi gói là sản phẩm kệ pegboard modular hoàn thiện, kèm chốt khóa tháo lắp thông minh và các phụ kiện decor xinh xắn.
       </p>
     </div>
 
@@ -85,7 +89,7 @@ const products = [
             ))}
           </ul>
           <a href="https://zalo.me/in3dhelp" class={`btn ${product.recommended ? 'btn-zalo' : 'btn-ghost'}`} style="width:100%; justify-content:center;">
-            {product.recommended ? 'Đặt hàng ngay' : 'Tìm hiểu thêm'}
+            Đặt mua ngay
           </a>
         </div>
       ))}

@@ -22,7 +22,7 @@ export interface Props {
 const {
   title,
   description,
-  ogImage = '/favicon.svg',
+  ogImage = '/images/hero-desk-setup.webp',
   ogType = 'website',
   jsonLd,
 } = Astro.props;
@@ -56,8 +56,8 @@ const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN || null;
 
 <!-- Google Fonts: preconnect + stylesheet (thay thế @import chặn render trong CSS) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <!-- SEO Core -->
 <title>{title}</title>

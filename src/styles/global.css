@@ -16,57 +16,103 @@
    DESIGN TOKENS (in3D.help DESIGN.MD)
    ========================================================= */
 :root {
-  /* — Backgrounds — */
-  --void:           #0D0D0D;
-  --charcoal:       #1A1A2E;
-  --gunmetal:       #16213E;
+  /* --- New Cute Pastel Design System --- */
+  --color-cream: #FFF8F0;
+  --color-peach: #FFCAB0;
+  --color-blush: #FFE0D6;
+  --color-sage: #B7D9B1;
+  --color-sky: #BDE0FE;
+  --color-lavender: #E0C3FC;
 
-  /* — Brand Colors — */
-  --cobalt:         #0047AB;
-  --crimson:        #DC143C;
-  --cyan:           #00F0FF;
+  /* --- Neutrals --- */
+  --color-white: #FFFFFF;
+  --color-text-primary: #3D3D3D;
+  --color-text-secondary: #7A7A7A;
+  --color-border: #E8E0D8;
 
-  /* — Derived / Utility — */
-  --cyan-dim:       rgba(0, 240, 255, 0.15);
-  --cyan-glow:      rgba(0, 240, 255, 0.35);
-  --crimson-dim:    rgba(220, 20, 60, 0.15);
-  --crimson-glow:   rgba(220, 20, 60, 0.4);
-  --cobalt-dim:     rgba(0, 71, 171, 0.25);
-  --cobalt-glow:    rgba(0, 71, 171, 0.5);
+  /* --- Semantic --- */
+  --color-success: #A8D5A2;
+  --color-warning: #FFD9A0;
+  --color-error: #F4A0A0;
 
-  /* — Text — */
-  --text-primary:   #F0F0F0;
-  --text-secondary: #B0B0C0;
-  --text-muted:     #6B6B80;
-  --text-faint:     #3E3E52;
+  /* --- Typography Stacks --- */
+  --font-heading: 'Nunito', -apple-system, system-ui, sans-serif;
+  --font-body: 'Quicksand', 'Nunito', -apple-system, system-ui, sans-serif;
+  --font-mono: 'Quicksand', monospace;
 
-  /* — Lines — */
-  --line:           rgba(240, 240, 240, 0.12);
-  --line-soft:      rgba(240, 240, 240, 0.06);
-  --line-cyan:      rgba(0, 240, 255, 0.2);
+  /* --- Border Radius --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
 
-  /* — Shadows — */
-  --shadow-card:    0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-glow:    0 0 30px rgba(0, 240, 255, 0.1);
+  /* --- Spacing System (8px Grid) --- */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-12: 96px;
 
-  /* — Glass — */
-  --glass-bg:       rgba(26, 26, 46, 0.6);
-  --glass-border:   rgba(240, 240, 240, 0.08);
-  --glass-blur:     16px;
+  /* --- Shadows --- */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --shadow-button: 0 2px 10px rgba(255, 160, 120, 0.3);
 
-  /* — Typography Stacks — */
-  --heading:  'Outfit', -apple-system, system-ui, sans-serif;
-  --body:     'Inter', -apple-system, system-ui, sans-serif;
-  --mono:     'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  /* --- Transitions --- */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
 
-  /* — Spacing — */
-  --container:      1360px;
-  --section-pad:    130px;
-  --section-pad-sm: 80px;
+  /* =========================================================
+     MAPPING VARIABLES CŨ SANG PALETTE MỚI ĐỂ TRÁNH VỠ LAYOUT
+     ========================================================= */
+  --void:           var(--color-cream);
+  --charcoal:       var(--color-white);
+  --gunmetal:       var(--color-blush);
+  
+  /* --- Brand Colors Mapping --- */
+  --cobalt:         var(--color-sky);
+  --crimson:        #E28C74; /* Màu cam đất ấm áp, dễ thương thay cho đỏ cũ */
+  --cyan:           var(--color-peach);
+  
+  /* --- Derived / Utility Mapping --- */
+  --cyan-dim:       var(--color-blush);
+  --cyan-glow:      rgba(255, 202, 176, 0.2);
+  --crimson-dim:    rgba(255, 224, 214, 0.4);
+  --crimson-glow:   rgba(255, 224, 214, 0.6);
+  --cobalt-dim:     rgba(189, 224, 254, 0.2);
+  --cobalt-glow:    rgba(189, 224, 254, 0.4);
 
-  /* — Transitions — */
-  --ease:     cubic-bezier(0.22, 0.61, 0.36, 1);
-  --duration: 0.2s;
+  /* --- Text Mapping --- */
+  --text-primary:   var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-muted:     var(--color-text-secondary);
+  --text-faint:     var(--color-border);
+
+  /* --- Lines & Borders Mapping --- */
+  --line:           var(--color-border);
+  --line-soft:      rgba(232, 224, 216, 0.4);
+  --line-cyan:      var(--color-border);
+
+  /* --- Glass Mapping --- */
+  --glass-bg:       rgba(255, 255, 255, 0.85);
+  --glass-border:   var(--color-border);
+  --glass-blur:     12px;
+
+  /* --- Legacy Typography Mappings --- */
+  --heading:        var(--font-heading);
+  --body:           var(--font-body);
+  --mono:           var(--font-mono);
+
+  --container:      1200px;
+  --section-pad:    100px;
+  --section-pad-sm: 60px;
+  --ease:           var(--transition-normal);
+  --duration:       0.3s;
 }
 
 /* =========================================================
@@ -102,12 +148,9 @@ body::before {
   pointer-events: none;
   z-index: 1;
   background-image:
-    radial-gradient(ellipse at 15% 20%, rgba(0, 71, 171, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 85% 75%, rgba(0, 240, 255, 0.04) 0%, transparent 45%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.06  0 0 0 0 0.06  0 0 0 0 0.08  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  background-size: auto, auto, 200px 200px;
-  mix-blend-mode: screen;
-  opacity: 0.7;
+    radial-gradient(circle at 10% 20%, rgba(255, 224, 214, 0.45) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(189, 224, 254, 0.35) 0%, transparent 50%);
+  opacity: 0.8;
 }
 
 /* =========================================================
