@@ -28,12 +28,12 @@ const {
 } = Astro.props;
 
 // Tự động tạo canonical URL từ URL hiện tại
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://in3d.help');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://3dprinting.ledainhan.com');
 
 // Đảm bảo ogImage là absolute URL
 const ogImageAbsolute = ogImage.startsWith('http')
   ? ogImage
-  : new URL(ogImage, Astro.site ?? 'https://in3d.help').toString();
+  : new URL(ogImage, Astro.site ?? 'https://3dprinting.ledainhan.com').toString();
 
 // Xử lý jsonLd: có thể là string hoặc array of strings
 const jsonLdArray = jsonLd
@@ -73,7 +73,7 @@ const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN || null;
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content={canonicalURL.toString()} />
-<meta property="og:site_name" content="in3D.help" />
+<meta property="og:site_name" content="BlueMooon's Studio" />
 <meta property="og:locale" content="vi_VN" />
 
 <!-- Twitter / X Card -->
