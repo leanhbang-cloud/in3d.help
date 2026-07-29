@@ -166,7 +166,7 @@ Mục tiêu: Kiểm soát quy trình đóng gói và đảm bảo trang web ho�
 
 #### TC-L5-002: Kiểm tra liên kết hỏng (Broken Links)
 * **Các bước thực hiện**:
-  1. Quét qua toàn bộ thẻ `<a>` trên trang. Đảm bảo các liên kết Zalo (`https://zalo.me/in3dhelp`), email (`mailto:hello@in3d.help`) và các link mạng xã hội hoạt động chuẩn xác.
+  1. Quét qua toàn bộ thẻ `<a>` trên trang. Đảm bảo các liên kết Zalo (`https://zalo.me/in3dhelp`), email (`mailto:hello@bluemoooon.vn`) và các link mạng xã hội hoạt động chuẩn xác.
   2. Các liên kết ngoài phải có thuộc tính `target="_blank" rel="noopener noreferrer"`.
 
 #### TC-L5-003 & TC-L5-004: Xác thực Live Deploy

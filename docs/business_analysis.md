@@ -98,7 +98,7 @@ Với công nghệ in 3D, BlueMooon's hoàn toàn có thể in tên, logo cá nh
 
 ### 3.2. Chiến lược kênh bán hàng
 
-* **Đề xuất 3.2a — Giai đoạn 1 (0-6 tháng): Website + Zalo là kênh chính**: Không nên mở Shopee ngay vì: (1) phí sàn + flash sale ăn margin, (2) đối thủ giá rẻ áp đảo, (3) Solo Builder không có thời gian xử lý tranh chấp sàn. Thay vào đó, tập trung vào website in3d.help (landing page chuyên nghiệp) + Zalo OA làm kênh chuyển đổi. Chat AI (Gemini Notebook) làm kênh hỗ trợ 24/7.
+* **Đề xuất 3.2a — Giai đoạn 1 (0-6 tháng): Website + Zalo là kênh chính**: Không nên mở Shopee ngay vì: (1) phí sàn + flash sale ăn margin, (2) đối thủ giá rẻ áp đảo, (3) Solo Builder không có thời gian xử lý tranh chấp sàn. Thay vào đó, tập trung vào website 3dprinting.ledainhan.com (landing page chuyên nghiệp) + Zalo OA làm kênh chuyển đổi. Chat AI (Gemini Notebook) làm kênh hỗ trợ 24/7.
 * **Đề xuất 3.2b — Giai đoạn 2 (6-12 tháng): Mở Shopee Mall khi đã có review + nội dung**: Khi đã tích lũy đủ 50-100 ảnh/video khách hàng thực tế, mở gian hàng Shopee với branding mạnh để tiếp cận khách hàng đại chúng hơn.
 * **Đề xuất 3.2c — TikTok Shop + Content Marketing**: In 3D là loại sản phẩm cực kỳ "viral" trên TikTok: quay timelapse quá trình in, unboxing, so sánh trước/sau bàn làm việc. Một video timelapse in 3D pegboard đẹp có thể đạt hàng trăm nghìn view mà chi phí sản xuất nội dung gần như bằng 0.
 

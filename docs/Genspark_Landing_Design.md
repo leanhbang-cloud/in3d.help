@@ -2391,13 +2391,13 @@ const faqs = [
           <li><a href="https://zalo.me/in3dhelp">Zalo</a></li>
           <li><a href="#">Facebook</a></li>
           <li><a href="#">TikTok</a></li>
-          <li><a href="mailto:hello@in3d.help">hello@in3d.help</a></li>
+          <li><a href="mailto:hello@bluemoooon.vn">hello@bluemoooon.vn</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 in3D.help — Made with ❤ in Saigon</span>
+      <span>© 2026 BlueMooon's Studio — Made with ❤ in Saigon</span>
       <span class="coord">BUILD 2026.07 · PLA+ · FDM</span>
     </div>
   </div>

@@ -596,7 +596,7 @@ Thay toàn bộ component Process/Steps cũ (ví dụ `src/components/Process.as
 Cập nhật `<head>` trong Layout hoặc trang index:
 
 ```html
-<title>BlueMooon's Studio — Kệ Để Bàn Modular In 3D Đáng Yêu | in3d.help</title>
+<title>BlueMooon's Studio — Kệ Để Bàn Modular In 3D Đáng Yêu | 3dprinting.ledainhan.com</title>
 <meta name="description" content="Kệ pegboard modular in 3D siêu nhẹ, lắp ghép linh hoạt. Decor bàn học, bàn làm việc gọn gàng, dễ thương. Combo chỉ từ 299K. Giao hàng toàn quốc." />
 
 <!-- Open Graph -->
