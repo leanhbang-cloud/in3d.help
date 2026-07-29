@@ -66,7 +66,7 @@ graph TD
 ## 7. Deployment topology
 
 - **Production**:
-  - Địa chỉ: `https://in3d.help` hoặc `https://in3d-help.pages.dev`
+  - Địa chỉ: `https://3dprinting.ledainhan.com` hoặc `https://in3d-help.pages.dev`
   - Deploy trigger: Tự động build và deploy từ GitHub push lên branch `main`.
 - **Local Development**:
   - Chạy `npm run dev` ở port `4321` để phát triển giao diện.

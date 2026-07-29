@@ -79,7 +79,7 @@ See `.agents/rules/workspace.md` for the universal rules that apply across all p
 
 - **Hosting**: Cloudflare Pages
 - **Trigger**: Tự động build và deploy từ GitHub push lên branch `main`.
-- **Domain**: `in3d.help`
+- **Domain**: `3dprinting.ledainhan.com`
 
 ## 9. When in doubt
 

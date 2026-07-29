@@ -18,7 +18,7 @@
 | **Connector hoa 4 cánh (quatrefoil)** | Khớp khóa chốt hình hoa 4 cánh lắp ở mặt sau để khóa chặt các mối ghép mộng răng cưa giữa các tấm nền, viền và góc với nhau. | Cấu trúc sản phẩm |
 | **Jigsaw joint (Mộng răng cưa)** | Thiết kế khớp nối răng cưa thông minh ở các cạnh giúp các tấm ghép khớp với nhau khít và chắc chắn mà không cần keo. | Cấu trúc sản phẩm |
 | **Astro SSG** | Công nghệ Static Site Generation (Tạo trang tĩnh) của Astro giúp tối ưu hóa tốc độ load trang cực nhanh cho Sale Page. | Công nghệ frontend |
-| **Cloudflare Pages** | Dịch vụ hosting tĩnh và CDN của Cloudflare dùng để deploy trang web chính thức `in3d.help` từ GitHub. | Deployment & Infra |
+| **Cloudflare Pages** | Dịch vụ hosting tĩnh và CDN của Cloudflare dùng để deploy trang web chính thức `3dprinting.ledainhan.com` từ GitHub. | Deployment & Infra |
 
 ---
 
