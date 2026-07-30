@@ -1530,3 +1530,8 @@ section.tight { padding: 90px 0; }
   .fab::before { animation: none; }
   .topbar .pulse { animation: none; }
 }
+
+/* Cache bust to force new CSS hash: 2026-07-30 */
+#cache-buster-element-unique {
+  z-index: 9999;
+}
