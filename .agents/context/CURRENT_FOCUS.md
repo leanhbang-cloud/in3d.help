@@ -6,6 +6,15 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
+- **Tối ưu hóa Hero Section & Section Spacing (Hoàn thành - 2026-07-30)**:
+  - Tối ưu hóa nhãn CTA nút Zalo thành `"Tư vấn miễn phí"` tại [Hero.astro](file:///Users/bangle-macmini/Projects/in3d-help/src/components/Hero.astro).
+  - Tái cấu trúc Stats di chuyển xuống chân của Hero Section (nằm dưới visual hình ảnh trên di động).
+  - Dàn ngang Stats trên di động, hỗ trợ tự động thu nhỏ vòng ring và cỡ chữ trên thiết bị nhỏ để vừa khít màn hình.
+  - Khai báo ánh xạ hệ thống Spacing Tokens (`--space-lg`, `--space-xl`, etc.) chuẩn vào `:root` của [global.css](file:///Users/bangle-macmini/Projects/in3d-help/src/styles/global.css).
+  - Điều chỉnh `.hero-art` sử dụng `aspect-ratio: 4 / 3` và `object-fit: cover` giúp khung viền ôm sát tấm ảnh pegboard khít khao, không còn khe hở subpixel hay lọt thỏm.
+  - Thiết lập `.hero-stats` cách chân ảnh chuẩn chỉ `48px` (desktop) và `32px` (mobile), loại bỏ triệt để hiện tượng đè dính stats.
+  - Giảm padding/margin các section toàn hệ thống một cách đồng bộ và responsive.
+
 - **Sửa đổi hiển thị giao diện trên thiết bị di động (Hoàn thành - 2026-07-30)**:
   - Ẩn hoàn toàn Top Bar trên mobile (màn hình <= 768px) để giải phóng không gian hiển thị.
   - Dàn ngang hai nút CTA của Hero (`flex-direction: row`), chia đều chiều rộng (`flex: 1`), áp dụng text-overflow ellipsis tránh tràn chữ và thu hẹp padding.
@@ -67,11 +76,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Tối ưu hóa Hero Section & Section Spacing.
-Progress:    Hoàn thành rút ngắn nhãn CTA Hero, di chuyển cụm stats xuống dưới ảnh Hero và dàn ngang stats trên mobile, đồng thời giảm khoảng trống section padding/margin một cách có hệ thống.
-Next:        Chờ phản hồi của user.
+Working on:  Đóng session làm việc sau khi hoàn thành tối ưu Hero Section và Spacing.
+Progress:    Hoàn thành tối ưu hóa CTA Hero, stats layout (dàn ngang & responsive), ôm sát aspect-ratio 4:3 khung hình pegboard, chống chồng đè stats trên di động và hệ thống hóa spacing padding/margin.
+Next:        Push code lên remote repo và theo dõi deployment.
 Blockers:    None
 Last commit: 0dc765f fix(hero): implement spacing token variables in CSS and use object-fit cover
-Updated:     2026-07-30 15:18
+Updated:     2026-07-30 15:21
 Machine:     Mac mini
 ```
