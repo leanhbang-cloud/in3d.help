@@ -65,7 +65,7 @@ Working on:  Giải quyết lỗi mất CSS trên Production do cache Cloudflare
 Progress:    Đã ép hash CSS mới qua dummy rule CSS, deploy thành công lên Cloudflare Pages và sửa triệt để lỗi unstyled trên production.
 Next:        Chờ phản hồi của user.
 Blockers:    None
-Last commit: 6405b2d style(global): force new CSS hash to bust Cloudflare CDN cache
-Updated:     2026-07-30 11:18
+Last commit: 5af9705 docs(focus): update project focus state with Cloudflare cache fix details
+Updated:     2026-07-30 11:22
 Machine:     Mac mini
 ```
