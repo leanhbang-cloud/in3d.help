@@ -702,7 +702,7 @@ section.tight { padding: var(--section-pad-sm) 0; }
   display: inline-flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 40px;
+  margin-bottom: 0; /* Khử lề thừa vì stats đã chuyển ra ngoài */
   flex-wrap: wrap;
 }
 
@@ -804,9 +804,9 @@ section.tight { padding: var(--section-pad-sm) 0; }
 .annot {
   position: absolute;
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.04em;
-  color: var(--text-faint);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary); /* Đổi sang màu tối hơn để đọc rõ ràng */
   white-space: nowrap;
   z-index: 3;
 }
@@ -1517,7 +1517,8 @@ section.tight { padding: var(--section-pad-sm) 0; }
 @media (max-width: 1080px) {
   .container { padding: 0 32px; }
   .nav-links { display: none; }
-  .hero-grid { grid-template-columns: 1fr; }
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; } /* Giảm gap hàng trên mobile/tablet */
+  .hero-copy { padding: 32px 0 0; } /* Bỏ padding bottom và giảm padding top */
   .hero-art { height: 50vh; max-height: 480px; }
   .about-grid, .modular-grid { grid-template-columns: 1fr; gap: 48px; }
   .pain-grid { grid-template-columns: 1fr 1fr; }
