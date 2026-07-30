@@ -67,11 +67,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Sửa lỗi hiển thị UI trên thiết bị di động (Top Bar, Hero CTA Buttons, khoảng hở và FAQ Accordion).
-Progress:    Hoàn thành ẩn Top Bar trên mobile, dàn ngang và cân đối 2 nút CTA, sửa chiều cao Hero 85svh sửa lỗi khoảng hở trên Safari di động, và nâng cấp FAQ Accordion sang CSS Grid row transition mượt mà.
+Working on:  Tối ưu hóa Hero Section & Section Spacing.
+Progress:    Hoàn thành rút ngắn nhãn CTA Hero, di chuyển cụm stats xuống dưới ảnh Hero và dàn ngang stats trên mobile, đồng thời giảm khoảng trống section padding/margin một cách có hệ thống.
 Next:        Chờ phản hồi của user.
 Blockers:    None
-Last commit: 80f0f9f markup(faq): wrap accordion answer for smooth height transition
-Updated:     2026-07-30 11:54
+Last commit: 5650dc8 feat(hero): align stats horizontally and optimize section spacing responsive
+Updated:     2026-07-30 14:39
 Machine:     Mac mini
 ```
