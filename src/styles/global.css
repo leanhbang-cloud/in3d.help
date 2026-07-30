@@ -713,8 +713,8 @@ section.tight { padding: var(--section-pad-sm) 0; }
   gap: 64px;
   flex-wrap: wrap;
   width: 100%;
+  margin-top: var(--space-xl); /* Cách khung ảnh phía trên 48px chuẩn DS */
   padding-bottom: 24px;
-  margin-top: auto;
 }
 .hero-stats .stat {
   display: inline-flex;
@@ -753,10 +753,12 @@ section.tight { padding: var(--section-pad-sm) 0; }
   font-size: 12px;
 }
 
-/* Hero art / pegboard visual with spotlight */
 .hero-art {
   position: relative;
-  height: calc(100vh - 160px);
+  width: 100%;
+  max-width: 600px; /* Giới hạn chiều rộng trên desktop */
+  aspect-ratio: 4 / 3; /* Ép khung khít theo tỷ lệ ảnh */
+  margin: 0 auto; /* Căn giữa */
   max-height: 800px;
   display: flex;
   align-items: center;
@@ -1519,7 +1521,6 @@ section.tight { padding: var(--section-pad-sm) 0; }
   .nav-links { display: none; }
   .hero-grid { grid-template-columns: 1fr; gap: 32px; } /* Giảm gap hàng trên mobile/tablet */
   .hero-copy { padding: 32px 0 0; } /* Bỏ padding bottom và giảm padding top */
-  .hero-art { height: 50vh; max-height: 480px; }
   .about-grid, .modular-grid { grid-template-columns: 1fr; gap: 48px; }
   .pain-grid { grid-template-columns: 1fr 1fr; }
   .product-grid { grid-template-columns: 1fr 1fr; }
@@ -1580,6 +1581,7 @@ section.tight { padding: var(--section-pad-sm) 0; }
     flex-direction: row !important;
     justify-content: space-between !important;
     gap: 16px !important;
+    margin-top: var(--space-lg) !important; /* Cách khung ảnh phía trên 32px chuẩn DS */
     padding-bottom: 24px !important;
     width: 100% !important;
   }
