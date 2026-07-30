@@ -71,7 +71,7 @@ Working on:  Tối ưu hóa Hero Section & Section Spacing.
 Progress:    Hoàn thành rút ngắn nhãn CTA Hero, di chuyển cụm stats xuống dưới ảnh Hero và dàn ngang stats trên mobile, đồng thời giảm khoảng trống section padding/margin một cách có hệ thống.
 Next:        Chờ phản hồi của user.
 Blockers:    None
-Last commit: f53b18b feat(hero): make image frame follow aspect ratio and prevent stats overlap
-Updated:     2026-07-30 15:11
+Last commit: 0dc765f fix(hero): implement spacing token variables in CSS and use object-fit cover
+Updated:     2026-07-30 15:18
 Machine:     Mac mini
 ```
