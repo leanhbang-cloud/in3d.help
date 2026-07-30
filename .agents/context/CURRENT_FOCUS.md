@@ -6,6 +6,11 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
+- **Thay đổi nhân vật sang bé Misa 9 tuổi (Hoàn thành - 2026-07-30)**:
+  - Tối ưu và cắt ghép ảnh gốc của Misa tạo `misa-portrait.webp` và `misa-avatar.webp` dạng WebP sắc nét.
+  - Tái cấu trúc copywriting toàn bộ 9 Astro components chính (`About`, `Hero`, `PainPoints`, `ProductShowcase`, `HowItWorks`, `ModularExplainer`, `FAQ`, `Footer`, `SEOHead`) sang giọng văn lễ phép, đáng yêu của bé Misa và bố.
+  - Khắc phục lỗi CSS gây méo/bóp hình tròn của ảnh avatar và sửa lỗi tương phản màu sắc chữ chức danh của Misa dưới chân câu chuyện.
+
 - **Tối ưu hóa Hero Section & Section Spacing (Hoàn thành - 2026-07-30)**:
   - Tối ưu hóa nhãn CTA nút Zalo thành `"Tư vấn miễn phí"` tại [Hero.astro](file:///Users/bangle-macmini/Projects/in3d-help/src/components/Hero.astro).
   - Tái cấu trúc Stats di chuyển xuống chân của Hero Section (nằm dưới visual hình ảnh trên di động).
@@ -76,11 +81,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Đóng session làm việc sau khi hoàn thành tối ưu Hero Section và Spacing.
-Progress:    Hoàn thành tối ưu hóa CTA Hero, stats layout (dàn ngang & responsive), ôm sát aspect-ratio 4:3 khung hình pegboard, chống chồng đè stats trên di động và hệ thống hóa spacing padding/margin.
-Next:        Push code lên remote repo và theo dõi deployment.
+Working on:  Thay đổi nhân vật thương hiệu sang bé Misa 9 tuổi và tối ưu hóa nội dung trang web.
+Progress:    Hoàn thành chuyển đổi copywriting 9 Astro components sang giọng văn bé Misa, tối ưu ảnh chân dung/avatar và sửa lỗi CSS méo ảnh avatar & tương phản chữ.
+Next:        Theo dõi phản hồi từ khách hàng và bắt đầu chạy test lại toàn bộ hệ thống (QC 5 lớp).
 Blockers:    None
-Last commit: 0dc765f fix(hero): implement spacing token variables in CSS and use object-fit cover
-Updated:     2026-07-30 15:21
+Last commit: 24ceae8 fix(style): resolve avatar aspect ratio distortion and signature text contrast
+Updated:     2026-07-30 16:29
 Machine:     Mac mini
 ```
