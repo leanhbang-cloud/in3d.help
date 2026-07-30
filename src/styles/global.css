@@ -219,6 +219,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: auto;
+  min-height: 100%;
 }
 
 body {
@@ -251,7 +253,14 @@ body::before {
 /* =========================================================
    SHELL & CONTAINER
    ========================================================= */
-.shell { position: relative; z-index: 2; }
+.shell {
+  position: relative;
+  z-index: 2;
+  min-height: unset;
+  height: auto;
+  display: block;
+  padding-bottom: 0;
+}
 
 .container {
   max-width: var(--container);
@@ -280,15 +289,20 @@ body::before {
 
 .side-rail .rail-text {
   font-family: var(--heading);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.45em;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: #9b7b6a;
   writing-mode: vertical-rl;
+  text-orientation: mixed;
   white-space: nowrap;
+  overflow: visible;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.side-rail.right .rail-text { transform: rotate(180deg); }
+.side-rail.left .rail-text { transform: rotate(180deg); }
+.side-rail.right .rail-text { transform: none; }
 
 /* =========================================================
    TOP METADATA STRIP (editorial volume/issue bar)
@@ -307,10 +321,10 @@ body::before {
   align-items: center;
   gap: 24px;
   font-family: var(--heading);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-primary);
 }
 .topbar-inner b      { color: var(--text-secondary); font-weight: 600; }
 .topbar-inner .cyan   { color: var(--cyan); }
@@ -336,7 +350,7 @@ body::before {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(13, 13, 13, 0.75);
+  background: rgba(255, 248, 240, 0.85);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border-bottom: 1px solid var(--line);
@@ -348,8 +362,9 @@ body::before {
   will-change: transform;
 }
 .nav.is-scrolled {
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-  border-bottom-color: var(--line-cyan);
+  box-shadow: 0 4px 20px rgba(155, 123, 106, 0.08);
+  border-bottom-color: var(--line);
+  background: rgba(255, 255, 255, 0.95);
 }
 .nav.is-hidden {
   transform: translateY(-100%);
@@ -375,14 +390,15 @@ body::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid var(--cyan);
+  border: 1.5px solid #B24A2D;
   border-radius: 50%;
   font-family: var(--mono);
   font-size: 14px;
   font-weight: 600;
-  color: var(--cyan);
+  color: #B24A2D;
   background: transparent;
-  box-shadow: 0 0 12px var(--cyan-dim);
+  box-shadow: none;
+  flex-shrink: 0;
 }
 .brand-name {
   font-family: var(--heading);
@@ -391,7 +407,7 @@ body::before {
   color: var(--text-primary);
   letter-spacing: -0.02em;
 }
-.brand-name .dot { color: var(--cyan); }
+.brand-name .dot { color: #B24A2D; }
 
 .nav-links {
   display: flex;
@@ -403,12 +419,12 @@ body::before {
   text-decoration: none;
   font-family: var(--heading);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.02em;
   transition: color var(--duration) ease;
   position: relative;
 }
-.nav-links a:hover { color: var(--cyan); }
+.nav-links a:hover { color: #B24A2D; }
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -416,7 +432,7 @@ body::before {
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--cyan);
+  background: #B24A2D;
   transition: width 0.3s var(--ease);
 }
 .nav-links a:hover::after { width: 100%; }
@@ -489,10 +505,10 @@ body::before {
 .label {
   font-family: var(--heading);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--cyan);
+  color: #B24A2D;
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -501,7 +517,7 @@ body::before {
   content: '';
   width: 24px;
   height: 1px;
-  background: var(--cyan);
+  background: #B24A2D;
   display: inline-block;
 }
 
@@ -899,17 +915,18 @@ section.tight { padding: 90px 0; }
     linear-gradient(135deg, var(--cobalt), var(--cyan), var(--cobalt)) border-box;
   border: 2px solid transparent;
   box-shadow: 0 0 40px var(--cyan-dim), var(--shadow-card);
+  overflow: visible;
 }
 .product-card.recommended::after {
-  content: 'RECOMMENDED';
+  content: 'KHUYÊN DÙNG';
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  background: linear-gradient(135deg, var(--cobalt), var(--cyan));
+  background: linear-gradient(135deg, #E28C74, #B24A2D);
   color: #fff;
   font-family: var(--heading);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.2em;
   padding: 6px 20px;
@@ -1337,6 +1354,15 @@ section.tight { padding: 90px 0; }
   color: var(--text-secondary);
   margin-bottom: 20px;
 }
+.footer-col h3 {
+  font-family: var(--heading);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 10px; }
 .footer-col ul a {
@@ -1351,9 +1377,9 @@ section.tight { padding: 90px 0; }
 .footer-mega {
   font-family: var(--heading);
   font-weight: 900;
-  font-size: clamp(60px, 12vw, 180px);
+  font-size: clamp(40px, 6.5vw, 98px);
   letter-spacing: -0.04em;
-  color: rgba(240, 240, 240, 0.04);
+  color: rgba(61, 61, 61, 0.04);
   line-height: 1;
   margin-bottom: 32px;
   text-align: center;
