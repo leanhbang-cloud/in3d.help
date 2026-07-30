@@ -6,6 +6,14 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
+- **Chuẩn hóa UI/UX, Tương phản A11y & Đồng bộ thương hiệu đầy đủ (Hoàn thành - 2026-07-30)**:
+  - **Tối ưu hóa Navbar Light Mode**: Chuyển nền Navbar sang màu kem sáng pastel `rgba(255, 248, 240, 0.85)` đồng điệu với brand. Fix logo `BM` và chữ `BlueMoon's Studio✿` hiển thị sắc nét trên nền sáng, không bị co hay cắt chữ. Tăng font-weight các menu link và đổi màu hover sang cam đất đậm `#B24A2D`. Cấu hình shadow mịn khi scroll.
+  - **Đồng bộ thương hiệu đầy đủ**: Đổi tên thương hiệu từ rút gọn `BlueMoon` sang đầy đủ `"BlueMoon's Studio"` tại Header logo, Footer logo, và watermark chìm ở đầu Footer.
+  - **Cân đối watermark & Sửa lỗi lề**: Hạ font-size của watermark `.footer-mega` sang `clamp(40px, 6.5vw, 98px)` giúp cụm từ dài hiển thị gọn gàng, không bị tràn lề.
+  - **Khắc phục chữ khó đọc**: Sửa Side Rails (tương phản màu `#9b7b6a`, giảm letter-spacing, rail trái xoay đọc dưới lên và rail phải đọc trên xuống), tăng tương phản Top Bar (chữ màu `#3D3D3D`), đổi màu label About section sang cam đất đậm `#B24A2D` (độ tương phản > 5.5:1).
+  - **Khắc phục khoảng trống Footer**: Reset chiều cao an toàn loại bỏ chiều cao ảo, đổi màu watermark chìm `BlueMoon's Studio` sang xám mờ `rgba(61, 61, 61, 0.04)` để watermark chìm hiện lên tinh tế trên nền hồng sáng, giải quyết cảm giác trống lề bị lỗi layout.
+  - **Sửa lề badge "Khuyên dùng"/"Bán chạy"**: Thêm `overflow: visible` cho card recommended để tránh bị crop lề badge. Sửa badge mép trên cùng card thành `"KHUYÊN DÙNG"`, và chuyển khung `"🔥 Bán chạy"` bên dưới thành một huy hiệu nhỏ xinh đính ở góc trên bên phải card để giải phóng không gian.
+
 - **Tối ưu hóa toàn diện website dựa trên báo cáo audit (Hoàn thành - 2026-07-30)**:
   - **Đồng bộ thương hiệu**: Sửa typo thương hiệu `BlueMooon` thành `BlueMoon` (nhất quán 2 chữ o) trên toàn bộ dự án (`Layout.astro`, `index.astro`, `Header.astro`, `About.astro`, `Footer.astro`).
   - **Performance & SEO**: Tự host font (self-hosted fonts) trong `public/fonts/` và cấu hình `@font-face` cùng preload WOFF2. Nhúng metadata `theme-color` và 3 schema JSON-LD: `Organization`, `Product`, và `FAQPage`.
@@ -50,11 +58,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Đã hoàn tất tối ưu hóa toàn diện website theo báo cáo audit
-Progress:    Hoàn thành toàn bộ tối ưu hóa A11y, SEO, Performance, CRO, typo thương hiệu và build test thành công.
-Next:        Push lên Vercel/Cloudflare Pages và thực hiện các giai đoạn tiếp theo (Wall of Love, A/B Testing...).
+Working on:  Sửa lỗi hiển thị UI, tương phản A11y, tối ưu hóa Navbar Light Mode và đồng bộ tên thương hiệu BlueMoon's Studio.
+Progress:    Hoàn thành sửa lỗi Side Rails, Top Bar, About Label, Footer watermark chìm, nâng cấp Navbar Light Mode, đồng bộ tên thương hiệu đầy đủ "BlueMoon's Studio" và sửa lề badge "Khuyên dùng"/"Bán chạy".
+Next:        Deploy thử nghiệm lên Cloudflare Pages staging/production và kiểm tra phản hồi người dùng.
 Blockers:    None
-Last commit: aa22100 feat: optimize landing page performance, SEO, accessibility, and CRO
-Updated:     2026-07-30 09:37
+Last commit: 5f0bb54 feat(showcase): move bestseller badge to top-right of product card
+Updated:     2026-07-30 10:53
 Machine:     Mac mini
 ```
