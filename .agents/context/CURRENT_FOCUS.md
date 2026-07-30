@@ -6,6 +6,12 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
+- **Sửa đổi hiển thị giao diện trên thiết bị di động (Hoàn thành - 2026-07-30)**:
+  - Ẩn hoàn toàn Top Bar trên mobile (màn hình <= 768px) để giải phóng không gian hiển thị.
+  - Dàn ngang hai nút CTA của Hero (`flex-direction: row`), chia đều chiều rộng (`flex: 1`), áp dụng text-overflow ellipsis tránh tràn chữ và thu hẹp padding.
+  - Sửa lỗi khoảng trống lớn giữa các section bằng cách thiết lập `.hero` có `min-height: 85svh` và đặt `min-height: unset` cho các section chung.
+  - Thay đổi cấu trúc và CSS của FAQ Accordion sang dùng kỹ thuật grid-template-rows (`0fr` -> `1fr`) để tạo hiệu ứng đóng mở trượt mượt mà.
+
 - **Sửa lỗi cache Cloudflare CDN trên production (Hoàn thành - 2026-07-30)**:
   - Thêm một rule CSS vô hại `#cache-buster-element-unique` ở cuối file `global.css` nhằm ép Vite sinh ra mã hash mới cho file CSS built ra (`index.BWOCpY0X.css`). Việc này giúp vượt qua lỗi Cloudflare Edge CDN cache nhầm file HTML 404 (do race condition) thành file CSS. Giao diện trang production `https://3dprinting.ledainhan.com` đã hiển thị đẹp hoàn hảo.
 
@@ -61,11 +67,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Giải quyết lỗi mất CSS trên Production do cache Cloudflare CDN.
-Progress:    Đã ép hash CSS mới qua dummy rule CSS, deploy thành công lên Cloudflare Pages và sửa triệt để lỗi unstyled trên production.
+Working on:  Sửa lỗi hiển thị UI trên thiết bị di động (Top Bar, Hero CTA Buttons, khoảng hở và FAQ Accordion).
+Progress:    Hoàn thành ẩn Top Bar trên mobile, dàn ngang và cân đối 2 nút CTA, sửa chiều cao Hero 85svh sửa lỗi khoảng hở trên Safari di động, và nâng cấp FAQ Accordion sang CSS Grid row transition mượt mà.
 Next:        Chờ phản hồi của user.
 Blockers:    None
-Last commit: 5af9705 docs(focus): update project focus state with Cloudflare cache fix details
-Updated:     2026-07-30 11:22
+Last commit: 80f0f9f markup(faq): wrap accordion answer for smooth height transition
+Updated:     2026-07-30 11:54
 Machine:     Mac mini
 ```
