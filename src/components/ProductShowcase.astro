@@ -87,7 +87,7 @@ const products = [
         >
           {product.recommended && (
             <div class="badge-bestseller" aria-label="Sản phẩm bán chạy nhất">
-              <span aria-hidden="true">🔥</span> Bán chạy nhất
+              <span aria-hidden="true">🔥</span> Bán chạy
             </div>
           )}
 
@@ -130,19 +130,23 @@ const products = [
 <style>
   /* ── Badge bán chạy nhất ── */
   .badge-bestseller {
+    position: absolute;
+    top: 36px;
+    right: 28px;
+    margin-bottom: 0;
     display: inline-flex;
     align-items: center;
     gap: 0.35em;
     background: linear-gradient(135deg, #ff6b35, #f7c59f);
     color: #fff;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    padding: 0.3em 0.85em;
+    padding: 0.35rem 0.8rem;
     border-radius: 999px;
-    margin-bottom: 0.85rem;
-    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.35);
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.25);
+    z-index: 2;
   }
 
   /* ── Price anchoring ── */
