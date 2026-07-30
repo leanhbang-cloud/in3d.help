@@ -6,6 +6,9 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
+- **Sửa lỗi cache Cloudflare CDN trên production (Hoàn thành - 2026-07-30)**:
+  - Thêm một rule CSS vô hại `#cache-buster-element-unique` ở cuối file `global.css` nhằm ép Vite sinh ra mã hash mới cho file CSS built ra (`index.BWOCpY0X.css`). Việc này giúp vượt qua lỗi Cloudflare Edge CDN cache nhầm file HTML 404 (do race condition) thành file CSS. Giao diện trang production `https://3dprinting.ledainhan.com` đã hiển thị đẹp hoàn hảo.
+
 - **Chuẩn hóa UI/UX, Tương phản A11y & Đồng bộ thương hiệu đầy đủ (Hoàn thành - 2026-07-30)**:
   - **Tối ưu hóa Navbar Light Mode**: Chuyển nền Navbar sang màu kem sáng pastel `rgba(255, 248, 240, 0.85)` đồng điệu với brand. Fix logo `BM` và chữ `BlueMoon's Studio✿` hiển thị sắc nét trên nền sáng, không bị co hay cắt chữ. Tăng font-weight các menu link và đổi màu hover sang cam đất đậm `#B24A2D`. Cấu hình shadow mịn khi scroll.
   - **Đồng bộ thương hiệu đầy đủ**: Đổi tên thương hiệu từ rút gọn `BlueMoon` sang đầy đủ `"BlueMoon's Studio"` tại Header logo, Footer logo, và watermark chìm ở đầu Footer.
@@ -58,11 +61,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Sửa lỗi hiển thị UI, tương phản A11y, tối ưu hóa Navbar Light Mode và đồng bộ tên thương hiệu BlueMoon's Studio.
-Progress:    Hoàn thành sửa lỗi Side Rails, Top Bar, About Label, Footer watermark chìm, nâng cấp Navbar Light Mode, đồng bộ tên thương hiệu đầy đủ "BlueMoon's Studio" và sửa lề badge "Khuyên dùng"/"Bán chạy".
-Next:        Deploy thử nghiệm lên Cloudflare Pages staging/production và kiểm tra phản hồi người dùng.
+Working on:  Giải quyết lỗi mất CSS trên Production do cache Cloudflare CDN.
+Progress:    Đã ép hash CSS mới qua dummy rule CSS, deploy thành công lên Cloudflare Pages và sửa triệt để lỗi unstyled trên production.
+Next:        Chờ phản hồi của user.
 Blockers:    None
-Last commit: 5f0bb54 feat(showcase): move bestseller badge to top-right of product card
-Updated:     2026-07-30 10:53
+Last commit: 6405b2d style(global): force new CSS hash to bust Cloudflare CDN cache
+Updated:     2026-07-30 11:18
 Machine:     Mac mini
 ```
