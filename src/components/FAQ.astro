@@ -72,12 +72,16 @@ const faqs = [
               </svg>
             </button>
             <div
-              class="faq-answer"
+              class="faq-answer-wrapper"
               id={answerId}
               role="region"
               aria-labelledby={questionId}
             >
-              <p>{faq.a}</p>
+              <div class="faq-answer-inner">
+                <div class="faq-answer">
+                  <p>{faq.a}</p>
+                </div>
+              </div>
             </div>
           </div>
         );
