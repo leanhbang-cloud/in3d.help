@@ -6,6 +6,13 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
+- **Tối ưu hóa toàn diện website dựa trên báo cáo audit (Hoàn thành - 2026-07-30)**:
+  - **Đồng bộ thương hiệu**: Sửa typo thương hiệu `BlueMooon` thành `BlueMoon` (nhất quán 2 chữ o) trên toàn bộ dự án (`Layout.astro`, `index.astro`, `Header.astro`, `About.astro`, `Footer.astro`).
+  - **Performance & SEO**: Tự host font (self-hosted fonts) trong `public/fonts/` và cấu hình `@font-face` cùng preload WOFF2. Nhúng metadata `theme-color` và 3 schema JSON-LD: `Organization`, `Product`, và `FAQPage`.
+  - **Accessibility (A11y)**: Thêm nút Skip Navigation Link ở đầu trang. Gán `aria-hidden` cho các decorative emojis, corner markers, side-rails, và SVG icons trong nút bấm. Gán landmark labels cho các section và cấu hình accordion FAQ accessible.
+  - **CRO & UI/UX**: Triển khai price anchoring (giá cũ gạch ngang), badge "Bán chạy nhất" cho combo Pro, và đổi nhãn các nút bấm hướng hành động cụ thể. Tích hợp `IntersectionObserver` tự động ẩn nút Floating CTA khi ở trong Hero và hiện khi cuộn qua.
+  - **Kiểm thử**: Đã chạy build tĩnh thành công (`npm run build`) và verify hiển thị qua preview server.
+
 - **Cấu hình & Đồng bộ Cloudflare Pages (Hoàn thành - 2026-07-27)**:
   - Dọn dẹp hoàn toàn các tài liệu cũ không liên quan của dự án Núi Dinh.
   - Cấu hình lại `astro.config.mjs` và `wrangler.jsonc` để chạy tĩnh (SSG) độc lập.
@@ -25,25 +32,6 @@
   - Viết 12 Astro components modular trong `src/components/` và điều phối hoạt động thông qua `src/scripts/main.js`.
   - Sinh 4 hình ảnh AI chất lượng cao và viết script `scripts/optimize-images.js` nén ảnh WebP giảm ~92% dung lượng.
 
-- **Rebranding - BlueMooon's Studio & Rà soát tài liệu hệ thống (Hoàn thành - 2026-07-29)**:
-  - Tiến hành Rebrand toàn bộ website từ "Dịch vụ in 3D" sang "Kệ modular để bàn in 3D đáng yêu".
-  - Rà soát và cập nhật đồng bộ các tài liệu `MISSION.md`, `ARCHITECTURE.md`, `GLOSSARY.md`, `AGENT_README.md`, `README.md` theo định hướng Rebrand và đính chính các lỗi deploy (Cloudflare Pages thay vì Vercel).
-  - Tối ưu hóa Asset: Thêm `fetchpriority="high"` cho ảnh Hero và `loading="lazy"` cho avatar người sáng lập.
-
-- **Kiểm thử chất lượng QC 5 Layer & Tối ưu hóa A11y (Hoàn thành - 2026-07-29)**:
-  - Chạy QC 5 lớp toàn diện và đạt kết quả tuyệt đối trên Local Preview: SEO 100/100, Best Practices 100/100, Accessibility 96/100.
-  - Không phát hiện lỗi tràn viền ngang trên cả Desktop và Mobile (375px width).
-  - Khắc phục các vấn đề sitemap và custom domain `3dprinting.ledainhan.com`.
-
-- **Cấu hình Domain chính thức & Đồng bộ tài liệu dự án (Hoàn thành - 2026-07-29)**:
-  - Cập nhật fallback domain trong `src/components/SEOHead.astro` sang `https://3dprinting.ledainhan.com` và `og:site_name` sang `BlueMooon's Studio`.
-  - Cập nhật đồng bộ thông tin domain chính thức trên tất cả tài liệu dự án và hướng dẫn thiết kế/QC.
-  - Kiểm tra build tĩnh thành công, verify canonical URL và sitemap trỏ đúng về domain mới.
-
-- **Audit toàn diện website & Lưu báo cáo (Hoàn thành - 2026-07-29)**:
-  - Nhận và phân tích báo cáo audit chi tiết về UI/UX, Performance, SEO, A11y, và CRO cho trang web `https://3dprinting.ledainhan.com/`.
-  - Lưu trữ báo cáo hoàn chỉnh tại `docs/website_audit_report.md` để làm tài liệu tham khảo cho các tối ưu hóa sắp tới.
-
 ---
 
 ## Pending Issues — Xử lý ở session sau
@@ -62,11 +50,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Tối ưu hóa website dựa trên báo cáo audit của Genspark/Sonnet
-Progress:    Hoàn thành việc audit và lập tài liệu báo cáo chi tiết tại docs/website_audit_report.md.
-Next:        Thực hiện Giai đoạn 1 (Quick Wins) trong checklist tối ưu hóa: Thêm aria-hidden cho decorative elements, tạo skip navigation link, preload hero image, và sửa typo thương hiệu.
+Working on:  Đã hoàn tất tối ưu hóa toàn diện website theo báo cáo audit
+Progress:    Hoàn thành toàn bộ tối ưu hóa A11y, SEO, Performance, CRO, typo thương hiệu và build test thành công.
+Next:        Push lên Vercel/Cloudflare Pages và thực hiện các giai đoạn tiếp theo (Wall of Love, A/B Testing...).
 Blockers:    None
-Last commit: bc92b2c focus: end session 2026-07-29
-Updated:     2026-07-29 17:23
+Last commit: aa22100 feat: optimize landing page performance, SEO, accessibility, and CRO
+Updated:     2026-07-30 09:37
 Machine:     Mac mini
 ```
