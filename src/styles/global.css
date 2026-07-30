@@ -657,6 +657,7 @@ section.tight { padding: 90px 0; }
   position: relative;
   padding: 0;
   min-height: calc(100vh - 120px);
+  min-height: calc(100svh - 120px);
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid var(--line);
@@ -1273,6 +1274,7 @@ section.tight { padding: 90px 0; }
 }
 .faq-item {
   border-bottom: 1px solid var(--line);
+  overflow: hidden;
 }
 .faq-question {
   width: 100%;
@@ -1289,6 +1291,7 @@ section.tight { padding: 90px 0; }
   font-weight: 600;
   color: var(--text-primary);
   text-align: left;
+  min-height: 44px;
   transition: color var(--duration) ease;
 }
 .faq-question:hover { color: var(--cyan); }
@@ -1296,26 +1299,31 @@ section.tight { padding: 90px 0; }
   width: 24px; height: 24px;
   flex-shrink: 0;
   color: var(--text-muted);
-  transition: transform 0.3s var(--ease);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.faq-item.active .faq-question .chevron {
-  transform: rotate(180deg);
-  color: var(--cyan);
+.faq-answer-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;     /* Closed: height = 0 */
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-answer-inner {
+  overflow: hidden;
 }
 .faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s var(--ease), padding 0.3s ease;
-}
-.faq-item.active .faq-answer {
-  max-height: 300px;
-  padding-bottom: 24px;
+  padding: 0 0 24px 0;
 }
 .faq-answer p {
   font-family: var(--body);
   font-size: 15px;
   color: var(--text-muted);
   line-height: 1.7;
+}
+.faq-item.active .faq-answer-wrapper {
+  grid-template-rows: 1fr;     /* Open: auto height */
+}
+.faq-item.active .faq-question .chevron {
+  transform: rotate(180deg);
+  color: var(--cyan);
 }
 
 /* ——————————————————————————
@@ -1508,17 +1516,50 @@ section.tight { padding: 90px 0; }
 @media (max-width: 768px) {
   :root { --section-pad: 80px; }
   .container { padding: 0 24px; }
-  section { padding: var(--section-pad) 0; }
+  section { padding: var(--section-pad) 0; min-height: unset; }
   .pain-grid, .product-grid, .timeline-grid { grid-template-columns: 1fr; }
   .masonry { columns: 2; }
   .footer-grid { grid-template-columns: 1fr; }
   .hero-copy h1 { font-size: clamp(32px, 8vw, 48px); }
   .section-header h2 { font-size: clamp(30px, 7vw, 44px); }
+
+  /* Ẩn hoàn toàn Top Bar trên mobile */
+  .topbar,
+  .top-bar,
+  [class*="topbar"],
+  [class*="top-bar"],
+  [class*="ticker"] {
+    display: none !important;
+  }
+
+  /* Dàn ngang các nút CTA trên mobile */
+  .hero-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.625rem !important;
+    width: 100% !important;
+  }
+
+  .hero-actions .btn {
+    flex: 1 !important;
+    min-width: 0 !important;
+    padding: 0.75rem 0.875rem !important;
+    font-size: 0.8125rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-align: center !important;
+  }
+
+  /* Khắc phục khoảng trắng - Giảm chiều cao Hero */
+  .hero {
+    min-height: 85svh !important;
+  }
 }
 @media (max-width: 480px) {
   .container { padding: 0 18px; }
   .masonry { columns: 1; }
-  .hero-actions { flex-direction: column; align-items: stretch; }
+  /* Giữ nguyên dạng hàng ngang cho cta-actions thay vì chuyển sang cột */
   .hero-stats { flex-direction: column; align-items: flex-start; }
   .floating-cta { bottom: 18px; right: 18px; }
   .fab { width: 48px; height: 48px; }
