@@ -2,15 +2,15 @@
 // Hero: 40% text left / 60% visual right
 ---
 
-<section class="hero" id="hero">
+<section class="hero" id="hero" aria-labelledby="hero-heading">
   <div class="container hero-grid">
     <!-- Left: Copy -->
     <div class="hero-copy" data-reveal>
-      <span class="label">Kệ modular in 3D đáng yêu 🌸</span>
+      <span class="label">Kệ modular in 3D đáng yêu <span aria-hidden="true">🌸</span></span>
 
-      <h1 class="display">
+      <h1 class="display" id="hero-heading">
         Góc bàn xinh,<br/>
-        <em>gọn gàng</em> từng centimet<span class="dot">✿</span>
+        <em>gọn gàng</em> từng centimet<span class="dot" aria-hidden="true">✿</span>
       </h1>
 
       <p class="lead">
@@ -18,13 +18,40 @@
       </p>
 
       <div class="hero-actions">
-        <a href="#combo" class="btn btn-zalo">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          Xem mẫu kệ cute
+        <a href="#san-pham" class="btn btn-zalo">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          Xem các gói combo
         </a>
         <a href="https://zalo.me/in3dhelp" class="btn btn-ai">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-          Chat Zalo ngay
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+          Tư vấn miễn phí qua Zalo
         </a>
       </div>
 
@@ -46,15 +73,13 @@
 
     <!-- Right: Visual -->
     <div class="hero-art" data-reveal>
-      <!-- Corner brackets (Atelier Zero editorial annotations) -->
-      <span class="corner tl"></span>
-      <span class="corner tr"></span>
-      <span class="corner bl"></span>
-      <span class="corner br"></span>
+      <span class="corner tl" aria-hidden="true"></span>
+      <span class="corner tr" aria-hidden="true"></span>
+      <span class="corner bl" aria-hidden="true"></span>
+      <span class="corner br" aria-hidden="true"></span>
 
-      <!-- Annotations -->
-      <span class="annot annot-tl">SERIES / PB-CUTE</span>
-      <span class="annot annot-br">240×240mm · Soft PLA</span>
+      <span class="annot annot-tl" aria-hidden="true">SERIES / PB-CUTE</span>
+      <span class="annot annot-br" aria-hidden="true">240×240mm · Soft PLA</span>
 
       <picture>
         <source srcset="/images/hero-desk-setup-mobile.webp" media="(max-width: 768px)" type="image/webp" />

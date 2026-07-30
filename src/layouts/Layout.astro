@@ -1,36 +1,97 @@
 ---
 import '../styles/global.css';
-
 import SEOHead from '../components/SEOHead.astro';
 
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  /**
+   * Truyền JSON-LD schema từ page cụ thể xuống SEOHead.
+   * Có thể là một chuỗi JSON hoặc mảng chuỗi JSON.
+   */
+  jsonLd?: string | string[];
 }
+
 const {
   title,
   description = 'Kệ để bàn modular in 3D đáng yêu. Bảng pegboard bằng nhựa in 3D nhẹ, dễ thương, lắp ghép linh hoạt giúp bàn học luôn gọn gàng.',
+  ogImage = '/images/hero-desk-setup.webp',
+  ogType = 'website',
+  jsonLd,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="vi">
   <head>
-    <SEOHead title={title} description={description} ogImage="/images/hero-desk-setup.webp" />
+    <SEOHead
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      ogType={ogType}
+      jsonLd={jsonLd}
+    />
   </head>
   <body>
+    <!-- ✅ [FIX] Skip Navigation Link: giúp người dùng keyboard/screen reader
+         bỏ qua nav và nhảy thẳng vào nội dung chính. Ẩn bằng CSS cho đến khi
+         được focus, không ảnh hưởng giao diện người dùng thông thường. -->
+    <a href="#main" class="skip-nav" tabindex="0">Bỏ qua và đến nội dung chính</a>
+
     <div class="shell">
-      <!-- Side Rails (editorial) -->
-      <div class="side-rail left">
-        <span class="rail-text">BlueMooon's Studio — Kệ để bàn modular in 3D</span>
+      <!-- ✅ [FIX] Typo: "BlueMooon's" → "BlueMoon's" (nhất quán 2 chữ 'o') -->
+      <!-- ✅ [FIX] Accessibility: thêm aria-hidden="true" vì đây là nội dung
+           editorial/trang trí thuần túy, không mang thông tin hữu ích cho
+           screen reader. Ngăn trình đọc màn hình đọc nội dung lặp lại. -->
+      <div class="side-rail left" aria-hidden="true">
+        <span class="rail-text">BlueMoon's Studio — Kệ để bàn modular in 3D</span>
       </div>
-      <div class="side-rail right">
+      <div class="side-rail right" aria-hidden="true">
         <span class="rail-text">MMXXVI — Ho Chi Minh City</span>
       </div>
-      <main id="main">
+
+      <!-- ✅ role="main" kết hợp id="main" để đảm bảo tương thích
+           với cả ARIA landmark và skip-nav anchor -->
+      <main id="main" role="main" tabindex="-1">
         <slot />
       </main>
     </div>
+
+    <!-- ✅ Đường dẫn script dùng đường dẫn src để Astro tự động bundle -->
     <script src="/src/scripts/main.js"></script>
   </body>
 </html>
+
+<style is:global>
+  /*
+   * ✅ [FIX] Skip Navigation Link Styles
+   * Kỹ thuật chuẩn: ẩn bằng clip/position thay vì display:none
+   * để vẫn tồn tại trong DOM và nhận được focus từ keyboard.
+   * Khi được focus (Tab đầu tiên), link hiện ra ở góc trên cùng.
+   */
+  .skip-nav {
+    position: fixed;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.75rem 1.25rem;
+    background: #1a1a1a;
+    color: #fff8f0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 0 0 0.5rem 0.5rem;
+    text-decoration: none;
+    transition: top 0.15s ease;
+    /* Đảm bảo không bị clip bởi overflow hidden của parent */
+    clip-path: none;
+  }
+
+  .skip-nav:focus,
+  .skip-nav:focus-visible {
+    top: 0;
+    outline: 3px solid #f97316;
+    outline-offset: 2px;
+  }
+</style>

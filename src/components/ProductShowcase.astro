@@ -1,9 +1,10 @@
 ---
-// Product Showcase: 3 pricing tiers
 const products = [
   {
+    id: 'starter',
     name: 'Starter Pegboard',
     price: '299',
+    oldPrice: '420',
     unit: '.000đ',
     desc: 'Bộ kệ xinh xắn, lý tưởng cho góc học tập và làm việc nhỏ gọn.',
     specs: '24×24 cm · 1 Tấm Main · 4 Tấm Viền · 4 Góc',
@@ -18,10 +19,12 @@ const products = [
     recommended: false,
   },
   {
+    id: 'pro',
     name: 'Pro Desk Setup',
     price: '399',
+    oldPrice: '550',
     unit: '.000đ',
-    desc: 'Gói bán chạy nhất — phù hợp cho bàn làm việc WFH gọn gàng.',
+    desc: 'Phù hợp cho bàn làm việc WFH gọn gàng, tối ưu năng suất.',
     specs: '24×40 cm · 2 Tấm Main · 6 Tấm Viền · 4 Góc',
     features: [
       '2 tấm nền chính 16×16 cm',
@@ -34,8 +37,10 @@ const products = [
     recommended: true,
   },
   {
+    id: 'creator',
     name: 'Creator Studio',
     price: '599',
+    oldPrice: '790',
     unit: '.000đ',
     desc: 'Bảng vuông lớn — trọn gói cho streamer, designer và bàn học sinh lớn.',
     specs: '40×40 cm · 4 Tấm Main · 8 Tấm Viền · 4 Góc',
@@ -53,9 +58,9 @@ const products = [
 ];
 ---
 
-<section id="san-pham">
+<section id="san-pham" aria-labelledby="san-pham-heading">
   <div class="container">
-    <div class="sec-rule">
+    <div class="sec-rule" aria-hidden="true">
       <span class="roman">III.</span>
       <span class="meta-grp">
         <span>Sản phẩm</span>
@@ -66,8 +71,8 @@ const products = [
 
     <div class="section-header" data-reveal>
       <span class="label">Bảng giá minh bạch</span>
-      <h2 class="display">
-        Chọn gói <em>kệ xinh</em> cho góc bàn<span class="dot">✿</span>
+      <h2 class="display" id="san-pham-heading">
+        Chọn gói <em>kệ xinh</em> cho góc bàn<span class="dot" aria-hidden="true">✿</span>
       </h2>
       <p class="lead">
         Mỗi gói là sản phẩm kệ pegboard modular hoàn thiện, kèm chốt khóa tháo lắp thông minh và các phụ kiện decor xinh xắn.
@@ -76,23 +81,87 @@ const products = [
 
     <div class="product-grid" data-reveal-stagger>
       {products.map((product) => (
-        <div class={`product-card ${product.recommended ? 'recommended' : ''}`}>
-          <h3 class="product-name">{product.name}</h3>
-          <div class="product-price">
-            {product.price}<span class="currency">{product.unit}</span>
+        <div
+          class={`product-card ${product.recommended ? 'recommended' : ''}`}
+          aria-labelledby={`product-name-${product.id}`}
+        >
+          {product.recommended && (
+            <div class="badge-bestseller" aria-label="Sản phẩm bán chạy nhất">
+              <span aria-hidden="true">🔥</span> Bán chạy nhất
+            </div>
+          )}
+
+          <h3 class="product-name" id={`product-name-${product.id}`}>
+            {product.name}
+          </h3>
+
+          <div class="product-pricing">
+            <div class="product-price">
+              {product.price}<span class="currency">{product.unit}</span>
+            </div>
+            <div class="product-old-price" aria-label={`Giá cũ ${product.oldPrice}.000 đồng`}>
+              <s>{product.oldPrice}{product.unit}</s>
+            </div>
           </div>
+
           <p class="product-desc">{product.desc}</p>
           <p class="spec">{product.specs}</p>
-          <ul class="feature-list">
+
+          <ul class="feature-list" aria-label={`Tính năng của ${product.name}`}>
             {product.features.map((f) => (
               <li>{f}</li>
             ))}
           </ul>
-          <a href="https://zalo.me/in3dhelp" class={`btn ${product.recommended ? 'btn-zalo' : 'btn-ghost'}`} style="width:100%; justify-content:center;">
-            Đặt mua ngay
+
+          <a
+            href="https://zalo.me/in3dhelp"
+            class={`btn ${product.recommended ? 'btn-zalo' : 'btn-ghost'}`}
+            style="width:100%; justify-content:center;"
+            aria-label={`Đặt combo ${product.name} — ${product.price}${product.unit}`}
+          >
+            Đặt combo {product.name}
           </a>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  /* ── Badge bán chạy nhất ── */
+  .badge-bestseller {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    background: linear-gradient(135deg, #ff6b35, #f7c59f);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.3em 0.85em;
+    border-radius: 999px;
+    margin-bottom: 0.85rem;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.35);
+  }
+
+  /* ── Price anchoring ── */
+  .product-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-old-price {
+    color: #999;
+    font-size: 0.9rem;
+  }
+
+  .product-old-price s {
+    text-decoration: line-through;
+    text-decoration-color: #e05252;
+    text-decoration-thickness: 1.5px;
+  }
+</style>

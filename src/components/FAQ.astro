@@ -1,5 +1,4 @@
 ---
-// FAQ: Accordion
 const faqs = [
   {
     q: 'Pegboard được in bằng chất liệu gì?',
@@ -28,9 +27,9 @@ const faqs = [
 ];
 ---
 
-<section id="faq">
+<section id="faq" aria-labelledby="faq-heading">
   <div class="container">
-    <div class="sec-rule">
+    <div class="sec-rule" aria-hidden="true">
       <span class="roman">VIII.</span>
       <span class="meta-grp">
         <span>Câu hỏi thường gặp</span>
@@ -40,25 +39,49 @@ const faqs = [
 
     <div class="section-header" data-reveal style="text-align:center;">
       <span class="label" style="justify-content:center;">FAQ</span>
-      <h2 class="display" style="margin:0 auto;">
-        Bạn thắc mắc,<br/>chúng tôi <em>giải đáp</em><span class="dot">.</span>
+      <h2 class="display" style="margin:0 auto;" id="faq-heading">
+        Bạn thắc mắc,<br/>chúng tôi <em>giải đáp</em><span class="dot" aria-hidden="true">.</span>
       </h2>
     </div>
 
     <div class="faq-list" data-reveal>
-      {faqs.map((faq) => (
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>{faq.q}</span>
-            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <p>{faq.a}</p>
+      {faqs.map((faq, index) => {
+        const questionId = `faq-q-${index}`;
+        const answerId = `faq-a-${index}`;
+        return (
+          <div class="faq-item">
+            <button
+              class="faq-question"
+              aria-expanded="false"
+              aria-controls={answerId}
+              id={questionId}
+            >
+              <span>{faq.q}</span>
+              <svg
+                class="chevron"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div
+              class="faq-answer"
+              id={answerId}
+              role="region"
+              aria-labelledby={questionId}
+            >
+              <p>{faq.a}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>

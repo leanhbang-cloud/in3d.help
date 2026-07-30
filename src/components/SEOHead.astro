@@ -1,21 +1,13 @@
 ---
-/**
- * SEOHead.astro — Component chứa toàn bộ SEO meta tags
- * Dùng chung cho tất cả trang, thay thế việc copy-paste <head> lặp lại.
- *
- * Props:
- *  - title: tiêu đề trang (đã đầy đủ, không cần thêm suffix)
- *  - description: mô tả trang (150-160 ký tự lý tưởng)
- *  - ogImage: đường dẫn ảnh OG (mặc định: /images/hero_bg.webp)
- *  - ogType: loại trang OG (mặc định: website)
- *  - jsonLd: chuỗi JSON-LD schema (có thể truyền nhiều schema bằng array)
- */
-
 export interface Props {
   title: string;
   description: string;
   ogImage?: string;
   ogType?: 'website' | 'article';
+  /**
+   * JSON-LD schema do page truyền vào (nếu có).
+   * SEOHead sẽ merge với các schema mặc định (Organization, etc.)
+   */
   jsonLd?: string | string[];
 }
 
@@ -27,37 +19,151 @@ const {
   jsonLd,
 } = Astro.props;
 
-// Tự động tạo canonical URL từ URL hiện tại
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://3dprinting.ledainhan.com');
-
-// Đảm bảo ogImage là absolute URL
+const siteOrigin = Astro.site?.toString().replace(/\/$/, '') ?? 'https://3dprinting.ledainhan.com';
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
 const ogImageAbsolute = ogImage.startsWith('http')
   ? ogImage
-  : new URL(ogImage, Astro.site ?? 'https://3dprinting.ledainhan.com').toString();
+  : new URL(ogImage, siteOrigin).toString();
 
-// Xử lý jsonLd: có thể là string hoặc array of strings
-const jsonLdArray = jsonLd
-  ? Array.isArray(jsonLd)
-    ? jsonLd
-    : [jsonLd]
-  : [];
+// ------------------------------------------------------------------ //
+//  JSON-LD: Schema mặc định được nhúng vào mọi trang                  //
+// ------------------------------------------------------------------ //
 
-// Token của Cloudflare Web Analytics (chỉ nhúng ở chế độ production nếu được cung cấp)
-const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN || null;
+/**
+ * Organization Schema — định danh thương hiệu cho Google
+ * @see https://schema.org/Organization
+ */
+const organizationSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: "BlueMoon's Studio",
+  alternateName: 'BlueMoon Studio',
+  url: siteOrigin,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${siteOrigin}/images/logo.png`,
+    width: 200,
+    height: 60,
+  },
+  description:
+    'Xưởng thiết kế và in 3D các sản phẩm kệ để bàn modular, bảng pegboard nhựa tại TP. Hồ Chí Minh.',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Ho Chi Minh City',
+    addressCountry: 'VN',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    availableLanguage: ['Vietnamese'],
+  },
+  sameAs: [
+    // Thêm các URL mạng xã hội khi có
+    // 'https://www.facebook.com/bluemoonstudio',
+    // 'https://www.instagram.com/bluemoonstudio',
+  ],
+});
+
+/**
+ * Product Schema — cải thiện rich snippet trên Google Shopping
+ * @see https://schema.org/Product
+ */
+const productSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Kệ để bàn Modular in 3D',
+  description:
+    'Bảng pegboard bằng nhựa in 3D nhẹ, dễ thương, lắp ghép linh hoạt giúp bàn học luôn gọn gàng.',
+  image: ogImageAbsolute,
+  brand: {
+    '@type': 'Brand',
+    name: "BlueMoon's Studio",
+  },
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'VND',
+    availability: 'https://schema.org/InStock',
+    seller: {
+      '@type': 'Organization',
+      name: "BlueMoon's Studio",
+    },
+  },
+  url: canonicalURL.toString(),
+});
+
+/**
+ * FAQPage Schema — hiển thị câu hỏi/đáp ngay trên SERP Google
+ * @see https://schema.org/FAQPage
+ */
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Kệ để bàn modular in 3D được làm từ chất liệu gì?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sản phẩm được in bằng nhựa PLA và PETG thân thiện môi trường, nhẹ, bền và an toàn khi tiếp xúc.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Có thể tùy chỉnh màu sắc và kích thước kệ không?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Có, BlueMoon\'s Studio hỗ trợ tùy chỉnh màu sắc, kích thước và module theo yêu cầu của khách hàng.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Thời gian giao hàng là bao lâu?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Thông thường từ 3–5 ngày làm việc tại TP. HCM và 5–7 ngày cho các tỉnh thành khác.',
+      },
+    },
+  ],
+});
+
+// Merge schema mặc định với schema do page truyền vào
+const pageSchemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const allSchemas = [organizationSchema, productSchema, faqSchema, ...pageSchemas];
+
+const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN ?? null;
 ---
 
 <!-- Primary Meta Tags -->
 <meta charset="utf-8" />
-<link rel="icon" type="image/png" href="/favicon.png" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="icon" href="/favicon.ico" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Google Fonts: preconnect + stylesheet (thay thế @import chặn render trong CSS) -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!-- ✅ [NEW] Theme color: gợi ý màu nền cho browser chrome trên mobile -->
+<meta name="theme-color" content="#FFF8F0" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- ============================================================
+     SELF-HOSTED FONTS — Thay thế Google CDN
+     ============================================================ -->
+<link
+  rel="preload"
+  href="/fonts/nunito/nunito-v32-latin_vietnamese-700.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
+<link
+  rel="preload"
+  href="/fonts/quicksand/quicksand-v37-latin_vietnamese-600.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
 
 <!-- SEO Core -->
 <title>{title}</title>
@@ -72,8 +178,9 @@ const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN || null;
 <meta property="og:image" content={ogImageAbsolute} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={`Ảnh minh họa: ${title}`} />
 <meta property="og:url" content={canonicalURL.toString()} />
-<meta property="og:site_name" content="BlueMooon's Studio" />
+<meta property="og:site_name" content="BlueMoon's Studio" />
 <meta property="og:locale" content="vi_VN" />
 
 <!-- Twitter / X Card -->
@@ -81,13 +188,17 @@ const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN || null;
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImageAbsolute} />
+<meta name="twitter:image:alt" content={`Ảnh minh họa: ${title}`} />
 
 <!-- JSON-LD Structured Data -->
-{jsonLdArray.map((schema) => (
+{allSchemas.map((schema) => (
   <script type="application/ld+json" set:html={schema} />
 ))}
 
 {cfBeaconToken && (
-  <!-- Cloudflare Web Analytics -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${cfBeaconToken}"}`}></script>
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={`{"token": "${cfBeaconToken}"}`}
+  ></script>
 )}
