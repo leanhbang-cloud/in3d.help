@@ -33,6 +33,21 @@ const {
       ogType={ogType}
       jsonLd={jsonLd}
     />
+    <!-- Preload hero video poster để tối ưu LCP -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/images/hero-video-poster.webp"
+      fetchpriority="high"
+    />
+    <!-- Preload gợi ý cho định dạng video WebM -->
+    <link
+      rel="preload"
+      as="video"
+      href="/images/hero-video.webm"
+      type="video/webm"
+    />
   </head>
   <body>
     <!-- ✅ [FIX] Skip Navigation Link: giúp người dùng keyboard/screen reader

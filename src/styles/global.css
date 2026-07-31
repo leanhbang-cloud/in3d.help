@@ -774,14 +774,36 @@ section.tight { padding: var(--section-pad-sm) 0; }
   align-items: center;
   justify-content: center;
 }
-.hero-art img {
+.hero-art img,
+.hero-art video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
   position: relative;
-  z-index: 2;
+  z-index: 2; /* Nằm trên spotlight glow (z-index: 1) */
+}
+.hero-art video {
+  border-radius: inherit;
+  pointer-events: none; /* Vô hiệu tương tác (không cho click phải save, hiện control bar) */
+}
+
+/* Ẩn control bar mặc định trên Chrome */
+.hero-art video::-webkit-media-controls {
+  display: none !important;
+}
+.hero-art video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+/* Fallback ảnh tĩnh bên trong video */
+.hero-art video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 /* Spotlight glow behind pegboard */
@@ -794,7 +816,39 @@ section.tight { padding: var(--section-pad-sm) 0; }
   left: 15%;
   background: radial-gradient(ellipse, var(--cobalt-glow) 0%, transparent 70%);
   filter: blur(60px);
-  z-index: 1;
+  z-index: 1; /* Dưới video (z-index: 2) */
+  pointer-events: none;
+}
+
+/* Đảm bảo corner decorations & annotations hiển thị trên video */
+.hero-art .corner {
+  z-index: 3; /* Trên video (z-index: 2) */
+}
+.hero-art .annot {
+  z-index: 3; /* Trên video (z-index: 2) */
+}
+
+/* Responsive di động */
+@media (max-width: 768px) {
+  .hero-art {
+    max-width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ACCESSIBILITY: Tôn trọng cấu hình giảm chuyển động */
+@media (prefers-reduced-motion: reduce) {
+  .hero-art video {
+    display: none;
+  }
+
+  .hero-art::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: url('/images/hero-video-poster.webp') center / cover no-repeat;
+  }
 }
 
 /* Corner brackets (Atelier Zero annotation style) */

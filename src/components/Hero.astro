@@ -67,18 +67,31 @@
         <span class="annot annot-tl" aria-hidden="true">SERIES / PB-CUTE</span>
         <span class="annot annot-br" aria-hidden="true">240×240mm · Soft PLA</span>
 
-        <picture>
-          <source srcset="/images/hero-desk-setup-mobile.webp" media="(max-width: 768px)" type="image/webp" />
-          <source srcset="/images/hero-desk-setup.webp" type="image/webp" />
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          poster="/images/hero-video-poster.webp"
+          width="800"
+          height="600"
+          aria-label="Video minh họa lắp ráp và phối màu kệ pegboard modular in 3D BlueMoon's Studio"
+          disablepictureinpicture
+          disableremoteplayback
+        >
+          <source src="/images/hero-video.webm" type="video/webm" />
+          <source src="/images/hero-video.mp4"  type="video/mp4"  />
+
+          <!-- Fallback tối hậu: hiển thị poster dưới dạng ảnh tĩnh -->
           <img
-            src="/images/hero-desk-setup.webp"
+            src="/images/hero-video-poster.webp"
             alt="Kệ pegboard modular in 3D dễ thương trên bàn học gọn gàng"
             width="800"
             height="600"
             loading="eager"
-            fetchpriority="high"
           />
-        </picture>
+        </video>
       </div>
     </div>
 
@@ -99,3 +112,40 @@
     </div>
   </div>
 </section>
+
+<script>
+  const heroVideo = document.querySelector('.hero-art video') as HTMLVideoElement | null;
+
+  if (heroVideo) {
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function handleMotionPreference(e: MediaQueryList | MediaQueryListEvent) {
+      if ('matches' in e && e.matches) {
+        heroVideo!.pause();
+      } else {
+        heroVideo!.play().catch(() => {
+          // Autoplay bị block bởi trình duyệt — không sao, poster đang hiển thị
+        });
+      }
+    }
+
+    handleMotionPreference(motionQuery);
+    motionQuery.addEventListener('change', handleMotionPreference);
+
+    // Intersection Observer: chỉ phát khi video trong viewport giúp tiết kiệm tài nguyên
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !motionQuery.matches) {
+            heroVideo!.play().catch(() => {});
+          } else {
+            heroVideo!.pause();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(heroVideo);
+  }
+</script>
