@@ -6,6 +6,15 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
+- **Thay thế Hero Image bằng Video Lắp Ráp & Phối màu (Hoàn thành - 2026-07-31)**:
+  - Nén video gốc `Desk_organizer_assembly_and_colo…_202607311003.mp4` thành hai bản `hero-video.mp4` (H.264 Baseline, 560KB) và `hero-video.webm` (VP9, 664KB) loại bỏ hoàn toàn tiếng (-an) để tối ưu hóa tải trang.
+  - Trích xuất poster frame giây thứ 2 lưu thành `hero-video-poster.webp` siêu nhẹ (11.7KB) để tối ưu hóa chỉ số LCP.
+  - Tái cấu trúc [Hero.astro](file:///Users/bangle-macmini/Projects/in3d-help/src/components/Hero.astro) chèn thẻ `<video>` hỗ trợ autoplay, muted, playsinline, loop, và preload metadata.
+  - Viết code JS trong Hero component dùng `IntersectionObserver` tự động tạm dừng phát video khi người dùng cuộn ra ngoài màn hình (giảm CPU/GPU) và tôn trọng thiết lập `prefers-reduced-motion: reduce`.
+  - Cấu hình CSS trong [global.css](file:///Users/bangle-macmini/Projects/in3d-help/src/styles/global.css) đảm bảo z-index chính xác (spotlight sau video, các corner bracket và annotation chữ nằm trên video), ẩn control bar và responsive mượt mà tỷ lệ 4:3 trên mobile.
+  - Preload ảnh poster và WebM video trong thẻ head của [Layout.astro](file:///Users/bangle-macmini/Projects/in3d-help/src/layouts/Layout.astro).
+  - Biên dịch thử nghiệm (`npm run build`) thành công 100% không có lỗi.
+
 - **Thay đổi nhân vật sang bé Misa 9 tuổi (Hoàn thành - 2026-07-30)**:
   - Tối ưu và cắt ghép ảnh gốc của Misa tạo `misa-portrait.webp` và `misa-avatar.webp` dạng WebP sắc nét.
   - Tái cấu trúc copywriting toàn bộ 9 Astro components chính (`About`, `Hero`, `PainPoints`, `ProductShowcase`, `HowItWorks`, `ModularExplainer`, `FAQ`, `Footer`, `SEOHead`) sang giọng văn lễ phép, đáng yêu của bé Misa và bố.
@@ -20,7 +29,7 @@
   - Thiết lập `.hero-stats` cách chân ảnh chuẩn chỉ `48px` (desktop) và `32px` (mobile), loại bỏ triệt để hiện tượng đè dính stats.
   - Giảm padding/margin các section toàn hệ thống một cách đồng bộ và responsive.
 
-- **Sửa đổi hiển thị giao diện trên thiết bị di động (Hoàn thành - 2026-07-30)**:
+- **Sửa lỗi hiển thị giao diện trên thiết bị di động (Hoàn thành - 2026-07-30)**:
   - Ẩn hoàn toàn Top Bar trên mobile (màn hình <= 768px) để giải phóng không gian hiển thị.
   - Dàn ngang hai nút CTA của Hero (`flex-direction: row`), chia đều chiều rộng (`flex: 1`), áp dụng text-overflow ellipsis tránh tràn chữ và thu hẹp padding.
   - Sửa lỗi khoảng trống lớn giữa các section bằng cách thiết lập `.hero` có `min-height: 85svh` và đặt `min-height: unset` cho các section chung.
@@ -81,11 +90,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Thay đổi nhân vật thương hiệu sang bé Misa 9 tuổi và tối ưu hóa nội dung trang web.
-Progress:    Hoàn thành chuyển đổi copywriting 9 Astro components sang giọng văn bé Misa, tối ưu ảnh chân dung/avatar và sửa lỗi CSS méo ảnh avatar & tương phản chữ.
-Next:        Theo dõi phản hồi từ khách hàng và bắt đầu chạy test lại toàn bộ hệ thống (QC 5 lớp).
+Working on:  Đưa video lắp ráp và phối màu sản phẩm vào Hero Section và tối ưu hiệu năng/UI/UX.
+Progress:    Hoàn thành nén video (WebM/MP4), trích xuất poster WebP, tích hợp thẻ video, tối ưu JS phát theo viewport/prefers-reduced-motion, CSS responsive z-index, và preload poster trong Layout.astro.
+Next:        Theo dõi phản hồi từ khách hàng và kiểm tra tính ổn định trên môi trường production Cloudflare Pages sau khi push git.
 Blockers:    None
-Last commit: 24ceae8 fix(style): resolve avatar aspect ratio distortion and signature text contrast
-Updated:     2026-07-30 16:29
+Last commit: c3fc9d3 focus: end session 2026-07-30 (local HEAD trước khi cập nhật video)
+Updated:     2026-07-31 10:17
 Machine:     Mac mini
 ```
