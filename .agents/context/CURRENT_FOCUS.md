@@ -6,6 +6,10 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
+- **Tối ưu hóa hình ảnh Test phân giải cao (Hoàn thành - 2026-07-31)**:
+  - Tạo script [optimize-test-folder.js](file:///Users/bangle-macmini/Projects/in3d-help/scripts/optimize-test-folder.js) hỗ trợ tự động tối ưu hóa và chuyển đổi ảnh trong thư mục `Test`.
+  - Nén thành công 6 file PNG siêu nặng (~50MB) của Gemini sinh ra trong thư mục `Test` sang định dạng WebP siêu nhẹ dưới 200KB (giảm hơn 98% dung lượng), lưu tại [public/images/Test/](file:///Users/bangle-macmini/Projects/in3d-help/public/images/Test).
+
 - **Thay thế và tối ưu hóa hình ảnh sản phẩm thực tế mới (Hoàn thành - 2026-07-31)**:
   - Tích hợp thành công ảnh mèo thần tài (`lifestyle-kitty.webp`, 74KB) và ảnh sơ đồ kích thước 40cm chính xác (`detail-assembly-v3.webp`, 35KB) vào dự án.
   - Sử dụng cơ chế Cache Busting (đổi tên file thành `-v3` và `lifestyle-kitty`) để vượt qua bộ nhớ đệm CDN của Cloudflare và trình duyệt.
@@ -57,11 +61,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Thay thế ảnh thực tế mèo thần tài dễ thương cho Gallery, sửa ảnh thông số 40cm ở Zone 5 và tối ưu hóa hình ảnh.
-Progress:    Hoàn thành sửa ảnh 40cm ở Zone 5, thay ảnh mèo thần tài May Mắn ở Gallery, resolve conflict git và push production.
-Next:        Theo dõi phản hồi từ khách hàng đối với Landing Page mới có chạy video Hero và Gallery ảnh thực tế.
+Working on:  Đã tối ưu hóa hình ảnh Test sang WebP và dọn dẹp visual.
+Progress:    Tối ưu hóa thành công 6 ảnh phân giải cao trong thư mục Test, viết script chuyên biệt.
+Next:        Tiếp tục theo dõi phản hồi của khách hàng đối với Landing Page mới.
 Blockers:    None
-Last commit: ac646d7 feat(gallery): replace exploded view with lifestyle kitty setup image
-Updated:     2026-07-31 12:05
+Last commit: e25d2e7 focus: end session 2026-07-31 (remote main)
+Updated:     2026-07-31 16:15
 Machine:     Mac mini
 ```
