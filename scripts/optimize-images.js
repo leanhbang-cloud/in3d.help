@@ -35,9 +35,11 @@ async function optimizeFile(inputPath, relativePath) {
   let builder = sharp(inputPath);
   let quality = 75;
 
-  if (filename === 'hero-pegboard.png' || filename === 'hero-desk-setup.jpg') {
+  if (filename === 'hero-pegboard.png' || filename.startsWith('hero-desk-setup')) {
     quality = 80;
-    const mobileFilename = filename === 'hero-pegboard.png' ? 'hero-pegboard-mobile.webp' : 'hero-desk-setup-mobile.webp';
+    const mobileFilename = filename === 'hero-pegboard.png' 
+      ? 'hero-pegboard-mobile.webp' 
+      : `${filenameWithoutExt}-mobile.webp`;
     // Tạo thêm bản mobile
     const mobileOutputPath = path.join(outputDir, mobileFilename);
     await sharp(inputPath)
@@ -55,10 +57,10 @@ async function optimizeFile(inputPath, relativePath) {
   } else if (filename === 'ledainhan-avatar.jpg') {
     quality = 70;
     builder = builder.resize({ width: 150, withoutEnlargement: true });
-  } else if (filename === 'modular-assembly.png' || filename === 'detail-assembly.jpg') {
+  } else if (filename === 'modular-assembly.png' || filename.startsWith('detail-assembly')) {
     quality = 75;
     builder = builder.resize({ width: 1000, withoutEnlargement: true });
-  } else if (filename === 'lifestyle-student.jpg' || filename === 'lifestyle-kids.jpg') {
+  } else if (filename.startsWith('lifestyle-student') || filename.startsWith('lifestyle-kids')) {
     quality = 75;
     builder = builder.resize({ width: 1000, withoutEnlargement: true });
   } else if (filename === 'detail-3dprint.jpg') {
