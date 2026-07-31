@@ -61,6 +61,9 @@ async function optimizeFile(inputPath, relativePath) {
   } else if (filename === 'lifestyle-student.jpg' || filename === 'lifestyle-kids.jpg') {
     quality = 75;
     builder = builder.resize({ width: 1000, withoutEnlargement: true });
+  } else if (filename === 'detail-3dprint.jpg') {
+    quality = 75;
+    builder = builder.resize({ width: 800, withoutEnlargement: true });
   } else if (relativePath.startsWith('gallery/')) {
     quality = 75;
     builder = builder.resize({ width: 800, withoutEnlargement: true });
