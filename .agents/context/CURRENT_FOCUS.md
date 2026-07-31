@@ -15,6 +15,13 @@
   - Preload ảnh poster và WebM video trong thẻ head của [Layout.astro](file:///Users/bangle-macmini/Projects/in3d-help/src/layouts/Layout.astro).
   - Biên dịch thử nghiệm (`npm run build`) thành công 100% không có lỗi.
 
+- **Thay thế và tối ưu hóa hình ảnh sản phẩm thực tế mới (Hoàn thành - 2026-07-31)**:
+  - Sao chép và tích hợp 5 ảnh chụp sản phẩm thực tế chất lượng cao do anh Bang cung cấp vào dự án.
+  - Áp dụng cơ chế Cache Busting (đổi tên các file ảnh thành `-v2` và cập nhật script `optimize-images.js`) để giải quyết triệt để lỗi cache trên Cloudflare CDN và trình duyệt của khách hàng.
+  - Chạy tối ưu hóa nén ảnh sang WebP (đạt tỷ lệ nén 82% - 87%, kích thước cực nhẹ 34KB - 57KB).
+  - Cập nhật component `LifestyleGallery.astro` tích hợp ảnh cận cảnh chất liệu in 3D (`detail-3dprint.webp`) thay cho ảnh WFH cũ để khách hàng thấy rõ chất lượng hoàn thiện của BlueMoon's Studio.
+  - Chạy build tĩnh thành công.
+
 - **Thay đổi nhân vật sang bé Misa 9 tuổi (Hoàn thành - 2026-07-30)**:
   - Tối ưu và cắt ghép ảnh gốc của Misa tạo `misa-portrait.webp` và `misa-avatar.webp` dạng WebP sắc nét.
   - Tái cấu trúc copywriting toàn bộ 9 Astro components chính (`About`, `Hero`, `PainPoints`, `ProductShowcase`, `HowItWorks`, `ModularExplainer`, `FAQ`, `Footer`, `SEOHead`) sang giọng văn lễ phép, đáng yêu của bé Misa và bố.
@@ -90,11 +97,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Đưa video lắp ráp và phối màu sản phẩm vào Hero Section và tối ưu hiệu năng/UI/UX.
-Progress:    Hoàn thành nén video (WebM/MP4), trích xuất poster WebP, tích hợp thẻ video, tối ưu JS phát theo viewport/prefers-reduced-motion, CSS responsive z-index, và preload poster trong Layout.astro.
-Next:        Theo dõi phản hồi từ khách hàng và kiểm tra tính ổn định trên môi trường production Cloudflare Pages sau khi push git.
+Working on:  Tích hợp video lắp ráp Hero và Thay thế ảnh cyberpunk bằng ảnh thực tế v2 mới trong gallery.
+Progress:    Đã hoàn thành tích hợp video Hero; Đang giải quyết xung đột git và cập nhật LifestyleGallery.astro để dùng ảnh v2 của anh Bang.
+Next:        Hoàn thành update LifestyleGallery.astro, commit và push lên Production để deploy bản chạy video.
 Blockers:    None
-Last commit: c3fc9d3 focus: end session 2026-07-30 (local HEAD trước khi cập nhật video)
-Updated:     2026-07-31 10:17
+Last commit: a56f080 focus: end session 2026-07-31 (remote main)
+Updated:     2026-07-31 10:32
 Machine:     Mac mini
 ```
