@@ -8,7 +8,7 @@
 
 - **Thay thế và tối ưu hóa hình ảnh sản phẩm thực tế mới (Hoàn thành - 2026-07-31)**:
   - Sao chép và tích hợp 5 ảnh chụp sản phẩm thực tế chất lượng cao do anh Bang cung cấp vào dự án.
-  - Cập nhật script `optimize-images.js` để tự động resize và nén WebP cho ảnh chụp cận cảnh `detail-3dprint.jpg` về 800px width.
+  - Áp dụng cơ chế Cache Busting (đổi tên các file ảnh thành `-v2` và cập nhật script `optimize-images.js`) để giải quyết triệt để lỗi cache trên Cloudflare CDN và trình duyệt của khách hàng.
   - Chạy tối ưu hóa nén ảnh sang WebP (đạt tỷ lệ nén 82% - 87%, kích thước cực nhẹ 34KB - 57KB).
   - Cập nhật component `LifestyleGallery.astro` tích hợp ảnh cận cảnh chất liệu in 3D (`detail-3dprint.webp`) thay cho ảnh WFH cũ để khách hàng thấy rõ chất lượng hoàn thiện của BlueMoon's Studio.
   - Chạy build tĩnh thành công.
