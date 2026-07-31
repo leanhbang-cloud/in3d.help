@@ -6,6 +6,13 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
+- **Thay thế và tối ưu hóa hình ảnh sản phẩm thực tế mới (Hoàn thành - 2026-07-31)**:
+  - Sao chép và tích hợp 5 ảnh chụp sản phẩm thực tế chất lượng cao do anh Bang cung cấp vào dự án.
+  - Cập nhật script `optimize-images.js` để tự động resize và nén WebP cho ảnh chụp cận cảnh `detail-3dprint.jpg` về 800px width.
+  - Chạy tối ưu hóa nén ảnh sang WebP (đạt tỷ lệ nén 82% - 87%, kích thước cực nhẹ 34KB - 57KB).
+  - Cập nhật component `LifestyleGallery.astro` tích hợp ảnh cận cảnh chất liệu in 3D (`detail-3dprint.webp`) thay cho ảnh WFH cũ để khách hàng thấy rõ chất lượng hoàn thiện của BlueMoon's Studio.
+  - Chạy build tĩnh thành công.
+
 - **Thay đổi nhân vật sang bé Misa 9 tuổi (Hoàn thành - 2026-07-30)**:
   - Tối ưu và cắt ghép ảnh gốc của Misa tạo `misa-portrait.webp` và `misa-avatar.webp` dạng WebP sắc nét.
   - Tái cấu trúc copywriting toàn bộ 9 Astro components chính (`About`, `Hero`, `PainPoints`, `ProductShowcase`, `HowItWorks`, `ModularExplainer`, `FAQ`, `Footer`, `SEOHead`) sang giọng văn lễ phép, đáng yêu của bé Misa và bố.
@@ -81,11 +88,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Thay đổi nhân vật thương hiệu sang bé Misa 9 tuổi và tối ưu hóa nội dung trang web.
-Progress:    Hoàn thành chuyển đổi copywriting 9 Astro components sang giọng văn bé Misa, tối ưu ảnh chân dung/avatar và sửa lỗi CSS méo ảnh avatar & tương phản chữ.
-Next:        Theo dõi phản hồi từ khách hàng và bắt đầu chạy test lại toàn bộ hệ thống (QC 5 lớp).
+Working on:  Thay thế và tối ưu hóa hình ảnh sản phẩm thực tế mới.
+Progress:    Thay thế 5 hình ảnh thực tế sản phẩm mới thành công, tối ưu hóa WebP siêu nhẹ, cập nhật cấu trúc Lifestyle Gallery.
+Next:        Báo cáo kết quả và đợi feedback từ anh Bang.
 Blockers:    None
-Last commit: 24ceae8 fix(style): resolve avatar aspect ratio distortion and signature text contrast
-Updated:     2026-07-30 16:29
-Machine:     Mac mini
+Last commit: c3fc9d3 focus: end session 2026-07-30 (local updated, changes uncommitted)
+Updated:     2026-07-31 07:38
+Machine:     iMac (local)
 ```
