@@ -6,78 +6,38 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
+- **Thay thế và tối ưu hóa hình ảnh sản phẩm thực tế mới (Hoàn thành - 2026-07-31)**:
+  - Tích hợp thành công ảnh mèo thần tài (`lifestyle-kitty.webp`, 74KB) và ảnh sơ đồ kích thước 40cm chính xác (`detail-assembly-v3.webp`, 35KB) vào dự án.
+  - Sử dụng cơ chế Cache Busting (đổi tên file thành `-v3` và `lifestyle-kitty`) để vượt qua bộ nhớ đệm CDN của Cloudflare và trình duyệt.
+  - Chạy tối ưu hóa nén Sharp sang định dạng WebP siêu nhẹ cho các tài nguyên ảnh mới.
+  - Cập nhật lại các component `LifestyleGallery.astro` và `ModularExplainer.astro`.
+
 - **Thay thế Hero Image bằng Video Lắp Ráp & Phối màu (Hoàn thành - 2026-07-31)**:
-  - Nén video gốc `Desk_organizer_assembly_and_colo…_202607311003.mp4` thành hai bản `hero-video.mp4` (H.264 Baseline, 560KB) và `hero-video.webm` (VP9, 664KB) loại bỏ hoàn toàn tiếng (-an) để tối ưu hóa tải trang.
-  - Trích xuất poster frame giây thứ 2 lưu thành `hero-video-poster.webp` siêu nhẹ (11.7KB) để tối ưu hóa chỉ số LCP.
+  - Nén video gốc thành `hero-video.mp4` (560KB) và `hero-video.webm` (664KB) loại bỏ âm thanh để tối ưu tải trang.
+  - Trích xuất poster frame giây thứ 2 lưu thành `hero-video-poster.webp` siêu nhẹ (11.7KB).
   - Tái cấu trúc [Hero.astro](file:///Users/bangle-macmini/Projects/in3d-help/src/components/Hero.astro) chèn thẻ `<video>` hỗ trợ autoplay, muted, playsinline, loop, và preload metadata.
-  - Viết code JS trong Hero component dùng `IntersectionObserver` tự động tạm dừng phát video khi người dùng cuộn ra ngoài màn hình (giảm CPU/GPU) và tôn trọng thiết lập `prefers-reduced-motion: reduce`.
+  - Viết code JS trong Hero component dùng `IntersectionObserver` tự động tạm dừng phát video khi người dùng cuộn ra ngoài màn hình và tôn trọng thiết lập `prefers-reduced-motion: reduce`.
   - Cấu hình CSS trong [global.css](file:///Users/bangle-macmini/Projects/in3d-help/src/styles/global.css) đảm bảo z-index chính xác (spotlight sau video, các corner bracket và annotation chữ nằm trên video), ẩn control bar và responsive mượt mà tỷ lệ 4:3 trên mobile.
   - Preload ảnh poster và WebM video trong thẻ head của [Layout.astro](file:///Users/bangle-macmini/Projects/in3d-help/src/layouts/Layout.astro).
-  - Biên dịch thử nghiệm (`npm run build`) thành công 100% không có lỗi.
-
-- **Thay thế và tối ưu hóa hình ảnh sản phẩm thực tế mới (Hoàn thành - 2026-07-31)**:
-  - Sao chép và tích hợp 5 ảnh chụp sản phẩm thực tế chất lượng cao do anh Bang cung cấp vào dự án.
-  - Áp dụng cơ chế Cache Busting (đổi tên các file ảnh thành `-v2` và cập nhật script `optimize-images.js`) để giải quyết triệt để lỗi cache trên Cloudflare CDN và trình duyệt của khách hàng.
-  - Chạy tối ưu hóa nén ảnh sang WebP (đạt tỷ lệ nén 82% - 87%, kích thước cực nhẹ 34KB - 57KB).
-  - Cập nhật component `LifestyleGallery.astro` tích hợp ảnh cận cảnh chất liệu in 3D (`detail-3dprint.webp`) thay cho ảnh WFH cũ để khách hàng thấy rõ chất lượng hoàn thiện của BlueMoon's Studio.
-  - Chạy build tĩnh thành công.
 
 - **Thay đổi nhân vật sang bé Misa 9 tuổi (Hoàn thành - 2026-07-30)**:
   - Tối ưu và cắt ghép ảnh gốc của Misa tạo `misa-portrait.webp` và `misa-avatar.webp` dạng WebP sắc nét.
-  - Tái cấu trúc copywriting toàn bộ 9 Astro components chính (`About`, `Hero`, `PainPoints`, `ProductShowcase`, `HowItWorks`, `ModularExplainer`, `FAQ`, `Footer`, `SEOHead`) sang giọng văn lễ phép, đáng yêu của bé Misa và bố.
-  - Khắc phục lỗi CSS gây méo/bóp hình tròn của ảnh avatar và sửa lỗi tương phản màu sắc chữ chức danh của Misa dưới chân câu chuyện.
+  - Tái cấu trúc copywriting toàn bộ 9 Astro components chính sang giọng văn lễ phép, đáng yêu của bé Misa và bố.
 
 - **Tối ưu hóa Hero Section & Section Spacing (Hoàn thành - 2026-07-30)**:
   - Tối ưu hóa nhãn CTA nút Zalo thành `"Tư vấn miễn phí"` tại [Hero.astro](file:///Users/bangle-macmini/Projects/in3d-help/src/components/Hero.astro).
   - Tái cấu trúc Stats di chuyển xuống chân của Hero Section (nằm dưới visual hình ảnh trên di động).
   - Dàn ngang Stats trên di động, hỗ trợ tự động thu nhỏ vòng ring và cỡ chữ trên thiết bị nhỏ để vừa khít màn hình.
-  - Khai báo ánh xạ hệ thống Spacing Tokens (`--space-lg`, `--space-xl`, etc.) chuẩn vào `:root` của [global.css](file:///Users/bangle-macmini/Projects/in3d-help/src/styles/global.css).
-  - Điều chỉnh `.hero-art` sử dụng `aspect-ratio: 4 / 3` và `object-fit: cover` giúp khung viền ôm sát tấm ảnh pegboard khít khao, không còn khe hở subpixel hay lọt thỏm.
-  - Thiết lập `.hero-stats` cách chân ảnh chuẩn chỉ `48px` (desktop) và `32px` (mobile), loại bỏ triệt để hiện tượng đè dính stats.
-  - Giảm padding/margin các section toàn hệ thống một cách đồng bộ và responsive.
+  - Khai báo ánh xạ hệ thống Spacing Tokens chuẩn vào `:root` của [global.css](file:///Users/bangle-macmini/Projects/in3d-help/src/styles/global.css).
+  - Điều chỉnh `.hero-art` sử dụng `aspect-ratio: 4 / 3` và `object-fit: cover` giúp khung viền ôm sát tấm ảnh pegboard khít khao.
+  - Thiết lập `.hero-stats` cách chân ảnh chuẩn chỉ `48px` (desktop) và `32px` (mobile).
 
 - **Sửa lỗi hiển thị giao diện trên thiết bị di động (Hoàn thành - 2026-07-30)**:
-  - Ẩn hoàn toàn Top Bar trên mobile (màn hình <= 768px) để giải phóng không gian hiển thị.
-  - Dàn ngang hai nút CTA của Hero (`flex-direction: row`), chia đều chiều rộng (`flex: 1`), áp dụng text-overflow ellipsis tránh tràn chữ và thu hẹp padding.
-  - Sửa lỗi khoảng trống lớn giữa các section bằng cách thiết lập `.hero` có `min-height: 85svh` và đặt `min-height: unset` cho các section chung.
-  - Thay đổi cấu trúc và CSS của FAQ Accordion sang dùng kỹ thuật grid-template-rows (`0fr` -> `1fr`) để tạo hiệu ứng đóng mở trượt mượt mà.
+  - Ẩn hoàn toàn Top Bar trên mobile (màn hình <= 768px).
+  - Dàn ngang hai nút CTA của Hero, chia đều chiều rộng, áp dụng text-overflow ellipsis tránh tràn chữ và thu hẹp padding.
 
 - **Sửa lỗi cache Cloudflare CDN trên production (Hoàn thành - 2026-07-30)**:
-  - Thêm một rule CSS vô hại `#cache-buster-element-unique` ở cuối file `global.css` nhằm ép Vite sinh ra mã hash mới cho file CSS built ra (`index.BWOCpY0X.css`). Việc này giúp vượt qua lỗi Cloudflare Edge CDN cache nhầm file HTML 404 (do race condition) thành file CSS. Giao diện trang production `https://3dprinting.ledainhan.com` đã hiển thị đẹp hoàn hảo.
-
-- **Chuẩn hóa UI/UX, Tương phản A11y & Đồng bộ thương hiệu đầy đủ (Hoàn thành - 2026-07-30)**:
-  - **Tối ưu hóa Navbar Light Mode**: Chuyển nền Navbar sang màu kem sáng pastel `rgba(255, 248, 240, 0.85)` đồng điệu với brand. Fix logo `BM` và chữ `BlueMoon's Studio✿` hiển thị sắc nét trên nền sáng, không bị co hay cắt chữ. Tăng font-weight các menu link và đổi màu hover sang cam đất đậm `#B24A2D`. Cấu hình shadow mịn khi scroll.
-  - **Đồng bộ thương hiệu đầy đủ**: Đổi tên thương hiệu từ rút gọn `BlueMoon` sang đầy đủ `"BlueMoon's Studio"` tại Header logo, Footer logo, và watermark chìm ở đầu Footer.
-  - **Cân đối watermark & Sửa lỗi lề**: Hạ font-size của watermark `.footer-mega` sang `clamp(40px, 6.5vw, 98px)` giúp cụm từ dài hiển thị gọn gàng, không bị tràn lề.
-  - **Khắc phục chữ khó đọc**: Sửa Side Rails (tương phản màu `#9b7b6a`, giảm letter-spacing, rail trái xoay đọc dưới lên và rail phải đọc trên xuống), tăng tương phản Top Bar (chữ màu `#3D3D3D`), đổi màu label About section sang cam đất đậm `#B24A2D` (độ tương phản > 5.5:1).
-  - **Khắc phục khoảng trống Footer**: Reset chiều cao an toàn loại bỏ chiều cao ảo, đổi màu watermark chìm `BlueMoon's Studio` sang xám mờ `rgba(61, 61, 61, 0.04)` để watermark chìm hiện lên tinh tế trên nền hồng sáng, giải quyết cảm giác trống lề bị lỗi layout.
-  - **Sửa lề badge "Khuyên dùng"/"Bán chạy"**: Thêm `overflow: visible` cho card recommended để tránh bị crop lề badge. Sửa badge mép trên cùng card thành `"KHUYÊN DÙNG"`, và chuyển khung `"🔥 Bán chạy"` bên dưới thành một huy hiệu nhỏ xinh đính ở góc trên bên phải card để giải phóng không gian.
-
-- **Tối ưu hóa toàn diện website dựa trên báo cáo audit (Hoàn thành - 2026-07-30)**:
-  - **Đồng bộ thương hiệu**: Sửa typo thương hiệu `BlueMooon` thành `BlueMoon` (nhất quán 2 chữ o) trên toàn bộ dự án (`Layout.astro`, `index.astro`, `Header.astro`, `About.astro`, `Footer.astro`).
-  - **Performance & SEO**: Tự host font (self-hosted fonts) trong `public/fonts/` và cấu hình `@font-face` cùng preload WOFF2. Nhúng metadata `theme-color` và 3 schema JSON-LD: `Organization`, `Product`, và `FAQPage`.
-  - **Accessibility (A11y)**: Thêm nút Skip Navigation Link ở đầu trang. Gán `aria-hidden` cho các decorative emojis, corner markers, side-rails, và SVG icons trong nút bấm. Gán landmark labels cho các section và cấu hình accordion FAQ accessible.
-  - **CRO & UI/UX**: Triển khai price anchoring (giá cũ gạch ngang), badge "Bán chạy nhất" cho combo Pro, và đổi nhãn các nút bấm hướng hành động cụ thể. Tích hợp `IntersectionObserver` tự động ẩn nút Floating CTA khi ở trong Hero và hiện khi cuộn qua.
-  - **Kiểm thử**: Đã chạy build tĩnh thành công (`npm run build`) và verify hiển thị qua preview server.
-
-- **Cấu hình & Đồng bộ Cloudflare Pages (Hoàn thành - 2026-07-27)**:
-  - Dọn dẹp hoàn toàn các tài liệu cũ không liên quan của dự án Núi Dinh.
-  - Cấu hình lại `astro.config.mjs` và `wrangler.jsonc` để chạy tĩnh (SSG) độc lập.
-  - Kết nối và deploy thành công trên Cloudflare Pages mặc định tại https://in3d-help.pages.dev.
-
-- **Điền template nhập liệu & Tạo Favicon thương hiệu (Hoàn thành - 2026-07-28)**:
-  - Đã hoàn thành 100% cập nhật các thông tin kỹ thuật về tấm pegboard modular.
-  - Đã đính kèm logo thương hiệu tại `public/logo.jpg`.
-  - Đã viết script `scripts/generate-favicon.js` để tự động tạo `favicon.ico`, `favicon.png` và `apple-touch-icon.png` từ logo thương hiệu, xóa file `favicon.svg` cũ của Astro.
-
-- **Phân tích kinh doanh & Định hướng thiết kế (Hoàn thành - 2026-07-28)**:
-  - Hoàn thành phân tích chi tiết USP, đối thủ và 3 kịch bản tài chính tại [business_analysis.md](file:///Users/bangle-macmini/Projects/in3d-help/docs/business_analysis.md).
-  - Lập tài liệu thiết kế chi tiết, bao gồm mã màu Hex và thư viện Prompt AI Midjourney/SDXL tại [Design.md](file:///Users/bangle-macmini/Projects/Design.md).
-
-- **Xây dựng Landing Page & Tối ưu hóa SEO/Hình ảnh (Hoàn thành - 2026-07-28)**:
-  - Đã hoàn thành lập trình giao diện Landing Page (Sale Page) bằng Astro + CSS thuần.
-  - Viết 12 Astro components modular trong `src/components/` và điều phối hoạt động thông qua `src/scripts/main.js`.
-  - Sinh 4 hình ảnh AI chất lượng cao và viết script `scripts/optimize-images.js` nén ảnh WebP giảm ~92% dung lượng.
+  - Thêm một rule CSS vô hại `#cache-buster-element-unique` ở cuối file `global.css` nhằm ép Vite sinh ra mã hash mới cho file CSS built ra.
 
 ---
 
@@ -97,11 +57,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Tích hợp video lắp ráp Hero và Thay thế ảnh cyberpunk bằng ảnh thực tế v2 mới trong gallery.
-Progress:    Đã hoàn thành tích hợp video Hero; Đang giải quyết xung đột git và cập nhật LifestyleGallery.astro để dùng ảnh v2 của anh Bang.
-Next:        Hoàn thành update LifestyleGallery.astro, commit và push lên Production để deploy bản chạy video.
+Working on:  Thay thế ảnh thực tế mèo thần tài dễ thương cho Gallery, sửa ảnh thông số 40cm ở Zone 5 và tối ưu hóa hình ảnh.
+Progress:    Hoàn thành sửa ảnh 40cm ở Zone 5, thay ảnh mèo thần tài May Mắn ở Gallery, resolve conflict git và push production.
+Next:        Theo dõi phản hồi từ khách hàng đối với Landing Page mới có chạy video Hero và Gallery ảnh thực tế.
 Blockers:    None
-Last commit: a56f080 focus: end session 2026-07-31 (remote main)
-Updated:     2026-07-31 10:32
+Last commit: ac646d7 feat(gallery): replace exploded view with lifestyle kitty setup image
+Updated:     2026-07-31 12:05
 Machine:     Mac mini
 ```
