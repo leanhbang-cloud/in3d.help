@@ -12,10 +12,13 @@ text_size = 6.0;       // Text font size
 font_name = "Arial:style=Bold";
 stroke_offset = 0.35;  // Thickness offset to make text strokes thicker
 
-/* [Printing Orientation] */
-// true = Face-down engraving (Flat on bed, peg points up, no supports!)
-// false = Face-up raised text (Peg points down, requires support)
-face_down = true; 
+/* [Inlay / Assembly settings] */
+// "assembly" = plate + text inlay assembled (different colors, for preview / AMS)
+// "plate" = only the plate with recessed text cavity
+// "text" = only the text letters to be inlaid (with tolerance)
+generate_mode = "assembly"; 
+inlay_depth = 1.0;      // Depth of the cavity
+inlay_tolerance = 0.15; // Clearance for loose fit when printing separately
 
 /* [Mount settings] */
 // Peg is placed at the top to avoid intersecting with the cut-out text
@@ -72,50 +75,58 @@ module split_snap_peg() {
     }
 }
 
-// Assemble the tag (Face-Down stencil design)
-union() {
-    if (face_down) {
-        // Face-down engraving/stencil (Flat on bed, peg points up, no supports!)
+// Assemble the tag
+if (generate_mode == "plate") {
+    // 1. Plate with cavity
+    difference() {
+        rounded_plate(tag_width, tag_height, tag_thickness, corner_radius);
+        
+        // Recessed cavity
+        translate([0, -2.0, -0.1])
+        linear_extrude(height=inlay_depth + 0.1) {
+            mirror([1, 0, 0])
+            offset(delta=stroke_offset)
+            text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
+        }
+    }
+    
+    // 2. Peg pointing UP from the back of plate
+    translate([0, peg_y_offset, tag_thickness])
+    split_snap_peg();
+} else if (generate_mode == "text") {
+    // Letters printed flat on bed, shrunk by tolerance
+    linear_extrude(height=inlay_depth) {
+        mirror([1, 0, 0])
+        offset(delta=stroke_offset - inlay_tolerance)
+        text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
+    }
+} else {
+    // Preview / Assembly (Default)
+    union() {
+        color("teal")
         difference() {
-            // 1. Base Plate (Z from 0 to tag_thickness)
-            color("teal")
             rounded_plate(tag_width, tag_height, tag_thickness, corner_radius);
             
-            // 2. Stencil Cut-out Text (Cut all the way through Z=-0.5 to Z=tag_thickness+0.5)
-            // We mirror it horizontally so it reads correctly from the front (Z=0, facing -Z)
-            color("red")
-            translate([0, -2.0, -0.5])
-            linear_extrude(height=tag_thickness + 1.0) {
-                mirror([1, 0, 0]) // Fix mirrored text for face-down print
+            // Recessed cavity
+            translate([0, -2.0, -0.1])
+            linear_extrude(height=inlay_depth + 0.1) {
+                mirror([1, 0, 0])
                 offset(delta=stroke_offset)
                 text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
             }
         }
         
-        // 3. Peg pointing UP from the back of plate (Z starting at tag_thickness)
         color("darkslategrey")
         translate([0, peg_y_offset, tag_thickness])
         split_snap_peg();
-    } else {
-        // Face-up raised text (Peg points down, requires support)
-        difference() {
-            // 1. Base Plate (Z from 0 to tag_thickness)
-            color("teal")
-            rounded_plate(tag_width, tag_height, tag_thickness, corner_radius);
-            
-            // 2. Stencil Cut-out Text (without mirror since it is face-up)
-            color("red")
-            translate([0, -2.0, -0.5])
-            linear_extrude(height=tag_thickness + 1.0) {
-                offset(delta=stroke_offset)
-                text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
-            }
-        }
         
-        // 3. Peg pointing DOWN (Z starting at 0, mirrored to negative Z)
-        color("darkslategrey")
-        translate([0, peg_y_offset, 0])
-        mirror([0, 0, 1])
-        split_snap_peg();
+        // Text Inlay (perfect fit for preview/AMS)
+        color("white")
+        translate([0, 0, 0])
+        linear_extrude(height=inlay_depth) {
+            mirror([1, 0, 0])
+            offset(delta=stroke_offset)
+            text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
+        }
     }
 }
