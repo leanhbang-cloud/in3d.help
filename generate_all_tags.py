@@ -1,11 +1,33 @@
 import subprocess
 import os
+import shutil
 
-scad_file = "/Users/bangle-macmini/Projects/in3d-help/SKADIS_subject_tag.scad"
-output_dir = "/Users/bangle-macmini/Projects/in3d-help/stl_outputs"
+# Get script's parent directory as the workspace directory
+workspace_dir = os.path.dirname(os.path.abspath(__file__))
+scad_file = os.path.join(workspace_dir, "SKADIS_subject_tag.scad")
+output_dir = os.path.join(workspace_dir, "stl_outputs")
 
 # Ensure output directory exists
 os.makedirs(output_dir, exist_ok=True)
+
+def find_openscad():
+    # 1. Try system PATH
+    try:
+        path = shutil.which("openscad")
+        if path:
+            return path
+    except Exception:
+        pass
+
+    # 2. Try default Mac path
+    mac_path = "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD"
+    if os.path.exists(mac_path):
+        return mac_path
+
+    # 3. Default fallback
+    return "openscad"
+
+openscad_bin = find_openscad()
 
 # List of all subjects, weekdays, and periods to generate
 items_to_generate = [
@@ -68,11 +90,13 @@ for item in items_to_generate:
     if len(item) > 8:
         text_size = 3.8
         
+    stroke_offset = round(0.35 * (text_size / 6.0), 3)
     cmd = [
-        "openscad",
+        openscad_bin,
         "-o", output_stl,
         "-D", f'subject_text="{item}"',
         "-D", f'text_size={text_size}',
+        "-D", f'stroke_offset={stroke_offset}',
         scad_file
     ]
     

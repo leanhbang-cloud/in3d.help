@@ -6,10 +6,11 @@
 subject_text = "Toán"; // Subject name
 tag_width = 38;        // Width of the tag (fits 40mm horizontal spacing)
 tag_height = 15;       // Height of the tag
-tag_thickness = 1.6;   // Base plate thickness (8 layers at 0.2mm)
+tag_thickness = 2.4;   // Base plate thickness (12 layers at 0.2mm)
 corner_radius = 2.0;   // Rounded corner radius
 text_size = 6.0;       // Text font size
 font_name = "Arial:style=Bold";
+stroke_offset = 0.35;  // Thickness offset to make text strokes thicker
 
 /* [Printing Orientation] */
 // true = Face-down engraving (Flat on bed, peg points up, no supports!)
@@ -86,6 +87,7 @@ union() {
             translate([0, -2.0, -0.5])
             linear_extrude(height=tag_thickness + 1.0) {
                 mirror([1, 0, 0]) // Fix mirrored text for face-down print
+                offset(delta=stroke_offset)
                 text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
             }
         }
@@ -105,6 +107,7 @@ union() {
             color("red")
             translate([0, -2.0, -0.5])
             linear_extrude(height=tag_thickness + 1.0) {
+                offset(delta=stroke_offset)
                 text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
             }
         }

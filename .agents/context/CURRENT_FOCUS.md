@@ -6,12 +6,17 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
-- **Nghiên cứu & Thiết kế Nhãn TKB Kadis Pegboard (Hoàn thành - 2026-08-14)**:
+- **Điều chỉnh Thiết kế Nhãn TKB Kadis Pegboard (Hoàn thành - 2026-08-14)**:
+  - Tăng độ dày base plate từ `1.6mm` lên `2.4mm` (tương đương 12 lớp in 0.2mm) giúp nhãn cứng cáp và tháo lắp bền bỉ hơn.
+  - Bổ sung bộ lọc `offset(delta = stroke_offset)` trong OpenSCAD giúp tăng độ dày nét chữ (stroke width), khắc phục triệt để lỗi chữ nét quá mỏng khó in.
+  - Cập nhật script `generate_all_tags.py` sử dụng đường dẫn tương đối động thay cho đường dẫn cứng, hỗ trợ tự động tìm kiếm đường dẫn OpenSCAD trên macOS, và tự động co giãn nét chữ thông minh (từ 0.22mm đến 0.35mm) theo chiều dài môn học để tránh dính chữ.
+  - Kết xuất thành công bộ **43 file STL** môn học mới hoàn toàn vào thư mục `stl_outputs`.
+
+- **Nghiên cứu & Thiết kế Nhãn TKB Kadis Pegboard ban đầu (Hoàn thành - 2026-08-14)**:
   - Nghiên cứu thành công thông số kỹ thuật của bảng IKEA SKÅDIS chính hãng (lỗ oval 5x15mm, độ dày 5mm, lưới so le pitch 20mm/40mm).
   - Phân tích thiết kế bảng 3MF (`SKADIS_modular_board_3.0_mini_comp.3mf`): lưới so le pitch 20mm, viền răng cưa lắp ghép sâu 10/30mm (trên/dưới) và 15/35mm (trái/phải) để giữ thành lỗ dày đều 1.5mm.
   - Trích xuất thành công 2 file STL chuẩn (`SKADIS_board_158x158.stl` và `SKADIS_mounting_clip.stl`) từ file 3MF để sử dụng độc lập.
   - Thiết kế thành công file OpenSCAD nhãn môn học `SKADIS_subject_tag.scad` dạng đục lỗ chữ thông suốt (stencil) tối ưu in úp mặt (Face-down), không cần support, chân cắm (peg) lệch lên mép trên 4.5mm chống cấn chữ. Sửa lỗi gương ngược chữ khi in úp bằng lệnh `mirror([1,0,0])`.
-  - Tạo script Python `generate_all_tags.py` tự động hóa kết xuất 43 file STL (Thứ, Tiết, Môn học viết tắt không dấu) xuất vào thư mục `stl_outputs`. Sửa lỗi Unicode ký tự có dấu khiến Bambu Studio báo lỗi lệch bàn in.
 
 - **Tối ưu hóa hình ảnh Test phân giải cao (Hoàn thành - 2026-07-31)**:
   - Tạo script [optimize-test-folder.js](file:///Users/bangle-macmini/Projects/in3d-help/scripts/optimize-test-folder.js) hỗ trợ tự động tối ưu hóa và chuyển đổi ảnh trong thư mục `Test`.
@@ -68,11 +73,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Nghiên cứu & Thiết kế Nhãn TKB Kadis Pegboard
-Progress:    Hoàn thành xuất 43 file STL đục chữ không dấu in úp mặt và trích xuất mesh từ 3MF.
-Next:        Tiến hành in thử nghiệm các nhãn môn học STL và gắn thử lên bảng.
+Working on:  Điều chỉnh Thiết kế Nhãn TKB Kadis Pegboard
+Progress:    Hoàn thành tăng độ dày plate lên 2.4mm, làm dày nét chữ và sinh 43 file STL mới.
+Next:        Tiến hành in thử nghiệm các nhãn môn học STL với thiết kế mới dày dặn hơn.
 Blockers:    None
-Last commit: 98414b4
-Updated:     2026-08-14 16:15
-Machine:     Mac mini
+Last commit: b93c339
+Updated:     2026-08-14 20:45
+Machine:     iMac
 ```
