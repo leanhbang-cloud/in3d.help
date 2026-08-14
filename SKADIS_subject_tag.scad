@@ -6,7 +6,7 @@
 subject_text = "Toán"; // Subject name
 tag_width = 38;        // Width of the tag (fits 40mm horizontal spacing)
 tag_height = 15;       // Height of the tag
-tag_thickness = 2.4;   // Base plate thickness (12 layers at 0.2mm)
+tag_thickness = 3.0;   // Base plate thickness (15 layers at 0.2mm)
 corner_radius = 2.0;   // Rounded corner radius
 text_size = 6.0;       // Text font size
 font_name = "Arial:style=Bold";
@@ -17,8 +17,11 @@ stroke_offset = 0.35;  // Thickness offset to make text strokes thicker
 // "plate" = only the plate with recessed text cavity
 // "text" = only the text letters to be inlaid (with tolerance)
 generate_mode = "assembly"; 
-inlay_depth = 1.0;      // Depth of the cavity
+inlay_depth = 1.2;      // Depth of the cavity
 inlay_tolerance = 0.15; // Clearance for loose fit when printing separately
+text_raised_height = 0.8; // Height of the raised text on the inlay plate
+cavity_width = 30;     // Width of the rectangular cavity
+cavity_height = 9;      // Height of the rectangular cavity
 
 /* [Mount settings] */
 // Peg is placed at the top to avoid intersecting with the cut-out text
@@ -77,56 +80,63 @@ module split_snap_peg() {
 
 // Assemble the tag
 if (generate_mode == "plate") {
-    // 1. Plate with cavity
+    // 1. Plate with rectangular cavity (centered at Y = -2.0, depth = inlay_depth)
     difference() {
         rounded_plate(tag_width, tag_height, tag_thickness, corner_radius);
         
-        // Recessed cavity
+        // Rectangular cavity
         translate([0, -2.0, -0.1])
-        linear_extrude(height=inlay_depth + 0.1) {
-            mirror([1, 0, 0])
-            offset(delta=stroke_offset)
-            text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
-        }
+        rounded_plate(cavity_width, cavity_height, inlay_depth + 0.1, 1.0);
     }
     
-    // 2. Peg pointing UP from the back of plate
+    // 2. Peg pointing UP from the back of plate (Z starting at tag_thickness)
     translate([0, peg_y_offset, tag_thickness])
     split_snap_peg();
 } else if (generate_mode == "text") {
-    // Letters printed flat on bed, shrunk by tolerance
-    linear_extrude(height=inlay_depth) {
-        mirror([1, 0, 0])
-        offset(delta=stroke_offset - inlay_tolerance)
-        text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
+    // Rectangular insert with raised text (printed face-up, flat on bed)
+    union() {
+        // 1. Backing plate (shrunk by inlay_tolerance)
+        color("white")
+        rounded_plate(cavity_width - 2 * inlay_tolerance, cavity_height - 2 * inlay_tolerance, inlay_depth, 1.0);
+        
+        // 2. Raised text on top (Z starts at inlay_depth, height = text_raised_height, face-up, no mirror!)
+        color("red")
+        translate([0, -2.0, inlay_depth])
+        linear_extrude(height=text_raised_height) {
+            offset(delta=stroke_offset)
+            text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
+        }
     }
 } else {
     // Preview / Assembly (Default)
     union() {
+        // Teal Plate with cavity
         color("teal")
         difference() {
             rounded_plate(tag_width, tag_height, tag_thickness, corner_radius);
             
-            // Recessed cavity
+            // Rectangular cavity
             translate([0, -2.0, -0.1])
-            linear_extrude(height=inlay_depth + 0.1) {
-                mirror([1, 0, 0])
-                offset(delta=stroke_offset)
-                text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
-            }
+            rounded_plate(cavity_width, cavity_height, inlay_depth + 0.1, 1.0);
         }
         
+        // Grey Peg on the back
         color("darkslategrey")
         translate([0, peg_y_offset, tag_thickness])
         split_snap_peg();
         
-        // Text Inlay (perfect fit for preview/AMS)
-        color("white")
+        // Assembled Text Inlay (perfect fit, no tolerance for assembly preview/AMS)
         translate([0, 0, 0])
-        linear_extrude(height=inlay_depth) {
-            mirror([1, 0, 0])
-            offset(delta=stroke_offset)
-            text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
+        union() {
+            color("white")
+            rounded_plate(cavity_width, cavity_height, inlay_depth, 1.0);
+            
+            color("red")
+            translate([0, -2.0, inlay_depth])
+            linear_extrude(height=text_raised_height) {
+                offset(delta=stroke_offset)
+                text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
+            }
         }
     }
 }

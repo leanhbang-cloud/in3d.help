@@ -81,7 +81,8 @@ for item in items_to_generate:
     
     # Standardize filename format to prevent Bambu Studio import/path issues
     safe_filename = unsigned_text.replace(" ", "_").replace(".", "_").replace("-", "_")
-    output_stl = os.path.join(output_dir, f"Tag_{safe_filename}.stl")
+    output_plate = os.path.join(output_dir, f"Tag_{safe_filename}_Plate.stl")
+    output_text = os.path.join(output_dir, f"Tag_{safe_filename}_Text.stl")
     
     # Adjust text size depending on text length
     text_size = 6.0
@@ -91,22 +92,43 @@ for item in items_to_generate:
         text_size = 3.8
         
     stroke_offset = round(0.35 * (text_size / 6.0), 3)
-    cmd = [
+    
+    # 1. Export Plate STL
+    cmd_plate = [
         openscad_bin,
-        "-o", output_stl,
+        "-o", output_plate,
         "-D", f'subject_text="{item}"',
         "-D", f'text_size={text_size}',
         "-D", f'stroke_offset={stroke_offset}',
+        "-D", 'generate_mode="plate"',
         scad_file
     ]
     
-    print(f"Đang xuất Nhãn đục lỗ môn học: {item} -> {os.path.basename(output_stl)}...")
+    # 2. Export Text STL
+    cmd_text = [
+        openscad_bin,
+        "-o", output_text,
+        "-D", f'subject_text="{item}"',
+        "-D", f'text_size={text_size}',
+        "-D", f'stroke_offset={stroke_offset}',
+        "-D", 'generate_mode="text"',
+        scad_file
+    ]
+    
+    print(f"Đang xuất Nhãn môn học '{item}':")
     try:
-        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        if result.returncode == 0:
+        # Plate
+        print(f"  -> Plate: {os.path.basename(output_plate)}...")
+        res_plate = subprocess.run(cmd_plate, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        # Text
+        print(f"  -> Text:  {os.path.basename(output_text)}...")
+        res_text = subprocess.run(cmd_text, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        
+        if res_plate.returncode == 0 and res_text.returncode == 0:
             print(f"  ✓ Thành công!")
         else:
-            print(f"  ✗ Thất bại! Lỗi: {result.stderr.strip()}")
+            err = res_plate.stderr.strip() + "\n" + res_text.stderr.strip()
+            print(f"  ✗ Thất bại! Lỗi:\n{err.strip()}")
     except Exception as e:
         print(f"  ✗ Lỗi hệ thống: {e}")
 
