@@ -91,7 +91,7 @@ for item in items_to_generate:
     if len(item) > 8:
         text_size = 3.8
         
-    stroke_offset = round(0.35 * (text_size / 6.0), 3)
+    stroke_offset = 0.0
     
     # 1. Export Plate STL
     cmd_plate = [

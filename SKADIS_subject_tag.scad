@@ -10,7 +10,7 @@ tag_thickness = 3.0;   // Base plate thickness (15 layers at 0.2mm)
 corner_radius = 2.0;   // Rounded corner radius
 text_size = 6.0;       // Text font size
 font_name = "Arial:style=Bold";
-stroke_offset = 0.35;  // Thickness offset to make text strokes thicker
+stroke_offset = 0.0;   // Thickness offset to make text strokes thicker
 
 /* [Inlay / Assembly settings] */
 // "assembly" = plate + text inlay assembled (different colors, for preview / AMS)
@@ -22,12 +22,13 @@ inlay_tolerance = 0.15; // Clearance for loose fit when printing separately
 text_raised_height = 0.8; // Height of the raised text on the inlay plate
 cavity_width = 30;     // Width of the rectangular cavity
 cavity_height = 9;      // Height of the rectangular cavity
+cavity_y_offset = 0.0;  // Centered vertically
 
 /* [Mount settings] */
-// Peg is placed at the top to avoid intersecting with the cut-out text
+// Peg is placed at the center (Y = 0) of the plate
 peg_width = 4.8;
-peg_height = 6.0;        // Shorter peg (6mm) to stay at the top edge
-peg_y_offset = 4.5;      // Shift peg to the top edge
+peg_height = 6.0;        // Shorter peg (6mm) to stay at the center
+peg_y_offset = 0.0;      // Centered vertically
 board_thickness = 5.24;
 slit_width = 1.0;
 
@@ -78,14 +79,23 @@ module split_snap_peg() {
     }
 }
 
+module draw_text() {
+    if (stroke_offset > 0) {
+        offset(delta=stroke_offset)
+        text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
+    } else {
+        text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
+    }
+}
+
 // Assemble the tag
 if (generate_mode == "plate") {
-    // 1. Plate with rectangular cavity (centered at Y = -2.0, depth = inlay_depth)
+    // 1. Plate with rectangular cavity (centered at cavity_y_offset, depth = inlay_depth)
     difference() {
         rounded_plate(tag_width, tag_height, tag_thickness, corner_radius);
         
         // Rectangular cavity
-        translate([0, -2.0, -0.1])
+        translate([0, cavity_y_offset, -0.1])
         rounded_plate(cavity_width, cavity_height, inlay_depth + 0.1, 1.0);
     }
     
@@ -94,17 +104,17 @@ if (generate_mode == "plate") {
     split_snap_peg();
 } else if (generate_mode == "text") {
     // Rectangular insert with raised text (printed face-up, flat on bed)
+    translate([0, cavity_y_offset, 0])
     union() {
-        // 1. Backing plate (shrunk by inlay_tolerance)
+        // 1. Backing plate (shrunk by inlay_tolerance, centered at Y = 0 relative to translation)
         color("white")
         rounded_plate(cavity_width - 2 * inlay_tolerance, cavity_height - 2 * inlay_tolerance, inlay_depth, 1.0);
         
-        // 2. Raised text on top (Z starts at inlay_depth, height = text_raised_height, face-up, no mirror!)
+        // 2. Raised text on top (Z starts at inlay_depth, height = text_raised_height, centered at Y = 0, no mirror!)
         color("red")
-        translate([0, -2.0, inlay_depth])
+        translate([0, 0, inlay_depth]) // Centered vertically on the backing plate!
         linear_extrude(height=text_raised_height) {
-            offset(delta=stroke_offset)
-            text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
+            draw_text();
         }
     }
 } else {
@@ -116,7 +126,7 @@ if (generate_mode == "plate") {
             rounded_plate(tag_width, tag_height, tag_thickness, corner_radius);
             
             // Rectangular cavity
-            translate([0, -2.0, -0.1])
+            translate([0, cavity_y_offset, -0.1])
             rounded_plate(cavity_width, cavity_height, inlay_depth + 0.1, 1.0);
         }
         
@@ -126,16 +136,16 @@ if (generate_mode == "plate") {
         split_snap_peg();
         
         // Assembled Text Inlay (perfect fit, no tolerance for assembly preview/AMS)
-        translate([0, 0, 0])
+        translate([0, cavity_y_offset, 0])
         union() {
             color("white")
             rounded_plate(cavity_width, cavity_height, inlay_depth, 1.0);
             
             color("red")
-            translate([0, -2.0, inlay_depth])
+            translate([0, 0, -text_raised_height]) // Protrudes outwards (facing -Z) in assembly view!
             linear_extrude(height=text_raised_height) {
-                offset(delta=stroke_offset)
-                text(subject_text, size=text_size, font=font_name, halign="center", valign="center");
+                mirror([1, 0, 0]) // Mirrored for assembly view facing -Z
+                draw_text();
             }
         }
     }

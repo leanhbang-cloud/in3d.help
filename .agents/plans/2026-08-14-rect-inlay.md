@@ -1,42 +1,50 @@
-# Kế hoạch Thiết kế Hốc Chữ Nhật + Tấm Chữ Rời 2 Màu (Rectangular Inlay)
+# Kế hoạch Thiết kế Khảm Chữ đối xứng (Symmetrical Inlay Design)
 
-Giải pháp tối ưu hóa thiết kế nhãn môn học để khắc phục hoàn toàn hiện tượng rớt dấu tiếng Việt (dấu hỏi, dấu nặng...) và hiện tượng kéo sợi tơ (stringing).
+Phân tích nguyên nhân gốc rễ (Root Cause) của thiết kế lệch tâm và định nghĩa lại cấu trúc hình học chuẩn đối xứng cho nhãn TKB Kadis Pegboard.
 
-## Nguyên nhân của hai hiện tượng
+## Phân tích nguyên nhân gốc rễ (Root Cause Analysis)
 
-1. **Hiện tượng rớt dấu tiếng Việt (dấu chấm, dấu móc)**:
-   - Vì các dấu (như dấu chấm dưới chữ `ậ`, dấu móc chữ `ủ`) là những thực thể hình học tách biệt, không có liên kết vật lý với thân chữ chính. Khi in đục lỗ hoặc in chữ rời đơn lẻ, chúng là những mảnh nhựa vụn siêu nhỏ trên bàn in $\rightarrow$ Rất dễ bị bong tróc, rơi mất khi bóc khỏi bàn in hoặc dán keo.
-2. **Hiện tượng kéo sợi tơ (Stringing) ở đỉnh chốt**:
-   - Khi in nhiều chi tiết cùng lúc (hoặc chốt chia làm 2 nhánh khe co giãn), đầu phun phải di chuyển qua lại giữa các đỉnh chốt ở các lớp trên cùng. Nhựa PLA bị rỉ ra khi đầu phun di chuyển $\rightarrow$ tạo thành các sợi tơ mỏng.
-
----
-
-## Giải pháp thiết kế mới (Hốc chữ nhật + Tấm chữ nổi)
-
-Thay vì cắt hốc theo biên dạng chữ, ta làm như sau:
-1. **Trên tấm Plate**: Khắc một **hốc hình chữ nhật bo góc** đơn giản ở giữa (ví dụ kích thước `32mm x 9mm`, độ sâu `1.0mm`).
-2. **Tấm Chữ Rời**: In một **tấm chữ nhật mỏng** (kích thước khít với hốc, ví dụ `31.7mm x 8.7mm`, độ dày bằng độ sâu hốc `1.0mm`). Trên bề mặt tấm mỏng này, chữ môn học sẽ được **in nổi lên** `0.8mm`.
-   - **Cách in 2 màu đơn giản (không cần AMS)**:
-     - Lớp 0.0 -> 1.0mm (tấm nền): In màu A (ví dụ màu Đen hoặc Trắng).
-     - Lớp 1.0 -> 1.8mm (chữ nổi): Đổi sợi nhựa sang màu B (ví dụ màu Vàng phản quang). Chỉ cần cài lệnh Pause ở độ cao `1.0mm` trên Slicer để thay cuộn nhựa.
-   - **Giải quyết rớt dấu**: Tất cả các dấu tiếng Việt đều được đúc liền trên tấm nền chữ nhật mỏng $\rightarrow$ **Không bao giờ bị rớt dấu**.
-   - **Giải quyết kéo sợi**: Tấm chữ in ngửa mặt rất phẳng, không có chốt gài $\rightarrow$ chất lượng in chữ cực kỳ nét và không kéo sợi.
+1. **Tại sao trước đây thiết kế bị lệch tâm (Y-offset)?**
+   - **Nguyên nhân**: Ở phiên bản đầu tiên, chữ được đục lỗ (stencil) thủng hoàn toàn qua tấm plate. Nếu chốt gài nằm ở chính giữa mặt sau (Y=0), các chữ cái sẽ đục xuyên qua chân chốt gài, làm hỏng kết cấu cơ học. Do đó, chốt gài buộc phải đẩy lên sát mép trên (`peg_y_offset = 4.5`), còn chữ phải đẩy xuống sát mép dưới (`Y = -2.0`). Đây là giải pháp chắp vá (ad-hoc) bắt buộc của thiết kế đục lỗ.
+2. **Đánh giá trên thiết kế mới (Inlay / Khắc chìm)**:
+   - **Thực tế**: Hiện tại ta đã chuyển sang thiết kế hốc khắc chìm sâu `1.2mm` trên plate dày `3.0mm`. Mặt sau của hốc vẫn còn lớp nhựa đặc dày `1.8mm` vô cùng chắc chắn.
+   - **Kết luận**: Chốt gài ở mặt sau và hốc chữ nhật ở mặt trước hoàn toàn không chạm nhau và không ảnh hưởng đến nhau về mặt cơ học.
+3. **Giải pháp định nghĩa lại hệ thống hình học**:
+   - Loại bỏ toàn bộ các tham số dịch chuyển ad-hoc cũ.
+   - Đặt cả chốt gài (mặt sau) và hốc chữ nhật (mặt trước) về chính giữa tâm đối xứng của tấm plate (`peg_y_offset = 0` và `cavity_y_offset = 0`).
+   - Điều này giúp nhãn cân đối hoàn hảo:
+     - Lề trên và lề dưới của hốc chữ nhật đều bằng nhau: `3.0mm` (tính từ mép hốc 9mm đến mép plate 15mm).
+     - Lề trái và lề phải đều bằng nhau: `4.0mm` (tính từ mép hốc 30mm đến mép plate 38mm).
+     - Tấm plate che khít hoàn toàn lỗ bảng IKEA SKÅDIS vì chốt nằm chính giữa lỗ và plate phủ đều ra các phía.
 
 ---
 
-## Các tham số thiết kế mới trong OpenSCAD
+## Tối ưu hóa nét chữ và Font chữ
 
-- `generate_mode`: Chế độ xuất file.
-  - `"plate"`: Xuất tấm plate có hốc chữ nhật lõm.
-  - `"text"`: Xuất tấm nền chữ nhật kèm chữ nổi lên phía trên (chữ ngửa mặt, không mirror).
-  - `"assembly"`: Ghép cả hai để xem trước trực quan.
-- `cavity_width = 32`: Chiều rộng hốc chữ nhật.
-- `cavity_height = 9`: Chiều cao hốc chữ nhật.
-- `inlay_depth = 1.0`: Độ sâu hốc chữ nhật.
-- `text_raised_height = 0.8`: Độ cao chữ nổi nhô lên từ tấm nền.
-- `inlay_tolerance = 0.15`: Dung sai khoảng hở viền tấm chữ nhật.
+- **Nét chữ**: Loại bỏ hoàn toàn việc bù nét chữ (`stroke_offset = 0`). Chữ sẽ được hiển thị với nét mảnh sắc sảo và thanh lịch tự nhiên của font gốc (Arial Bold hoặc bất kỳ font nào khác), không còn bị phình to (bloated) hay thô kệch.
+- **Canh lề**: Chữ được căn giữa tuyệt đối theo cả 2 trục X và Y của tấm nền chữ nhật mỏng.
+
+---
+
+## Proposed Changes
+
+### OpenSCAD Design Component
+
+#### [MODIFY] [SKADIS_subject_tag.scad](file:///Users/mac/Projects/in3d-help/SKADIS_subject_tag.scad)
+- Đặt mặc định: `tag_thickness = 3.0`, `inlay_depth = 1.2`, `peg_y_offset = 0`, `cavity_y_offset = 0`, `stroke_offset = 0.0`.
+- Sửa đổi hình học:
+  - Hốc chữ nhật và tấm chữ rời được đặt tại tọa độ `Y = cavity_y_offset = 0`.
+  - Chốt gài được đặt tại tọa độ `Y = peg_y_offset = 0`.
+
+### Python Generation Script Component
+
+#### [MODIFY] [generate_all_tags.py](file:///Users/mac/Projects/in3d-help/generate_all_tags.py)
+- Đặt mặc định `stroke_offset = 0.0` trong mọi câu lệnh kết xuất.
+
+---
 
 ## Verification Plan
 
 ### Automated Tests
-- Chạy thử xuất file STL cho mẫu "Chủ Nhật" với 3 độ dày thử nghiệm khác nhau khi anh Bang phản hồi độ dày tối ưu.
+- Chạy script python để sinh file mẫu "Chủ Nhật" với thiết kế mới chuẩn đối xứng.
+- Render hình ảnh xem trước từ mặt trước và mặt sau bằng OpenSCAD.
