@@ -6,6 +6,13 @@
 
 ## Trạng thái hiện tại (State of the Project)
 
+- **Nghiên cứu & Thiết kế Nhãn TKB Kadis Pegboard (Hoàn thành - 2026-08-14)**:
+  - Nghiên cứu thành công thông số kỹ thuật của bảng IKEA SKÅDIS chính hãng (lỗ oval 5x15mm, độ dày 5mm, lưới so le pitch 20mm/40mm).
+  - Phân tích thiết kế bảng 3MF (`SKADIS_modular_board_3.0_mini_comp.3mf`): lưới so le pitch 20mm, viền răng cưa lắp ghép sâu 10/30mm (trên/dưới) và 15/35mm (trái/phải) để giữ thành lỗ dày đều 1.5mm.
+  - Trích xuất thành công 2 file STL chuẩn (`SKADIS_board_158x158.stl` và `SKADIS_mounting_clip.stl`) từ file 3MF để sử dụng độc lập.
+  - Thiết kế thành công file OpenSCAD nhãn môn học `SKADIS_subject_tag.scad` dạng đục lỗ chữ thông suốt (stencil) tối ưu in úp mặt (Face-down), không cần support, chân cắm (peg) lệch lên mép trên 4.5mm chống cấn chữ. Sửa lỗi gương ngược chữ khi in úp bằng lệnh `mirror([1,0,0])`.
+  - Tạo script Python `generate_all_tags.py` tự động hóa kết xuất 43 file STL (Thứ, Tiết, Môn học viết tắt không dấu) xuất vào thư mục `stl_outputs`. Sửa lỗi Unicode ký tự có dấu khiến Bambu Studio báo lỗi lệch bàn in.
+
 - **Tối ưu hóa hình ảnh Test phân giải cao (Hoàn thành - 2026-07-31)**:
   - Tạo script [optimize-test-folder.js](file:///Users/bangle-macmini/Projects/in3d-help/scripts/optimize-test-folder.js) hỗ trợ tự động tối ưu hóa và chuyển đổi ảnh trong thư mục `Test`.
   - Nén thành công 6 file PNG siêu nặng (~50MB) của Gemini sinh ra trong thư mục `Test` sang định dạng WebP siêu nhẹ dưới 200KB (giảm hơn 98% dung lượng), lưu tại [public/images/Test/](file:///Users/bangle-macmini/Projects/in3d-help/public/images/Test).
@@ -25,7 +32,7 @@
   - Preload ảnh poster và WebM video trong thẻ head của [Layout.astro](file:///Users/bangle-macmini/Projects/in3d-help/src/layouts/Layout.astro).
 
 - **Thay đổi nhân vật sang bé Misa 9 tuổi (Hoàn thành - 2026-07-30)**:
-  - Tối ưu và cắt ghép ảnh gốc của Misa tạo `misa-portrait.webp` và `misa-avatar.webp` dạng WebP sắc nét.
+  - Tối ưu và cắt ghép ảnh gốc của Misa tạo `misa-portrait.webp` and `misa-avatar.webp` dạng WebP sắc nét.
   - Tái cấu trúc copywriting toàn bộ 9 Astro components chính sang giọng văn lễ phép, đáng yêu của bé Misa và bố.
 
 - **Tối ưu hóa Hero Section & Section Spacing (Hoàn thành - 2026-07-30)**:
@@ -33,8 +40,8 @@
   - Tái cấu trúc Stats di chuyển xuống chân của Hero Section (nằm dưới visual hình ảnh trên di động).
   - Dàn ngang Stats trên di động, hỗ trợ tự động thu nhỏ vòng ring và cỡ chữ trên thiết bị nhỏ để vừa khít màn hình.
   - Khai báo ánh xạ hệ thống Spacing Tokens chuẩn vào `:root` của [global.css](file:///Users/bangle-macmini/Projects/in3d-help/src/styles/global.css).
-  - Điều chỉnh `.hero-art` sử dụng `aspect-ratio: 4 / 3` và `object-fit: cover` giúp khung viền ôm sát tấm ảnh pegboard khít khao.
-  - Thiết lập `.hero-stats` cách chân ảnh chuẩn chỉ `48px` (desktop) và `32px` (mobile).
+  - Điều chỉnh `.hero-art` sử dụng `aspect-ratio: 4 / 3` and `object-fit: cover` giúp khung viền ôm sát tấm ảnh pegboard khít khao.
+  - Thiết lập `.hero-stats` cách chân ảnh chuẩn chỉ `48px` (desktop) and `32px` (mobile).
 
 - **Sửa lỗi hiển thị giao diện trên thiết bị di động (Hoàn thành - 2026-07-30)**:
   - Ẩn hoàn toàn Top Bar trên mobile (màn hình <= 768px).
@@ -61,11 +68,11 @@
 
 ## Metadata Đồng Bộ
 ```
-Working on:  Đã tối ưu hóa hình ảnh Test sang WebP và dọn dẹp visual.
-Progress:    Tối ưu hóa thành công 6 ảnh phân giải cao trong thư mục Test, viết script chuyên biệt.
-Next:        Tiếp tục theo dõi phản hồi của khách hàng đối với Landing Page mới.
+Working on:  Nghiên cứu & Thiết kế Nhãn TKB Kadis Pegboard
+Progress:    Hoàn thành xuất 43 file STL đục chữ không dấu in úp mặt và trích xuất mesh từ 3MF.
+Next:        Tiến hành in thử nghiệm các nhãn môn học STL và gắn thử lên bảng.
 Blockers:    None
-Last commit: e25d2e7 focus: end session 2026-07-31 (remote main)
-Updated:     2026-07-31 16:15
+Last commit: 98414b4
+Updated:     2026-08-14 16:15
 Machine:     Mac mini
 ```
