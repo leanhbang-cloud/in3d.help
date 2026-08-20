@@ -7,10 +7,11 @@
 ## Trạng thái hiện tại (State of the Project)
 
 - **Điều chỉnh Thiết kế Nhãn TKB Kadis Pegboard (Hoàn thành - 2026-08-14)**:
-  - Tăng độ dày base plate từ `1.6mm` lên `2.4mm` (tương đương 12 lớp in 0.2mm) giúp nhãn cứng cáp và tháo lắp bền bỉ hơn.
-  - Bổ sung bộ lọc `offset(delta = stroke_offset)` trong OpenSCAD giúp tăng độ dày nét chữ (stroke width), khắc phục triệt để lỗi chữ nét quá mỏng khó in.
-  - Cập nhật script `generate_all_tags.py` sử dụng đường dẫn tương đối động thay cho đường dẫn cứng, hỗ trợ tự động tìm kiếm đường dẫn OpenSCAD trên macOS, và tự động co giãn nét chữ thông minh (từ 0.22mm đến 0.35mm) theo chiều dài môn học để tránh dính chữ.
-  - Kết xuất thành công bộ **43 file STL** môn học mới hoàn toàn vào thư mục `stl_outputs`.
+  - Tăng độ dày base plate từ `1.6mm` lên `3.0mm` (tương đương 15 lớp in 0.2mm) giúp nhãn cứng cáp và tháo lắp bền bỉ hơn.
+  - Tách thiết kế thành 2 phần lắp ghép (Inlay): Plate có hốc chữ nhật bo góc sâu `1.2mm` và Tấm chữ rời mỏng `1.2mm` (co nhỏ viền `0.15mm` dung sai) có chữ nổi `0.8mm` phía trên. Giúp chữ in ngửa mặt đẹp và không bao giờ bị rơi các dấu tiếng Việt (`ủ`, `ậ`).
+  - Đưa toàn bộ chốt gài ở mặt sau và hốc chữ nhật ở mặt trước về vị trí **chính giữa tâm đối xứng (Y=0)** của tấm plate, loại bỏ hoàn toàn các dịch lệch tâm cũ.
+  - Loại bỏ hoàn toàn việc làm dày nét chữ (`stroke_offset = 0.0`), giúp hiển thị chính xác nét chữ Arial Bold thanh mảnh tự nhiên của font gốc.
+  - Cập nhật script `generate_all_tags.py` sử dụng đường dẫn động tương đối, tự động nhận diện OpenSCAD trên macOS, và kết xuất thành công trọn bộ **86 file STL** mới vào thư mục `stl_outputs`.
 
 - **Nghiên cứu & Thiết kế Nhãn TKB Kadis Pegboard ban đầu (Hoàn thành - 2026-08-14)**:
   - Nghiên cứu thành công thông số kỹ thuật của bảng IKEA SKÅDIS chính hãng (lỗ oval 5x15mm, độ dày 5mm, lưới so le pitch 20mm/40mm).
@@ -74,10 +75,10 @@
 ## Metadata Đồng Bộ
 ```
 Working on:  Điều chỉnh Thiết kế Nhãn TKB Kadis Pegboard
-Progress:    Hoàn thành tăng độ dày plate lên 2.4mm, làm dày nét chữ và sinh 43 file STL mới.
-Next:        Tiến hành in thử nghiệm các nhãn môn học STL với thiết kế mới dày dặn hơn.
+Progress:    Hoàn thành nâng cấp tag lên độ dày 3.0mm, hốc khảm chữ nhật, căn giữa đối xứng và sinh 86 file STL mới.
+Next:        Anh Bang in thử nghiệm mẫu Chủ Nhật đối xứng mới và lắp ghép thực tế.
 Blockers:    None
-Last commit: b93c339
-Updated:     2026-08-14 20:45
+Last commit: d726fb3
+Updated:     2026-08-14 23:15
 Machine:     iMac
 ```
